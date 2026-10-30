@@ -1,0 +1,13 @@
+{
+  "name": "planificador-viajes-estudiantes-unl",
+  "version": "0.1.0",
+  "description": "Planificador de viajes intercantonales para estudiantes de la UNL (DAG, orden topologico y Floyd-Warshall)",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "ISC"
+}
