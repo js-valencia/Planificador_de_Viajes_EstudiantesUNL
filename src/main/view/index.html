@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Planificador de Viajes UNL</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen">
+  <div id="app" class="max-w-xl mx-auto p-4">
+    <header class="py-6 text-center">
+      <h1 class="text-2xl font-bold text-[#0a2364]">Planificador de Viajes</h1>
+      <p class="text-sm text-slate-600">Terminal Terrestre Reina del Cisne · Cooperativas Loja y Catamayo</p>
+    </header>
+
+    <main>
+      <div class="bg-white rounded-2xl shadow p-4 space-y-3">
+        <div class="grid grid-cols-2 gap-3">
+          <label class="text-sm font-medium">Origen
+            <select v-model="origen" class="mt-1 w-full border rounded-lg p-2 bg-white">
+              <option v-for="t in terminales" :key="t" :value="t">{{ t }}</option>
+            </select>
+          </label>
+          <label class="text-sm font-medium">Destino
+            <select v-model="destino" class="mt-1 w-full border rounded-lg p-2 bg-white">
+              <option v-for="t in terminales" :key="t" :value="t">{{ t }}</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <label class="text-sm font-medium">Fecha
+            <input type="date" v-model="fecha" class="mt-1 w-full border rounded-lg p-2">
+          </label>
+          <label class="text-sm font-medium">Hora de salida
+            <input type="time" v-model="hora" class="mt-1 w-full border rounded-lg p-2">
+          </label>
+        </div>
+
+        <label class="text-sm font-medium block">Prefiero
+          <select v-model="criterio" class="mt-1 w-full border rounded-lg p-2 bg-white">
+            <option value="tiempo">Menor tiempo total</option>
+            <option value="espera">Menor tiempo de espera</option>
+            <option value="conexiones">Menos conexiones</option>
+          </select>
+        </label>
+
+        <button @click="buscar" :disabled="cargando"
+                class="w-full bg-[#c8102e] hover:bg-[#a30d26] disabled:opacity-60 text-white font-semibold rounded-lg py-2.5">
+          {{ cargando ? 'Buscando...' : 'Buscar ruta' }}
+        </button>
+      </div>
+
+      <p v-if="error" class="mt-4 bg-red-50 text-red-700 rounded-xl p-3 text-sm">{{ error }}</p>
+
+      <p v-if="buscado && !ruta && !error" class="mt-4 bg-amber-50 text-amber-800 rounded-xl p-3 text-sm">
+        No existe una conexión válida para esos datos. Prueba con otra hora o criterio.
+      </p>
+
+      <section v-if="ruta" class="mt-4 space-y-3">
+        <article v-for="(t, i) in ruta.tramos" :key="i" class="bg-white rounded-2xl shadow p-4 border-l-4 border-[#006838]">
+          <p class="text-xs uppercase tracking-wide text-slate-500">Coop. {{ t.cooperativa }}</p>
+          <p class="text-lg font-semibold">{{ t.desde }} → {{ t.hasta }}</p>
+          <p class="text-sm text-slate-600">Sale {{ hora12(t.salida) }} · Llega {{ hora12(t.llegada) }}</p>
+        </article>
+
+        <div class="bg-[#0a2364] text-white rounded-2xl p-4 text-sm grid grid-cols-3 gap-2 text-center">
+          <div><p class="text-xl font-bold">{{ ruta.transbordos }}</p><p class="opacity-80">Transbordos</p></div>
+          <div><p class="text-xl font-bold">{{ minutos(ruta.esperaTotalMin) }}</p><p class="opacity-80">Espera entre buses</p></div>
+          <div><p class="text-xl font-bold">{{ minutos(ruta.duracionViajeMin) }}</p><p class="opacity-80">Duración total</p></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          terminales: [],
+          origen: '', destino: '',
+          fecha: '2026-11-02', hora: '06:30',
+          criterio: 'tiempo',
+          ruta: null, error: '', buscado: false, cargando: false,
+        };
+      },
+      async mounted() {
+        try {
+          const r = await fetch('/api/terminales');
+          this.terminales = (await r.json()).terminales;
+          this.origen = this.terminales.includes('Catamayo') ? 'Catamayo' : this.terminales[0];
+          this.destino = this.terminales.includes('Loja') ? 'Loja' : this.terminales[1];
+        } catch {
+          this.error = 'No se pudo conectar con el servidor.';
+        }
+      },
+      methods: {
+        async buscar() {
+          this.error = ''; this.ruta = null; this.cargando = true;
+          const params = new URLSearchParams({
+            origen: this.origen, destino: this.destino, criterio: this.criterio,
+            desde: `${this.fecha}T${this.hora}:00-05:00`, // zona horaria de Ecuador
+          });
+          try {
+            const r = await fetch('/api/ruta?' + params);
+            const datos = await r.json();
+            if (!r.ok) this.error = datos.error;
+            else this.ruta = datos.ruta;
+            this.buscado = true;
+          } catch {
+            this.error = 'No se pudo conectar con el servidor.';
+          } finally {
+            this.cargando = false;
+          }
+        },
+        hora12(iso) {
+          return new Date(iso).toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Guayaquil' });
+        },
+        minutos(m) {
+          const h = Math.floor(m / 60), min = Math.round(m % 60);
+          return h ? `${h} h ${min} min` : `${min} min`;
+        },
+      },
+    }).mount('#app');
+  </script>
+</body>
+</html>
