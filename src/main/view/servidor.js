@@ -4,7 +4,6 @@ const express = require('express');
 const { crearPlanificador, cargarDatos } = require('../services/planificadorService');
 
 const baseDir = path.join(__dirname, '..');
-const planificador = crearPlanificador(baseDir);
 const { terminales: terminalesDatos } = cargarDatos(baseDir);
 const nombresTerminales = terminalesDatos.map((t) => t.nombre);
 const criterios = ['tiempo', 'espera', 'conexiones'];
@@ -34,6 +33,7 @@ app.get('/api/ruta', (req, res) => {
     return res.status(400).json({ error: 'Fecha y hora no válidas' });
   }
 
+  const planificador = crearPlanificador(baseDir, desde);
   const ruta = planificador.buscarRuta({ origen, destino, desde, criterio });
   res.json({ ruta }); // ruta = null cuando no hay conexión válida (RF-07)
 });

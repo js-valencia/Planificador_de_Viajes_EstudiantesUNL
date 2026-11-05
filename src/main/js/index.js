@@ -2,15 +2,14 @@ const path = require('node:path');
 const { crearPlanificador } = require('../services/planificadorService');
 
 const baseDir = path.join(__dirname, '..');
-const planificador = crearPlanificador(baseDir);
+const consulta = { origen: 'Loja', destino: 'Cariamanga', desde: '2026-11-02T10:30:00-05:00' };
+const planificador = crearPlanificador(baseDir, consulta.desde);
 const grafo = planificador.grafo;
 
 const { esAciclico } = require('../domain/graph/ordenTopologico')(grafo);
 console.log(`Nodos: ${grafo.nodos.length} | Aristas: ${grafo.aristas.length} | Grafo acíclico: ${esAciclico}`);
 
 const hora = (d) => d.toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Guayaquil' });
-
-const consulta = { origen: 'Catamayo', destino: 'Cariamanga', desde: '2026-11-02T06:30:00-05:00' };
 
 for (const criterio of ['tiempo', 'espera', 'conexiones']) {
   const r = planificador.buscarRuta({ ...consulta, criterio });

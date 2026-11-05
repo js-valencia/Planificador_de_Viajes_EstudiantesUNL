@@ -14,20 +14,6 @@
       "terminalPrincipal": "Loja",
       "color": "#1d4ed8",
       "telefono": "+593 7 0000 001"
-    },
-    {
-      "nombre": "Gonzanamá",
-      "tipo": "local",
-      "terminalPrincipal": "Gonzanamá",
-      "color": "#a16207",
-      "telefono": "+593 7 0000 002"
-    },
-    {
-      "nombre": "Cariamanga",
-      "tipo": "local",
-      "terminalPrincipal": "Cariamanga",
-      "color": "#7c3aed",
-      "telefono": "+593 7 0000 003"
     }
   ]
 }

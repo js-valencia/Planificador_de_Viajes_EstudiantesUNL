@@ -197,6 +197,10 @@ Permite procesar las dependencias de un grafo dirigido acíclico, respetando el 
 
 Algoritmo de caminos mínimos utilizado para calcular los tiempos mínimos entre pares de nodos, según la representación y ponderación del grafo.
 
+### ↔️ Lista doblemente enlazada
+
+Estructura auxiliar con enlaces al nodo anterior y siguiente. Permite insertar, buscar, eliminar y recorrer elementos en ambos sentidos. Su implementación está en [ListaDobleEnlazada.js](src/main/domain/datos/ListaDobleEnlazada.js) y es independiente del planificador de rutas.
+
 ### 🕒 Validación temporal
 
 El sistema considera los horarios de llegada y salida para comprobar que los transbordos sean posibles y que los itinerarios respeten las restricciones temporales.
