@@ -1,6 +1,12 @@
 {
   "_aviso": "DATOS DE EJEMPLO para probar el algoritmo. Reemplazar por los horarios reales de las cooperativas.",
   "minutosMinimosTransbordo": 10,
+  "terminales": {
+    "Loja": { "lat": -3.99313, "lng": -79.20422 },
+    "Catamayo": { "lat": -3.98690, "lng": -79.35480 },
+    "Gonzanamá": { "lat": -4.22330, "lng": -79.43060 },
+    "Cariamanga": { "lat": -4.33170, "lng": -79.55440 }
+  },
   "frecuencias": [
     { "id": "F01", "cooperativa": "Catamayo", "origen": "Catamayo", "destino": "Loja", "salida": "2026-11-02T07:00:00-05:00", "llegada": "2026-11-02T07:45:00-05:00" },
     { "id": "F02", "cooperativa": "Catamayo", "origen": "Catamayo", "destino": "Loja", "salida": "2026-11-02T09:00:00-05:00", "llegada": "2026-11-02T09:45:00-05:00" },
