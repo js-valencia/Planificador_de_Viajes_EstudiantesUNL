@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planificador de Viajes - Estudiantes UNL</title>
+  
+  <!-- Estilos de Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- Estilos del Proyecto -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Panel Lateral de Controles -->
+    <aside class="sidebar">
+      <header class="sidebar-header">
+        <h1>UNL Viajes 🚌</h1>
+        <p>Planifica tu ruta hacia el campus</p>
+      </header>
+
+      <form id="travel-form" class="travel-form">
+        <div class="form-group">
+          <label for="origin">Origen:</label>
+          <select id="origin">
+            <option value="">Selecciona tu ubicación o haz clic en el mapa</option>
+            <option value="-4.0003,-79.2014">Terminal Terrestre</option>
+            <option value="-3.9931,-79.2045">Parque Central</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="destination">Destino UNL:</label>
+          <select id="destination">
+            <option value="-4.0325,-79.2032">Campus La Argelia</option>
+            <option value="-4.0250,-79.1980">Facultad de la Salud</option>
+            <option value="-4.0340,-79.2020">Campus Motupe / Agropecuaria</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary">Calcular Ruta</button>
+      </form>
+
+      <!-- Lista de Puntos Frecuentes / Destinos -->
+      <section class="places-list">
+        <h3>Destinos Frecuentes</h3>
+        <ul id="location-items">
+          <!-- Se cargan dinámicamente con JS -->
+        </ul>
+      </section>
+    </aside>
+
+    <!-- Contenedor del Mapa -->
+    <main id="map" class="map-container"></main>
+  </div>
+
+  <!-- Script de Leaflet -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Script del Proyecto -->
+  <script src="app.js"></script>
+</body>
+</html>
