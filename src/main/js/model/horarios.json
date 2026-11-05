@@ -1,12 +1,110 @@
 {
-  "_aviso": "DATOS DE EJEMPLO para probar el algoritmo. Reemplazar por los horarios reales de las cooperativas.",
+  "_fuente": "Horarios de la tabla compartida (Cooperativa de Transportes Loja). Los minutos de parada son estimados, excepto Zapotillo (400 min).",
+  "terminalOrigen": "Loja",
   "minutosMinimosTransbordo": 10,
-  "frecuencias": [
-    { "id": "F01", "cooperativa": "Catamayo", "origen": "Catamayo", "destino": "Loja", "salida": "2026-11-02T07:00:00-05:00", "llegada": "2026-11-02T07:45:00-05:00" },
-    { "id": "F02", "cooperativa": "Catamayo", "origen": "Catamayo", "destino": "Loja", "salida": "2026-11-02T09:00:00-05:00", "llegada": "2026-11-02T09:45:00-05:00" },
-    { "id": "F03", "cooperativa": "Loja", "origen": "Loja", "destino": "Catamayo", "salida": "2026-11-02T08:00:00-05:00", "llegada": "2026-11-02T08:45:00-05:00" },
-    { "id": "F04", "cooperativa": "Loja", "origen": "Loja", "destino": "Gonzanamá", "salida": "2026-11-02T10:00:00-05:00", "llegada": "2026-11-02T11:30:00-05:00" },
-    { "id": "F05", "cooperativa": "Loja", "origen": "Loja", "destino": "Cariamanga", "salida": "2026-11-02T09:30:00-05:00", "llegada": "2026-11-02T12:00:00-05:00" },
-    { "id": "F06", "cooperativa": "Loja", "origen": "Loja", "destino": "Cariamanga", "salida": "2026-11-02T14:00:00-05:00", "llegada": "2026-11-02T16:30:00-05:00" }
+  "cantones": {
+    "Cariamanga": "Calvas",
+    "Macará": "Macará",
+    "Catacocha": "Paltas",
+    "Chaguarpamba": "Chaguarpamba",
+    "Zapotillo": "Zapotillo",
+    "Sozoranga": "Sozoranga",
+    "Alamor": "Puyango",
+    "Amaluza": "Espíndola",
+    "Machala": "Machala"
+  },
+  "rutas": [
+    {
+      "id": "R01", "cooperativa": "Loja", "nombre": "Loja – Machala normal x Chaguarpamba",
+      "paradas": [
+        { "terminal": "Loja", "min": 0 },
+        { "terminal": "Chaguarpamba", "min": 150 },
+        { "terminal": "Machala", "min": 300 }
+      ],
+      "salidas": ["01:00", "04:30", "07:30", "09:02", "10:30", "12:30", "16:00", "17:00", "19:29", "23:30"]
+    },
+    {
+      "id": "R02", "cooperativa": "Loja", "nombre": "Loja – Zapotillo",
+      "paradas": [
+        { "terminal": "Loja", "min": 0 },
+        { "terminal": "Zapotillo", "min": 400 }
+      ],
+      "salidas": ["05:00", "11:00", "17:00", "22:00"]
+    },
+    {
+      "id": "R03", "cooperativa": "Loja", "nombre": "Loja – Macará x Catacocha",
+      "paradas": [
+        { "terminal": "Loja", "min": 0 },
+        { "terminal": "Catacocha", "min": 150 },
+        { "terminal": "Macará", "min": 330 }
+      ],
+      "salidas": ["07:00", "10:01", "15:00"]
+    },
+    {
+      "id": "R04", "cooperativa": "Loja", "nombre": "Loja – Macará x Cariamanga",
+      "paradas": [
+        { "terminal": "Loja", "min": 0 },
+        { "terminal": "Cariamanga", "min": 180 },
+        { "terminal": "Macará", "min": 300 }
+      ],
+      "salidas": ["09:02"]
+    },
+    {
+      "id": "R05", "cooperativa": "Loja", "nombre": "Loja – Macará (microbuses)",
+      "paradas": [
+        { "terminal": "Loja", "min": 0 },
+        { "terminal": "Macará", "min": 270 }
+      ],
+      "salidas": ["13:00", "18:00"]
+    },
+    {
+      "id": "R06", "cooperativa": "Loja", "nombre": "Loja – Sozoranga x Cariamanga",
+      "paradas": [
+        { "terminal": "Loja", "min": 0 },
+        { "terminal": "Cariamanga", "min": 180 },
+        { "terminal": "Sozoranga", "min": 240 }
+      ],
+      "salidas": ["16:00"]
+    },
+    {
+      "id": "R07", "cooperativa": "Loja", "nombre": "Loja – Cariamanga",
+      "paradas": [
+        { "terminal": "Loja", "min": 0 },
+        { "terminal": "Cariamanga", "min": 180 }
+      ],
+      "salidas": ["15:01", "18:00"]
+    },
+    {
+      "id": "R08", "cooperativa": "Loja", "nombre": "Loja – Cariamanga (microbús)",
+      "paradas": [
+        { "terminal": "Loja", "min": 0 },
+        { "terminal": "Cariamanga", "min": 180 }
+      ],
+      "salidas": ["11:00"]
+    },
+    {
+      "id": "R09", "cooperativa": "Loja", "nombre": "Loja – Catacocha",
+      "paradas": [
+        { "terminal": "Loja", "min": 0 },
+        { "terminal": "Catacocha", "min": 150 }
+      ],
+      "salidas": ["12:30"]
+    },
+    {
+      "id": "R10", "cooperativa": "Loja", "nombre": "Loja – Alamor",
+      "paradas": [
+        { "terminal": "Loja", "min": 0 },
+        { "terminal": "Alamor", "min": 240 }
+      ],
+      "salidas": ["09:00", "14:00", "19:30"]
+    },
+    {
+      "id": "R11", "cooperativa": "Loja", "nombre": "Loja – Amaluza",
+      "paradas": [
+        { "terminal": "Loja", "min": 0 },
+        { "terminal": "Amaluza", "min": 270 }
+      ],
+      "salidas": ["04:00", "13:00"]
+    }
   ]
 }
