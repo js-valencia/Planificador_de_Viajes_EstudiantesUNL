@@ -1,0 +1,60 @@
+:root {
+  --tinta: #14303a;
+  --suave: #5b7078;
+  --fondo: #eaf0ef;
+  --panel: #ffffff;
+  --borde: #cfdbd9;
+  --primario: #1d6a86;
+  --error: #a3262a;
+  --c-loja: #1d6a86;
+  --c-catamayo: #c2185b;
+  --c-otra: #6a4c93;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--tinta);
+  background: var(--fondo);
+  display: grid;
+  grid-template-columns: 380px 1fr;
+}
+aside {
+  background: var(--panel);
+  border-right: 1px solid var(--borde);
+  padding: 24px 22px;
+  overflow-y: auto;
+  max-height: 100vh;
+}
+h1 { font-size: 1.35rem; line-height: 1.2; margin: 0 0 4px; }
+.sub { color: var(--suave); font-size: .9rem; margin: 0 0 20px; }
+label { display: block; font-weight: 500; font-size: .9rem; margin: 14px 0 6px; }
+select, input {
+  width: 100%; padding: 10px 12px; font: inherit; color: inherit;
+  border: 1px solid var(--borde); border-radius: 8px; background: #fff;
+}
+select:focus-visible, input:focus-visible, button:focus-visible {
+  outline: 3px solid #7fc0d6; outline-offset: 1px;
+}
+button {
+  margin-top: 20px; width: 100%; padding: 12px; font: inherit; font-weight: 700;
+  color: #fff; background: var(--primario); border: 0; border-radius: 8px; cursor: pointer;
+}
+button:hover { background: #17566e; }
+#mensaje { margin-top: 18px; font-size: .95rem; }
+#mensaje.error { color: var(--error); }
+.resumen { display: flex; gap: 8px; flex-wrap: wrap; margin: 18px 0 12px; }
+.dato { flex: 1 1 100px; border: 1px solid var(--borde); border-radius: 8px; padding: 8px 10px; }
+.dato b { display: block; font-size: 1.05rem; }
+.dato span { font-size: .8rem; color: var(--suave); }
+.tramo { border-left: 5px solid var(--c-otra); padding: 6px 0 6px 12px; margin: 12px 0; }
+.tramo.loja { border-color: var(--c-loja); }
+.tramo.catamayo { border-color: var(--c-catamayo); }
+.tramo strong { display: block; }
+.tramo small { color: var(--suave); }
+#mapa { height: 100vh; width: 100%; }
+@media (max-width: 800px) {
+  body { grid-template-columns: 1fr; grid-template-rows: auto 60vh; }
+  aside { max-height: none; border-right: 0; border-bottom: 1px solid var(--borde); }
+  #mapa { height: 60vh; }
+}

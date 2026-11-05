@@ -20,6 +20,11 @@ const planificador = new Planificador(grafo);
 const terminales = [...new Set(grafo.nodos.map((n) => n.terminal))].sort();
 const criterios = ['tiempo', 'espera', 'conexiones'];
 
+// Coordenadas (lat/lng) de cada terminal, usadas por el mapa del front
+const coordenadas = JSON.parse(
+  fs.readFileSync(path.join(__dirname, '..', 'js', 'model', 'coordenadas.json'), 'utf8')
+);
+
 const app = express();
 app.use(express.static(path.join(__dirname)));
 
@@ -29,6 +34,11 @@ app.get('/', (req, res) => {
 
 app.get('/api/terminales', (req, res) => {
   res.json({ terminales, criterios });
+});
+
+// Devuelve las coordenadas para que el front dibuje los marcadores y la ruta
+app.get('/api/coordenadas', (req, res) => {
+  res.json(coordenadas);
 });
 
 app.get('/api/ruta', (req, res) => {

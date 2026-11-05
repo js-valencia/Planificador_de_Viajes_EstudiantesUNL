@@ -1,0 +1,7 @@
+{
+  "_aviso": "Coordenadas aproximadas (centro de cada cantón). Cada clave debe coincidir EXACTAMENTE con el nombre del terminal en horarios.json.",
+  "Loja": { "lat": -3.9931, "lng": -79.2042 },
+  "Catamayo": { "lat": -3.9876, "lng": -79.3586 },
+  "Gonzanamá": { "lat": -4.2275, "lng": -79.4331 },
+  "Cariamanga": { "lat": -4.3317, "lng": -79.5544 }
+}
