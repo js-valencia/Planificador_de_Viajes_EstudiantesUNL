@@ -1,0 +1,25 @@
+{
+  "_aviso": "Coordenadas del centro de cada terminal. Loja y Catamayo corresponden a la Terminal Reina del Cisne y a la estación de la Coop. Catamayo; Gonzanamá y Cariamanga son aproximadas (centro del cantón). Ajustar con las reales.",
+  "terminales": [
+    {
+      "nombre": "Catamayo",
+      "lat": -3.9867524,
+      "lng": -79.3569835
+    },
+    {
+      "nombre": "Loja",
+      "lat": -3.9775779,
+      "lng": -79.2050981
+    },
+    {
+      "nombre": "Gonzanamá",
+      "lat": -4.2217,
+      "lng": -79.4358
+    },
+    {
+      "nombre": "Cariamanga",
+      "lat": -4.3296,
+      "lng": -79.5543
+    }
+  ]
+}

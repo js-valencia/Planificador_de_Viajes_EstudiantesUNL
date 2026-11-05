@@ -6,6 +6,8 @@
   <title>Planificador de Viajes UNL</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 </head>
 <body class="bg-slate-100 text-slate-800 min-h-screen">
   <div id="app" class="max-w-xl mx-auto p-4">
@@ -15,67 +17,84 @@
     </header>
 
     <main>
-      <div class="bg-white rounded-2xl shadow p-4 space-y-3">
+      <form @submit.prevent="buscar" class="bg-white rounded-2xl shadow p-4 space-y-3">
         <div class="grid grid-cols-2 gap-3">
           <label class="text-sm font-medium">Origen
-            <select v-model="origen" class="mt-1 w-full border rounded-lg p-2 bg-white">
-              <option v-for="t in terminales" :key="t" :value="t">{{ t }}</option>
+            <select v-model="origen" class="mt-1 w-full border rounded-lg p-2 bg-white focus:ring-2 focus:ring-[#0a2364] focus:border-transparent">
+              <option v-for="t in terminales" :key="t.nombre" :value="t.nombre">{{ t.nombre }}</option>
             </select>
           </label>
           <label class="text-sm font-medium">Destino
-            <select v-model="destino" class="mt-1 w-full border rounded-lg p-2 bg-white">
-              <option v-for="t in terminales" :key="t" :value="t">{{ t }}</option>
+            <select v-model="destino" class="mt-1 w-full border rounded-lg p-2 bg-white focus:ring-2 focus:ring-[#0a2364] focus:border-transparent">
+              <option v-for="t in terminales" :key="t.nombre" :value="t.nombre">{{ t.nombre }}</option>
             </select>
           </label>
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <label class="text-sm font-medium">Fecha
-            <input type="date" v-model="fecha" class="mt-1 w-full border rounded-lg p-2">
+            <input type="date" v-model="fecha" class="mt-1 w-full border rounded-lg p-2 focus:ring-2 focus:ring-[#0a2364] focus:border-transparent">
           </label>
           <label class="text-sm font-medium">Hora de salida
-            <input type="time" v-model="hora" class="mt-1 w-full border rounded-lg p-2">
+            <input type="time" v-model="hora" class="mt-1 w-full border rounded-lg p-2 focus:ring-2 focus:ring-[#0a2364] focus:border-transparent">
           </label>
         </div>
 
         <label class="text-sm font-medium block">Prefiero
-          <select v-model="criterio" class="mt-1 w-full border rounded-lg p-2 bg-white">
+          <select v-model="criterio" class="mt-1 w-full border rounded-lg p-2 bg-white focus:ring-2 focus:ring-[#0a2364] focus:border-transparent">
             <option value="tiempo">Menor tiempo total</option>
             <option value="espera">Menor tiempo de espera</option>
             <option value="conexiones">Menos conexiones</option>
           </select>
         </label>
 
-        <button @click="buscar" :disabled="cargando"
-                class="w-full bg-[#c8102e] hover:bg-[#a30d26] disabled:opacity-60 text-white font-semibold rounded-lg py-2.5">
+        <button type="submit" :disabled="cargando"
+                class="w-full bg-[#c8102e] hover:bg-[#a30d26] disabled:opacity-60 text-white font-semibold rounded-lg py-2.5 transition-colors">
           {{ cargando ? 'Buscando...' : 'Buscar ruta' }}
         </button>
+      </form>
+
+      <p v-if="error" class="mt-4 bg-red-50 text-red-700 rounded-xl p-3 text-sm" aria-live="polite">{{ error }}</p>
+
+      <div v-if="buscado && !ruta && !error" class="mt-4 bg-amber-50 border border-amber-200 text-amber-800 rounded-xl p-3 text-sm" aria-live="polite">
+        No existe una conexión válida para esos datos. Prueba con otra hora o criterio.
       </div>
 
-      <p v-if="error" class="mt-4 bg-red-50 text-red-700 rounded-xl p-3 text-sm">{{ error }}</p>
-
-      <p v-if="buscado && !ruta && !error" class="mt-4 bg-amber-50 text-amber-800 rounded-xl p-3 text-sm">
-        No existe una conexión válida para esos datos. Prueba con otra hora o criterio.
-      </p>
-
-      <section v-if="ruta" class="mt-4 space-y-3">
-        <article v-for="(t, i) in ruta.tramos" :key="i" class="bg-white rounded-2xl shadow p-4 border-l-4 border-[#006838]">
-          <p class="text-xs uppercase tracking-wide text-slate-500">Coop. {{ t.cooperativa }}</p>
-          <p class="text-lg font-semibold">{{ t.desde }} → {{ t.hasta }}</p>
-          <p class="text-sm text-slate-600">Sale {{ hora12(t.salida) }} · Llega {{ hora12(t.llegada) }}</p>
-        </article>
-
-        <div class="bg-[#0a2364] text-white rounded-2xl p-4 text-sm grid grid-cols-3 gap-2 text-center">
-          <div><p class="text-xl font-bold">{{ ruta.transbordos }}</p><p class="opacity-80">Transbordos</p></div>
-          <div><p class="text-xl font-bold">{{ minutos(ruta.esperaTotalMin) }}</p><p class="opacity-80">Espera entre buses</p></div>
-          <div><p class="text-xl font-bold">{{ minutos(ruta.duracionViajeMin) }}</p><p class="opacity-80">Duración total</p></div>
+      <section v-show="ruta" class="mt-4 space-y-3">
+        <div class="bg-white rounded-2xl shadow p-2">
+          <div id="mapa" class="h-72 rounded-xl z-0"></div>
+          <div class="flex flex-wrap gap-x-4 gap-y-1 px-2 pt-2 text-xs text-slate-600">
+            <span><span class="inline-block w-3 h-1.5 rounded bg-[#006838] align-middle"></span> Coop. Catamayo</span>
+            <span><span class="inline-block w-3 h-1.5 rounded bg-[#c8102e] align-middle"></span> Coop. Loja</span>
+            <span v-if="trazadoAproximado" class="text-amber-700">Línea punteada: trazado aproximado</span>
+          </div>
         </div>
+
+        <template v-if="ruta">
+          <article v-for="(t, i) in ruta.tramos" :key="i" class="bg-white rounded-2xl shadow p-4 border-l-4"
+                   :style="{ borderColor: color(t.cooperativa) }">
+            <p class="text-xs uppercase tracking-wide text-slate-500">Coop. {{ t.cooperativa }}</p>
+            <p class="text-lg font-semibold">{{ t.desde }} → {{ t.hasta }}</p>
+            <p class="text-sm text-slate-600">Sale {{ hora12(t.salida) }} · Llega {{ hora12(t.llegada) }}</p>
+          </article>
+
+          <div class="bg-[#0a2364] text-white rounded-2xl p-4 text-sm grid grid-cols-3 gap-2 text-center">
+            <div><p class="text-xl font-bold">{{ ruta.transbordos }}</p><p class="opacity-80">Transbordos</p></div>
+            <div><p class="text-xl font-bold">{{ minutos(ruta.esperaTotalMin) }}</p><p class="opacity-80">Espera entre buses</p></div>
+            <div><p class="text-xl font-bold">{{ minutos(ruta.duracionViajeMin) }}</p><p class="opacity-80">Duración total</p></div>
+          </div>
+        </template>
       </section>
     </main>
   </div>
 
   <script>
     const { createApp } = Vue;
+
+    const COLORES = { Catamayo: '#006838', Loja: '#c8102e' };
+    let mapa = null;        // Leaflet se maneja fuera de la reactividad de Vue
+    let capa = null;
+    const cacheTrazados = new Map();
 
     createApp({
       data() {
@@ -85,36 +104,156 @@
           fecha: '2026-11-02', hora: '06:30',
           criterio: 'tiempo',
           ruta: null, error: '', buscado: false, cargando: false,
+          trazadoAproximado: false,
         };
       },
       async mounted() {
+        mapa = L.map('mapa').setView([-4.05, -79.35], 9);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 18,
+          attribution: '© OpenStreetMap',
+        }).addTo(mapa);
+        capa = L.layerGroup().addTo(mapa);
+
         try {
           const r = await fetch('/api/terminales');
           this.terminales = (await r.json()).terminales;
-          this.origen = this.terminales.includes('Catamayo') ? 'Catamayo' : this.terminales[0];
-          this.destino = this.terminales.includes('Loja') ? 'Loja' : this.terminales[1];
+          const nombres = this.terminales.map((t) => t.nombre);
+          this.origen = nombres.includes('Catamayo') ? 'Catamayo' : nombres[0];
+          this.destino = nombres.includes('Loja') ? 'Loja' : nombres[1];
         } catch {
           this.error = 'No se pudo conectar con el servidor.';
         }
       },
       methods: {
         async buscar() {
-          this.error = ''; this.ruta = null; this.cargando = true;
+          this.error = '';
+          this.ruta = null;
+          this.buscado = false;
+
+          if (!this.origen || !this.destino) {
+            this.error = 'Selecciona un origen y un destino válidos.';
+            return;
+          }
+
+          if (this.origen === this.destino) {
+            this.error = 'El origen y el destino deben ser distintos.';
+            return;
+          }
+
+          if (!this.fecha || !this.hora) {
+            this.error = 'Ingresa una fecha y hora de salida.';
+            return;
+          }
+
+          this.cargando = true;
           const params = new URLSearchParams({
-            origen: this.origen, destino: this.destino, criterio: this.criterio,
-            desde: `${this.fecha}T${this.hora}:00-05:00`, // zona horaria de Ecuador
+            origen: this.origen,
+            destino: this.destino,
+            criterio: this.criterio,
+            desde: `${this.fecha}T${this.hora}:00-05:00`,
           });
+
           try {
             const r = await fetch('/api/ruta?' + params);
             const datos = await r.json();
-            if (!r.ok) this.error = datos.error;
-            else this.ruta = datos.ruta;
+            if (!r.ok) {
+              this.error = datos.error || 'No se pudo consultar la ruta.';
+              this.buscado = true;
+              return;
+            }
+
+            this.ruta = datos.ruta;
             this.buscado = true;
+
+            if (this.ruta) {
+              this.limpiarMapa();
+              await this.$nextTick();
+              mapa.invalidateSize();
+              await this.dibujarRuta(this.ruta.tramos);
+            } else {
+              this.limpiarMapa();
+              mapa.setView([-4.05, -79.35], 9);
+            }
           } catch {
             this.error = 'No se pudo conectar con el servidor.';
+            this.buscado = true;
+            this.limpiarMapa();
           } finally {
             this.cargando = false;
           }
+        },
+
+        coordenadas(nombre) {
+          const t = this.terminales.find((x) => x.nombre === nombre);
+          return [t.lat, t.lng];
+        },
+
+        // Trazado por carretera con OSRM; si falla, línea recta entre terminales
+        async trazado(desde, hasta) {
+          const a = this.coordenadas(desde);
+          const b = this.coordenadas(hasta);
+          const clave = `${desde}|${hasta}`;
+          if (cacheTrazados.has(clave)) return cacheTrazados.get(clave);
+
+          let resultado = { puntos: [a, b], aproximado: true };
+          try {
+            const ctrl = new AbortController();
+            const timer = setTimeout(() => ctrl.abort(), 5000);
+            const url = `https://router.project-osrm.org/route/v1/driving/${a[1]},${a[0]};${b[1]},${b[0]}?overview=full&geometries=geojson`;
+            const r = await fetch(url, { signal: ctrl.signal });
+            clearTimeout(timer);
+            const datos = await r.json();
+            if (datos.routes && datos.routes.length) {
+              resultado = {
+                puntos: datos.routes[0].geometry.coordinates.map(([lng, lat]) => [lat, lng]),
+                aproximado: false,
+              };
+            }
+          } catch { /* se usa la línea recta */ }
+
+          cacheTrazados.set(clave, resultado);
+          return resultado;
+        },
+
+        limpiarMapa() {
+          if (capa) capa.clearLayers();
+          if (mapa) mapa.setView([-4.05, -79.35], 9);
+          this.trazadoAproximado = false;
+        },
+
+        marcador(nombre, texto, color, radio) {
+          L.circleMarker(this.coordenadas(nombre), {
+            radius: radio, color: '#fff', weight: 2, fillColor: color, fillOpacity: 1,
+          }).bindTooltip(`${texto}: ${nombre}`, { permanent: true, direction: 'top', offset: [0, -6] }).addTo(capa);
+        },
+
+        async dibujarRuta(tramos) {
+          capa.clearLayers();
+          this.trazadoAproximado = false;
+          const limites = [];
+
+          for (const t of tramos) {
+            const { puntos, aproximado } = await this.trazado(t.desde, t.hasta);
+            if (aproximado) this.trazadoAproximado = true;
+            L.polyline(puntos, {
+              color: this.color(t.cooperativa), weight: 5, opacity: 0.9,
+              dashArray: aproximado ? '8 8' : null,
+            }).addTo(capa);
+            limites.push(...puntos);
+          }
+
+          tramos.forEach((t, i) => {
+            if (i === 0) this.marcador(t.desde, 'Inicio', '#0a2364', 9);
+            if (i === tramos.length - 1) this.marcador(t.hasta, 'Destino', '#c8102e', 9);
+            else this.marcador(t.hasta, 'Transbordo', '#64748b', 7);
+          });
+
+          mapa.fitBounds(limites, { padding: [40, 40] });
+        },
+
+        color(cooperativa) {
+          return COLORES[cooperativa] || '#0a2364';
         },
         hora12(iso) {
           return new Date(iso).toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Guayaquil' });

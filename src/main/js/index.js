@@ -1,22 +1,15 @@
-const fs = require('node:fs');
 const path = require('node:path');
-const GrafoHorarios = require('./algorithms/GrafoHorarios');
-const ordenTopologico = require('./algorithms/ordenTopologico');
-const Planificador = require('./model/planificador');
+const { crearPlanificador } = require('../services/planificadorService');
 
-const datos = JSON.parse(fs.readFileSync(path.join(__dirname, 'model', 'horarios.json'), 'utf8'));
+const baseDir = path.join(__dirname, '..');
+const planificador = crearPlanificador(baseDir);
+const grafo = planificador.grafo;
 
-const grafo = new GrafoHorarios(datos.minutosMinimosTransbordo).cargar(datos.frecuencias);
-
-if (grafo.errores.length) console.warn('Registros inválidos:', grafo.errores);
-
-const { esAciclico } = ordenTopologico(grafo);
+const { esAciclico } = require('../domain/graph/ordenTopologico')(grafo);
 console.log(`Nodos: ${grafo.nodos.length} | Aristas: ${grafo.aristas.length} | Grafo acíclico: ${esAciclico}`);
-if (!esAciclico) process.exit(1);
 
 const hora = (d) => d.toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Guayaquil' });
 
-const planificador = new Planificador(grafo);
 const consulta = { origen: 'Catamayo', destino: 'Cariamanga', desde: '2026-11-02T06:30:00-05:00' };
 
 for (const criterio of ['tiempo', 'espera', 'conexiones']) {

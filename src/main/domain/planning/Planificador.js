@@ -1,4 +1,4 @@
-const { floydWarshall, reconstruirCamino } = require('../algorithms/floydWarshall');
+const { floydWarshall, reconstruirCamino } = require('../graph/floydWarshall');
 
 const CRITERIOS = {
   // menor tiempo total: viaje + esperas
@@ -88,3 +88,4 @@ class Planificador {
 }
 
 module.exports = Planificador;
+
