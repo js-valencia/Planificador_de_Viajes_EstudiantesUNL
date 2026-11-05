@@ -285,6 +285,14 @@ GET /api/terminales
 
 Permite obtener la información de las terminales disponibles en el sistema.
 
+### 🕒 Consultar horarios de salida
+
+```http
+GET /api/horarios?origen=...&destino=...
+```
+
+Devuelve las horas programadas para viajar directamente entre las paradas indicadas. La aplicación usa estas horas para llenar el selector de salida.
+
 ### 🗺️ Consultar una ruta
 
 ```http
@@ -297,15 +305,17 @@ GET /api/ruta?origen=...&destino=...&desde=...&criterio=...
 |:--|:--|
 | `origen` | Terminal o localidad de partida. |
 | `destino` | Terminal o localidad de llegada. |
-| `desde` | Fecha y hora desde la que se planifica el viaje. |
+| `desde` | Fecha y hora de salida seleccionada, en formato `AAAA-MM-DDTHH:mm:00-05:00`. |
 | `criterio` | Criterio de optimización solicitado. |
+
+Las paradas intermedias de un mismo bus se muestran como “Pasa por” y no cuentan como transbordos. Los transbordos entre buses siguen calculándose con el tiempo mínimo configurado. Las duraciones de viaje son estimadas y deben confirmarse con la cooperativa.
 
 ### 💡 Ejemplo de consulta
 
 Con el servidor en ejecución, puedes probar una petición desde la terminal:
 
 ```bash
-curl "http://localhost:3000/api/ruta?origen=Catamayo&destino=Cariamanga&desde=2026-11-02T06:30:00-05:00&criterio=tiempo"
+curl "http://localhost:3000/api/ruta?origen=Loja&destino=Calvas&desde=2026-11-04T09:02:00-05:00&criterio=tiempo"
 ```
 
 > Los nombres de los parámetros y los valores aceptados deben coincidir con los definidos por la implementación actual de la API.
@@ -336,7 +346,7 @@ La primera etapa del proyecto se concentra en una solución delimitada para eval
 |:--|:--|
 | 🎓 Público objetivo | Estudiantes de la Universidad Nacional de Loja. |
 | 📍 Punto de partida | Terminal Terrestre Reina del Cisne, Loja. |
-| 🚌 Cooperativas consideradas | Loja y Catamayo. |
+| 🚌 Cooperativa considerada | Transportes Loja. |
 | 🌐 Plataforma | Aplicación web. |
 | 🧭 Función principal | Consulta y planificación de rutas intercantonales. |
 | ⚙️ Enfoque técnico | Grafos y algoritmos de optimización. |

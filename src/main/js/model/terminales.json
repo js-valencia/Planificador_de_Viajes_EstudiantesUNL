@@ -1,0 +1,13 @@
+{
+  "_aviso": "Coordenadas aproximadas (cabecera de cada cantón).",
+  "Loja": { "lat": -3.9931, "lng": -79.2042 },
+  "Chaguarpamba": { "lat": -3.8667, "lng": -79.6167 },
+  "Machala": { "lat": -3.2581, "lng": -79.9554 },
+  "Zapotillo": { "lat": -4.3833, "lng": -80.2333 },
+  "Catacocha": { "lat": -4.0500, "lng": -79.6333 },
+  "Macará": { "lat": -4.3833, "lng": -79.9400 },
+  "Cariamanga": { "lat": -4.3333, "lng": -79.5500 },
+  "Sozoranga": { "lat": -4.3167, "lng": -79.7833 },
+  "Alamor": { "lat": -4.0333, "lng": -80.0167 },
+  "Amaluza": { "lat": -4.5833, "lng": -79.4167 }
+}

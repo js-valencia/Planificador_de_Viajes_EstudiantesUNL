@@ -25,17 +25,21 @@ class Planificador {
   }
 
   /**
-   * @param {{origen:string, destino:string, desde:string, criterio?:string}} consulta
+   * @param {{origen:string, destino:string, desde:string, criterio?:string, salidaExacta?:boolean}} consulta
    * @returns {object|null} Itinerario o null si no existe conexión válida (RF-07).
    */
-  buscarRuta({ origen, destino, desde, criterio = 'tiempo' }) {
+  buscarRuta({ origen, destino, desde, criterio = 'tiempo', salidaExacta = false }) {
     if (!CRITERIOS[criterio]) throw new Error(`Criterio no válido: ${criterio}`);
     const instanteDesde = Date.parse(desde);
     if (Number.isNaN(instanteDesde)) throw new Error('Fecha y hora de salida no válida');
 
     const { dist, sig } = this.matriz(criterio);
     const { nodos } = this.grafo;
-    const salidas = nodos.filter((n) => n.terminal === origen && n.tipo === 'salida' && n.instante >= instanteDesde);
+    const salidas = nodos.filter((n) =>
+      n.terminal === origen &&
+      n.tipo === 'salida' &&
+      (salidaExacta ? n.instante === instanteDesde : n.instante >= instanteDesde)
+    );
     const llegadas = nodos.filter((n) => n.terminal === destino && n.tipo === 'llegada');
 
     let mejor = null;
@@ -67,6 +71,7 @@ class Planificador {
           cooperativa: arista.cooperativa,
           desde: a.terminal,
           hasta: b.terminal,
+          via: arista.via,
           salida: new Date(a.instante),
           llegada: new Date(b.instante),
         });

@@ -1,0 +1,27 @@
+:root {
+  --azul: #0a2364;
+  --rojo: #c8102e;
+  --verde: #006838;
+  --naranja: #f59e0b;
+}
+
+/* Contenedor del mapa */
+#mapa {
+  min-height: 20rem;
+}
+
+.leaflet-container {
+  font-family: inherit;
+}
+
+/* Puntos de la leyenda del mapa */
+.punto {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+  vertical-align: middle;
+}
+.punto-origen { background: var(--rojo); }
+.punto-transbordo { background: var(--naranja); }
+.punto-destino { background: var(--verde); }

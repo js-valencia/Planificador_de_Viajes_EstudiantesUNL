@@ -3,10 +3,12 @@ const path = require('node:path');
 const GrafoHorarios = require('./algorithms/GrafoHorarios');
 const ordenTopologico = require('./algorithms/ordenTopologico');
 const Planificador = require('./model/planificador');
+const { expandirRutas, hoyEcuador } = require('./model/expandirRutas');
 
 const datos = JSON.parse(fs.readFileSync(path.join(__dirname, 'model', 'horarios.json'), 'utf8'));
+const hoy = hoyEcuador();
 
-const grafo = new GrafoHorarios(datos.minutosMinimosTransbordo).cargar(datos.frecuencias);
+const grafo = new GrafoHorarios(datos.minutosMinimosTransbordo).cargar(expandirRutas(datos, hoy));
 
 if (grafo.errores.length) console.warn('Registros inválidos:', grafo.errores);
 
@@ -17,7 +19,7 @@ if (!esAciclico) process.exit(1);
 const hora = (d) => d.toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Guayaquil' });
 
 const planificador = new Planificador(grafo);
-const consulta = { origen: 'Catamayo', destino: 'Cariamanga', desde: '2026-11-02T06:30:00-05:00' };
+const consulta = { origen: 'Loja', destino: 'Cariamanga', desde: `${hoy}T06:30:00-05:00` };
 
 for (const criterio of ['tiempo', 'espera', 'conexiones']) {
   const r = planificador.buscarRuta({ ...consulta, criterio });
