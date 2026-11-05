@@ -42,24 +42,44 @@ const Mapa = {
   limpiarRuta() {
     this.capaRuta.clearLayers();
   },
+  // Guarda los trazos ya pedidos para no repetir la consulta
+  trazos: {},
 
-  // Dibuja cada tramo como una línea del color de su cooperativa
-  dibujarRuta(ruta, coords) {
+  // Pide a OSRM el trazo real por carretera entre dos puntos.
+  async obtenerTrazo(a, b) {
+    const clave = `${a.lat},${a.lng}|${b.lat},${b.lng}`;
+    if (this.trazos[clave]) return this.trazos[clave];
+
+    const url = `https://router.project-osrm.org/route/v1/driving/${a.lng},${a.lat};${b.lng},${b.lat}?overview=full&geometries=geojson`;
+    try {
+      const resp = await fetch(url);
+      const datos = await resp.json();
+      // OSRM devuelve [lng, lat]; Leaflet necesita [lat, lng]
+      const puntos = datos.routes[0].geometry.coordinates.map(([lng, lat]) => [lat, lng]);
+      this.trazos[clave] = puntos;
+      return puntos;
+    } catch (e) {
+      console.warn('No se pudo obtener el trazo, se usa línea recta', e);
+      return [[a.lat, a.lng], [b.lat, b.lng]];
+    }
+  },
+
+  // Dibuja cada tramo siguiendo la carretera, con el color de su cooperativa
+  async dibujarRuta(ruta, coords) {
     this.limpiarRuta();
     const limites = [];
     for (const t of ruta.tramos) {
       const a = coords[t.desde];
       const b = coords[t.hasta];
       if (!a || !b) continue;
-      const pa = [a.lat, a.lng];
-      const pb = [b.lat, b.lng];
-      limites.push(pa, pb);
+      const puntos = await this.obtenerTrazo(a, b);
+      limites.push(...puntos);
       const color = this.colorDe(t.cooperativa);
-      L.polyline([pa, pb], { color, weight: 5, opacity: 0.9 })
+      L.polyline(puntos, { color, weight: 5, opacity: 0.9 })
         .bindTooltip(`${t.desde} → ${t.hasta} · Coop. ${t.cooperativa}`)
         .addTo(this.capaRuta);
-      L.circleMarker(pb, { radius: 6, color, fillOpacity: 1 }).addTo(this.capaRuta);
+      L.circleMarker([b.lat, b.lng], { radius: 6, color, fillOpacity: 1 }).addTo(this.capaRuta);
     }
     if (limites.length) this.mapa.fitBounds(limites, { padding: [60, 60] });
   },
-};
+}

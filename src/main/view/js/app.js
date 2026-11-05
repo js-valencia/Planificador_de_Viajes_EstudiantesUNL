@@ -105,6 +105,7 @@
       }
       avisar('');
       mostrar(datos.ruta);
+      await Mapa.dibujarRuta(datos.ruta, coords);
       Mapa.dibujarRuta(datos.ruta, coords);
     } catch (err) {
       avisar('Error de conexión con el servidor.', true);
