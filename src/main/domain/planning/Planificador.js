@@ -65,6 +65,9 @@ class Planificador {
         const arista = this.grafo.aristas.find((x) => x.desde === a.id && x.hasta === b.id && x.tipo === 'viaje');
         tramos.push({
           cooperativa: arista.cooperativa,
+          nombreRuta: arista.nombreRuta,
+          cantones: arista.cantones,
+          paradasRuta: arista.paradasRuta,
           desde: a.terminal,
           hasta: b.terminal,
           salida: new Date(a.instante),

@@ -199,7 +199,7 @@ Algoritmo de caminos mínimos utilizado para calcular los tiempos mínimos entre
 
 ### ↔️ Lista doblemente enlazada
 
-Estructura auxiliar con enlaces al nodo anterior y siguiente. Permite insertar, buscar, eliminar y recorrer elementos en ambos sentidos. Su implementación está en [ListaDobleEnlazada.js](src/main/domain/datos/ListaDobleEnlazada.js) y es independiente del planificador de rutas.
+Cada ruta enlaza sus paradas con referencias al nodo anterior y siguiente durante la generación de frecuencias. El recorrido hacia adelante conserva el sentido publicado del bus; el enlace hacia atrás permite recorrer la estructura, pero no representa por sí solo un horario de regreso. Los cantones y nombres de ruta de [rutas.json](src/main/data/rutas.json) también se propagan a los tramos del itinerario. La estructura está implementada en [ListaDobleEnlazada.js](src/main/domain/datos/ListaDobleEnlazada.js).
 
 ### 🕒 Validación temporal
 
