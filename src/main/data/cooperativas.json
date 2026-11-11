@@ -1,0 +1,19 @@
+{
+  "_aviso": "Listado base de cooperativas vinculadas al sistema de transporte estudiantil.",
+  "cooperativas": [
+    {
+      "nombre": "Catamayo",
+      "tipo": "regional",
+      "terminalPrincipal": "Catamayo",
+      "color": "#0f766e",
+      "telefono": "+593 7 0000 000"
+    },
+    {
+      "nombre": "Loja",
+      "tipo": "regional",
+      "terminalPrincipal": "Loja",
+      "color": "#1d4ed8",
+      "telefono": "+593 7 0000 001"
+    }
+  ]
+}

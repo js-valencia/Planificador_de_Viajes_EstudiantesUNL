@@ -20,8 +20,8 @@ class GrafoHorarios {
     return nodo;
   }
 
-  agregarArista(desde, hasta, peso, tipo, cooperativa = null) {
-    this.aristas.push({ desde, hasta, peso, tipo, cooperativa });
+  agregarArista(desde, hasta, peso, tipo, cooperativa = null, detalles = {}) {
+    this.aristas.push({ desde, hasta, peso, tipo, cooperativa, ...detalles });
   }
 
   /** Carga las frecuencias y descarta (reportando) las que son inválidas. */
@@ -37,7 +37,11 @@ class GrafoHorarios {
 
       const nSalida = this.agregarNodo({ terminal: f.origen, tipo: 'salida', instante: salida, frecuencia: f.id });
       const nLlegada = this.agregarNodo({ terminal: f.destino, tipo: 'llegada', instante: llegada, frecuencia: f.id });
-      this.agregarArista(nSalida.id, nLlegada.id, (llegada - salida) / 60000, 'viaje', f.cooperativa);
+      this.agregarArista(nSalida.id, nLlegada.id, (llegada - salida) / 60000, 'viaje', f.cooperativa, {
+        nombreRuta: f.nombreRuta,
+        cantones: f.cantones || [],
+        paradasRuta: f.paradasRuta || [],
+      });
     }
     this.conectarTransbordos();
     return this;
