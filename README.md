@@ -384,3 +384,5 @@ Proyecto académico orientado a la aplicación de estructuras de datos, algoritm
 Desarrollado con 💙 para la comunidad universitaria.
 
 </div>
+
+@freezetag
