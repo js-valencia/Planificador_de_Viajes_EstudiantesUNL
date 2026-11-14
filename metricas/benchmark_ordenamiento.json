@@ -1,0 +1,266 @@
+{
+ "node": "v24.21.0",
+ "plataforma": "win32 x64",
+ "semilla": 20261114,
+ "repeticiones": 15,
+ "calentamiento": 3,
+ "gcForzado": true,
+ "resultados": [
+  {
+   "n": 11,
+   "caso": "aleatorio",
+   "huellaEntrada": "f805bc9ec60a",
+   "algoritmo": "MergeSort",
+   "tiempoMs": {
+    "media": 0.08557333333333,
+    "sd": 0.018546211353145436,
+    "mediana": 0.08289999999999509,
+    "min": 0.05009999999998627,
+    "max": 0.12399999999999523
+   },
+   "heapAntesKB": 5074.9453125,
+   "heapDespuesKB": 5079.0078125,
+   "deltaHeapKB": 7.125
+  },
+  {
+   "n": 11,
+   "caso": "aleatorio",
+   "huellaEntrada": "f805bc9ec60a",
+   "algoritmo": "QuickSort",
+   "tiempoMs": {
+    "media": 0.08217999999999961,
+    "sd": 0.01471951991971146,
+    "mediana": 0.07609999999999673,
+    "min": 0.0694000000000301,
+    "max": 0.126700000000028
+   },
+   "heapAntesKB": 5101.515625,
+   "heapDespuesKB": 5108.4453125,
+   "deltaHeapKB": 6.9296875
+  },
+  {
+   "n": 100,
+   "caso": "aleatorio",
+   "huellaEntrada": "eb65f6711060",
+   "algoritmo": "MergeSort",
+   "tiempoMs": {
+    "media": 0.4126999999999953,
+    "sd": 0.045944139996304346,
+    "mediana": 0.4037999999999897,
+    "min": 0.36180000000001655,
+    "max": 0.5165999999999826
+   },
+   "heapAntesKB": 5184.640625,
+   "heapDespuesKB": 5262.859375,
+   "deltaHeapKB": 78.21875
+  },
+  {
+   "n": 100,
+   "caso": "aleatorio",
+   "huellaEntrada": "eb65f6711060",
+   "algoritmo": "QuickSort",
+   "tiempoMs": {
+    "media": 0.497446666666671,
+    "sd": 0.042114730070239,
+    "mediana": 0.48989999999997735,
+    "min": 0.44299999999998363,
+    "max": 0.61850000000004
+   },
+   "heapAntesKB": 5194.8046875,
+   "heapDespuesKB": 5199.453125,
+   "deltaHeapKB": 1.25
+  },
+  {
+   "n": 1000,
+   "caso": "aleatorio",
+   "huellaEntrada": "c5814ae7a63c",
+   "algoritmo": "MergeSort",
+   "tiempoMs": {
+    "media": 5.72514666666666,
+    "sd": 0.5179254204570014,
+    "mediana": 5.587499999999977,
+    "min": 4.847399999999993,
+    "max": 6.8840999999999894
+   },
+   "heapAntesKB": 5358.3828125,
+   "heapDespuesKB": 5374.5234375,
+   "deltaHeapKB": 16.140625
+  },
+  {
+   "n": 1000,
+   "caso": "aleatorio",
+   "huellaEntrada": "c5814ae7a63c",
+   "algoritmo": "QuickSort",
+   "tiempoMs": {
+    "media": 6.359813333333348,
+    "sd": 0.8913576325782714,
+    "mediana": 6.574399999999969,
+    "min": 4.617799999999988,
+    "max": 7.824500000000057
+   },
+   "heapAntesKB": 5375.546875,
+   "heapDespuesKB": 5383.828125,
+   "deltaHeapKB": 8.28125
+  },
+  {
+   "n": 10000,
+   "caso": "aleatorio",
+   "huellaEntrada": "513ef5a275c9",
+   "algoritmo": "MergeSort",
+   "tiempoMs": {
+    "media": 70.66201333333333,
+    "sd": 12.255317302671326,
+    "mediana": 69.98700000000008,
+    "min": 51.14969999999994,
+    "max": 96.49159999999983
+   },
+   "heapAntesKB": 6848.640625,
+   "heapDespuesKB": 7005.40625,
+   "deltaHeapKB": 156.765625
+  },
+  {
+   "n": 10000,
+   "caso": "aleatorio",
+   "huellaEntrada": "513ef5a275c9",
+   "algoritmo": "QuickSort",
+   "tiempoMs": {
+    "media": 93.05967333333328,
+    "sd": 16.85323330527282,
+    "mediana": 94.2230999999997,
+    "min": 66.34940000000006,
+    "max": 119.71379999999999
+   },
+   "heapAntesKB": 6931.0859375,
+   "heapDespuesKB": 7009.6796875,
+   "deltaHeapKB": 78.59375
+  },
+  {
+   "n": 100000,
+   "caso": "aleatorio",
+   "huellaEntrada": "8d4e552232e0",
+   "algoritmo": "MergeSort",
+   "tiempoMs": {
+    "media": 945.8138133333334,
+    "sd": 83.42370385161841,
+    "mediana": 933.4987999999994,
+    "min": 838.6355000000003,
+    "max": 1179.1001000000015
+   },
+   "heapAntesKB": 21487.0390625,
+   "heapDespuesKB": 23049.75,
+   "deltaHeapKB": 1562.7109375
+  },
+  {
+   "n": 100000,
+   "caso": "aleatorio",
+   "huellaEntrada": "8d4e552232e0",
+   "algoritmo": "QuickSort",
+   "tiempoMs": {
+    "media": 1306.4889266666662,
+    "sd": 107.63700093691162,
+    "mediana": 1319.4303999999975,
+    "min": 1027.0259000000005,
+    "max": 1423.9344999999994
+   },
+   "heapAntesKB": 22272.046875,
+   "heapDespuesKB": 23053.765625,
+   "deltaHeapKB": 781.71875
+  },
+  {
+   "n": 10000,
+   "caso": "aleatorio",
+   "huellaEntrada": "b37f3209c5bb",
+   "algoritmo": "MergeSort",
+   "tiempoMs": {
+    "media": 74.4577733333334,
+    "sd": 13.094972767312315,
+    "mediana": 71.35919999999896,
+    "min": 64.19060000000172,
+    "max": 118.30000000000291
+   },
+   "heapAntesKB": 21800.8125,
+   "heapDespuesKB": 21957.578125,
+   "deltaHeapKB": 156.765625
+  },
+  {
+   "n": 10000,
+   "caso": "aleatorio",
+   "huellaEntrada": "b37f3209c5bb",
+   "algoritmo": "QuickSort",
+   "tiempoMs": {
+    "media": 104.40403333333282,
+    "sd": 17.946595085147763,
+    "mediana": 98.2445000000007,
+    "min": 80.48079999999754,
+    "max": 139.71119999999792
+   },
+   "heapAntesKB": 21880.390625,
+   "heapDespuesKB": 21958.984375,
+   "deltaHeapKB": 78.59375
+  },
+  {
+   "n": 10000,
+   "caso": "ya ordenado",
+   "huellaEntrada": "d39447b4d638",
+   "algoritmo": "MergeSort",
+   "tiempoMs": {
+    "media": 41.27819333333367,
+    "sd": 7.686344762452041,
+    "mediana": 38.64190000000235,
+    "min": 32.22910000000411,
+    "max": 60.73939999999857
+   },
+   "heapAntesKB": 21880.75,
+   "heapDespuesKB": 22037.515625,
+   "deltaHeapKB": 156.765625
+  },
+  {
+   "n": 10000,
+   "caso": "ya ordenado",
+   "huellaEntrada": "d39447b4d638",
+   "algoritmo": "QuickSort",
+   "tiempoMs": {
+    "media": 256.7546133333327,
+    "sd": 16.824096836933364,
+    "mediana": 250.751400000001,
+    "min": 234.9392000000007,
+    "max": 297.27360000000044
+   },
+   "heapAntesKB": 21960.25,
+   "heapDespuesKB": 22038.84375,
+   "deltaHeapKB": 78.59375
+  },
+  {
+   "n": 10000,
+   "caso": "inverso",
+   "huellaEntrada": "9da0604b5bd9",
+   "algoritmo": "MergeSort",
+   "tiempoMs": {
+    "media": 38.87205333333307,
+    "sd": 3.4274720211585437,
+    "mediana": 36.92450000000099,
+    "min": 35.51140000000305,
+    "max": 45.9207000000024
+   },
+   "heapAntesKB": 21885.2421875,
+   "heapDespuesKB": 22042.0078125,
+   "deltaHeapKB": 156.765625
+  },
+  {
+   "n": 10000,
+   "caso": "inverso",
+   "huellaEntrada": "9da0604b5bd9",
+   "algoritmo": "QuickSort",
+   "tiempoMs": {
+    "media": 211.35887333333278,
+    "sd": 25.03522496104081,
+    "mediana": 200.4415999999983,
+    "min": 183.88620000000083,
+    "max": 276.6301999999996
+   },
+   "heapAntesKB": 21964.7421875,
+   "heapDespuesKB": 22043.3359375,
+   "deltaHeapKB": 78.59375
+  }
+ ]
+}
