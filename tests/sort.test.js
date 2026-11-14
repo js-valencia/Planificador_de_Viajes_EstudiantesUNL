@@ -1,6 +1,5 @@
 // Issue #11 - Pruebas del comparador multicriterio y de QuickSort / MergeSort.
 // Ejecutar: node tests/sort.test.js   (o npm test)
-// Mismo estilo que los demás tests del proyecto: node:assert, sin dependencias nuevas.
 // No usa Array.prototype.sort(): el orden esperado se escribe a mano o se verifica con el comparador.
 const assert = require('node:assert/strict');
 const path = require('node:path');
@@ -9,8 +8,8 @@ const { rutas } = require('../src/main/data/rutas.json');
 
 const dirSort = path.join(__dirname, '..', 'src', 'main', 'domain', 'sort');
 
-// Carga un algoritmo de los compañeros. Si su módulo aún no exporta la función (Issues #9 / #10 pendientes),
-// devuelve null y las pruebas de ese algoritmo se marcan como PENDIENTE en lugar de fallar.
+// Carga el algoritmo de un compañero. Devuelve null si el archivo no existe o aún no exporta
+// la función, para marcar esas pruebas como PENDIENTE en vez de fallar.
 function cargarAlgoritmo(archivo, nombreFuncion) {
   try {
     const modulo = require(path.join(dirSort, archivo));
@@ -22,6 +21,7 @@ function cargarAlgoritmo(archivo, nombreFuncion) {
   }
 }
 
+// Si cambian el nombre de la función exportada, se corrige aquí (segundo argumento).
 const algoritmos = [
   { nombre: 'QuickSort', fn: cargarAlgoritmo('QuickSort.js', 'quickSort') },
   { nombre: 'MergeSort', fn: cargarAlgoritmo('MergeSort.js', 'mergeSort') },
@@ -31,6 +31,7 @@ let correctas = 0;
 let pendientes = 0;
 const fallos = [];
 
+// Ejecutor de pruebas: una prueba fallida no detiene a las demás.
 function prueba(nombre, cuerpo) {
   try {
     cuerpo();
@@ -46,6 +47,7 @@ function prueba(nombre, cuerpo) {
 const reg = (id, cooperativa, nombre) => ({ id, cooperativa, nombre });
 
 // Siempre devuelve objetos nuevos (cada prueba trabaja con su propia copia).
+// Se usa 'Catamayo' porque en rutas.json todas las rutas son de 'Loja'.
 const crearRegistros = () => [
   reg('CAT-02', 'Catamayo', 'Catamayo - Loja'),
   reg('LOJA-10', 'Loja', 'Loja - Alamor'),
@@ -62,6 +64,7 @@ const idsEsperados = ['CAT-05', 'CAT-01', 'CAT-02', 'LOJA-02', 'LOJA-10', 'LOJA-
 const ids = (arreglo) => arreglo.map((r) => r.id);
 const clave = (r) => `${r.cooperativa}|${r.nombre}|${r.id}`;
 
+// Verifica el orden sin usar .sort(): cada elemento debe ir antes o igual que el siguiente.
 function estaOrdenado(arreglo, comparador) {
   for (let i = 1; i < arreglo.length; i++) {
     if (comparador(arreglo[i - 1], arreglo[i]) > 0) return false;
@@ -69,6 +72,7 @@ function estaOrdenado(arreglo, comparador) {
   return true;
 }
 
+// Verifica que ambos arreglos tengan los mismos registros (mismas cantidades), sin importar el orden.
 function mismosRegistros(a, b) {
   const cuenta = new Map();
   for (const r of a) cuenta.set(clave(r), (cuenta.get(clave(r)) || 0) + 1);
@@ -109,6 +113,7 @@ prueba('devuelve negativo, positivo o cero', () => {
   assert.equal(compararRutas(reg('1', 'Loja', 'X'), reg('1', 'Loja', 'X')), 0);
 });
 
+// Aunque el nombre y el id digan lo contrario, la cooperativa decide.
 prueba('prioridad 1: la cooperativa manda sobre nombre e id', () => {
   const a = reg('LOJA-99', 'Catamayo', 'Zzz');
   const b = reg('LOJA-01', 'Loja', 'Aaa');
@@ -128,6 +133,7 @@ prueba('prioridad 3: con igual cooperativa y nombre, decide el id', () => {
   assert.ok(compararRutas(b, a) > 0);
 });
 
+// Como texto, 'LOJA-10' iría antes que 'LOJA-2'; el comparador usa orden numérico en el id.
 prueba('el id numérico se compara como número (LOJA-2 antes que LOJA-10)', () => {
   assert.ok(compararRutas(reg('LOJA-2', 'Loja', 'X'), reg('LOJA-10', 'Loja', 'X')) < 0);
 });
@@ -136,6 +142,7 @@ prueba('las tildes se ordenan como en español (Macará junto a Macara, antes qu
   assert.ok(compararRutas(reg('1', 'Loja', 'Macará'), reg('1', 'Loja', 'Mz')) < 0);
 });
 
+// Para todas las parejas reales, comparar (a,b) y (b,a) da signos opuestos; consigo mismo da 0.
 prueba('es antisimétrico y consistente con los campos reales de rutas.json', () => {
   for (const a of rutas) {
     for (const b of rutas) {
@@ -145,12 +152,14 @@ prueba('es antisimétrico y consistente con los campos reales de rutas.json', ()
   }
 });
 
+// 'toString' es una propiedad heredada por todos los objetos: no debe aceptarse como campo.
 prueba('crearComparador rechaza campos que no existen en rutas.json', () => {
   assert.throws(() => crearComparador(['cooperativa', 'precio']), /no soportado/);
   assert.throws(() => crearComparador(['toString']), /no soportado/);
 });
 
 // ---------- 2. Pruebas por algoritmo ----------
+// Las mismas pruebas para QuickSort y MergeSort, siempre con el mismo comparador.
 for (const { nombre, fn } of algoritmos) {
   if (!fn) {
     pendientes++;
@@ -209,6 +218,7 @@ for (const { nombre, fn } of algoritmos) {
     assert.deepEqual(ids(fn(inverso, compararRutas)), idsEsperados);
   });
 
+  // Se compara contra una copia profunda hecha antes de ordenar.
   prueba('preserva el arreglo original y devuelve un arreglo nuevo', () => {
     const entrada = crearRegistros();
     const copiaProfunda = structuredClone(entrada);
@@ -218,6 +228,7 @@ for (const { nombre, fn } of algoritmos) {
     assert.ok(!mismoOrden(entrada, resultado), 'el original sigue desordenado');
   });
 
+  // Un arreglo congelado no se puede modificar: solo funciona si el algoritmo trabaja sobre una copia.
   prueba('funciona con un arreglo congelado (prueba extra de no mutación)', () => {
     const entrada = Object.freeze(crearRegistros());
     assert.deepEqual(ids(fn(entrada, compararRutas)), idsEsperados);
@@ -229,6 +240,7 @@ function mismoOrden(a, b) {
 }
 
 // ---------- 3. Coincidencia entre algoritmos ----------
+// Requiere que existan los dos módulos.
 const [qs, ms] = algoritmos;
 if (qs.fn && ms.fn) {
   console.log('\nQuickSort vs MergeSort (mismo comparador)');
@@ -253,6 +265,8 @@ if (qs.fn && ms.fn) {
 }
 
 // ---------- Resumen ----------
+// Si hay fallos termina con código 1 (npm test se detiene).
+// Para el Issue #13: revisar que diga "0 bloque(s) pendiente(s)".
 console.log(`\nResultado: ${correctas} correctas, ${fallos.length} fallidas, ${pendientes} bloque(s) pendiente(s)`);
 if (fallos.length > 0) {
   console.error(fallos.join('\n'));
