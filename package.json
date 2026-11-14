@@ -7,9 +7,10 @@
     "start": "PORT=3001 node src/main/view/servidor.js",
     "dev": "node --watch src/main/view/servidor.js",
     "demo": "node src/main/js/index.js",
-    "test": "node tests/smoke.test.js && node tests/listaDoble.test.js && node tests/mergeSort.test.js",
+    "test": "node tests/smoke.test.js && node tests/listaDoble.test.js && node tests/sort.test.js && node tests/mergeSort.test.js",
     "benchmark": "node scripts/benchmark.js"
   },
+ 
   "engines": {
     "node": ">=20"
   },
