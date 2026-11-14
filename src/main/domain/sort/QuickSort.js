@@ -1,6 +1,5 @@
-// QuickSort implementado desde cero.
+// QuickSort implementado desde cero
 
-// Comparador por defecto: orden natural ascendente
 const comparadorNatural = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
 
 function intercambiar(arr, i, j) {
@@ -9,8 +8,6 @@ function intercambiar(arr, i, j) {
   arr[j] = t;
 }
 
-// Elige como pivote la mediana entre el primero, el del medio y el último.
-// Evita el peor caso O(n²) en listas que ya vienen ordenadas.
 function medianaDeTres(arr, lo, hi, comparador) {
   const mid = lo + ((hi - lo) >> 1);
   if (comparador(arr[mid], arr[lo]) < 0) intercambiar(arr, mid, lo);
@@ -23,30 +20,24 @@ function ordenar(arr, lo, hi, comparador) {
   while (lo < hi) {
     const pivote = medianaDeTres(arr, lo, hi, comparador);
 
-    // Partición en tres zonas: [menores | iguales | mayores].
-    // Agrupar los iguales evita trabajo extra con registros repetidos.
-    let menor = lo;
     let i = lo;
-    let mayor = hi;
-    while (i <= mayor) {
-      const c = comparador(arr[i], pivote);
-      if (c < 0) {
-        intercambiar(arr, menor++, i++);
-      } else if (c > 0) {
-        intercambiar(arr, i, mayor--);
-      } else {
+    let j = hi;
+    while (i <= j) {
+      while (comparador(arr[i], pivote) < 0) i++;
+      while (comparador(arr[j], pivote) > 0) j--;
+      if (i <= j) {
+        intercambiar(arr, i, j);
         i++;
+        j--;
       }
     }
 
-    // Se recorre recursivamente la parte más pequeña y se sigue con un bucle
-    // sobre la más grande: la profundidad de recursión nunca pasa de O(log n).
-    if (menor - lo < hi - mayor) {
-      ordenar(arr, lo, menor - 1, comparador);
-      lo = mayor + 1;
+    if (j - lo < hi - i) {
+      ordenar(arr, lo, j, comparador);
+      lo = i;
     } else {
-      ordenar(arr, mayor + 1, hi, comparador);
-      hi = menor - 1;
+      ordenar(arr, i, hi, comparador);
+      hi = j;
     }
   }
 }
