@@ -1,5 +1,4 @@
-// QuickSort implementado desde cero
-
+// QuickSort implementado desde cero.
 const comparadorNatural = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
 
 function intercambiar(arr, i, j) {
@@ -20,24 +19,26 @@ function ordenar(arr, lo, hi, comparador) {
   while (lo < hi) {
     const pivote = medianaDeTres(arr, lo, hi, comparador);
 
+    let menor = lo;
     let i = lo;
-    let j = hi;
-    while (i <= j) {
-      while (comparador(arr[i], pivote) < 0) i++;
-      while (comparador(arr[j], pivote) > 0) j--;
-      if (i <= j) {
-        intercambiar(arr, i, j);
+    let mayor = hi;
+    while (i <= mayor) {
+      const c = comparador(arr[i], pivote);
+      if (c < 0) {
+        intercambiar(arr, menor++, i++);
+      } else if (c > 0) {
+        intercambiar(arr, i, mayor--);
+      } else {
         i++;
-        j--;
       }
     }
 
-    if (j - lo < hi - i) {
-      ordenar(arr, lo, j, comparador);
-      lo = i;
+    if (menor - lo < hi - mayor) {
+      ordenar(arr, lo, menor - 1, comparador);
+      lo = mayor + 1;
     } else {
-      ordenar(arr, i, hi, comparador);
-      hi = j;
+      ordenar(arr, mayor + 1, hi, comparador);
+      hi = menor - 1;
     }
   }
 }
