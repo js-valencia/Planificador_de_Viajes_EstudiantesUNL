@@ -248,14 +248,14 @@ function benchmarkOrdenamiento() {
   log(tablaMd(`Casos de entrada (n = ${N_CASOS})`, ['Caso', 'Algoritmo', 'Mediana (ms)', 'Desv. (ms)', 'Δ heap (KB)'], filasCasos));
 
   // ---- Persistencia ----
-  const dir = path.join(root, 'metricas');
+  const dir = path.join(__dirname, 'results');
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'benchmark_ordenamiento.md'), salida.join('\n') + '\n');
   fs.writeFileSync(path.join(dir, 'benchmark_ordenamiento.json'), JSON.stringify({
     node: process.version, plataforma: `${process.platform} ${process.arch}`, semilla: SEMILLA, repeticiones: REPETICIONES,
     calentamiento: CALENTAMIENTO, gcForzado: Boolean(gc), resultados: resumen,
   }, null, 1));
-  console.log('Resultados guardados en metricas/benchmark_ordenamiento.md y .json');
+  console.log('Resultados guardados en scripts/results/benchmark_ordenamiento.md y .json');
 }
 
 if (process.argv.includes('--ordenamiento')) benchmarkOrdenamiento();
