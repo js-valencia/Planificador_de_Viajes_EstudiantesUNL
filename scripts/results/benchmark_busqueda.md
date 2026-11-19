@@ -8,9 +8,9 @@
 
 | n | Tamaño (KB) | Lectura media (ms) | Parseo JSON medio (ms) | Total medio (ms) |
 | --- | --- | --- | --- | --- |
-| 1000 | 230.9 | 0.514 | 1.361 | 1.876 |
-| 50000 | 11545.8 | 28.570 | 105.567 | 134.137 |
-| 500000 | 115456.5 | 399.194 | 1685.177 | 2084.371 |
+| 1000 | 230.9 | 0.668 | 1.352 | 2.020 |
+| 50000 | 11545.8 | 32.249 | 98.328 | 130.577 |
+| 500000 | 115456.5 | 193.290 | 830.873 | 1024.163 |
 
 ## B. Búsqueda: comparaciones y tiempo
 
@@ -18,29 +18,29 @@
 
 | Categoría | Sec. comparaciones | Bin. comparaciones | Sec. tiempo (ms) | Bin. tiempo (ms) | Razón tiempo sec/bin |
 | --- | --- | --- | --- | --- | --- |
-| exitosa-primera | 1.0 | 9.0 | 0.000224 | 0.004199 | 0.1x |
-| exitosa-mitad | 501.0 | 9.0 | 0.129737 | 0.005483 | 23.7x |
-| exitosa-ultima | 1000.0 | 10.0 | 0.237731 | 0.009880 | 24.1x |
-| exitosa-aleatorias | 587.4 | 9.6 | 0.141521 | 0.007702 | 18.4x |
-| fallida | 1000.0 | 9.7 | 0.183350 | 0.004167 | 44.0x |
+| exitosa-primera | 1.0 | 9.0 | 0.000364 | 0.009348 | 0.0x |
+| exitosa-mitad | 501.0 | 9.0 | 0.187059 | 0.009357 | 20.0x |
+| exitosa-ultima | 1000.0 | 10.0 | 0.326691 | 0.010687 | 30.6x |
+| exitosa-aleatorias | 587.4 | 9.6 | 0.264703 | 0.007827 | 33.8x |
+| fallida | 1000.0 | 9.7 | 0.534362 | 0.002036 | 262.4x |
 
 ### n = 50000
 
 | Categoría | Sec. comparaciones | Bin. comparaciones | Sec. tiempo (ms) | Bin. tiempo (ms) | Razón tiempo sec/bin |
 | --- | --- | --- | --- | --- | --- |
-| exitosa-primera | 1.0 | 15.0 | 0.000317 | 0.006812 | 0.0x |
-| exitosa-mitad | 25001.0 | 15.0 | 13.987536 | 0.012534 | 1116.0x |
-| exitosa-ultima | 50000.0 | 16.0 | 20.173431 | 0.009065 | 2225.4x |
-| exitosa-aleatorias | 29572.4 | 14.6 | 13.691339 | 0.008427 | 1624.6x |
-| fallida | 50000.0 | 15.7 | 14.553851 | 0.004657 | 3124.9x |
+| exitosa-primera | 1.0 | 15.0 | 0.000215 | 0.006778 | 0.0x |
+| exitosa-mitad | 25001.0 | 15.0 | 29.296381 | 0.006688 | 4380.3x |
+| exitosa-ultima | 50000.0 | 16.0 | 19.076689 | 0.007035 | 2711.5x |
+| exitosa-aleatorias | 29572.4 | 14.6 | 10.528211 | 0.006283 | 1675.6x |
+| fallida | 50000.0 | 15.7 | 9.260300 | 0.003439 | 2692.4x |
 
 ### n = 500000
 
 | Categoría | Sec. comparaciones | Bin. comparaciones | Sec. tiempo (ms) | Bin. tiempo (ms) | Razón tiempo sec/bin |
 | --- | --- | --- | --- | --- | --- |
-| exitosa-primera | 1.0 | 18.0 | 0.000253 | 0.010373 | 0.0x |
-| exitosa-mitad | 250001.0 | 18.0 | 136.902480 | 0.010822 | 12650.7x |
-| exitosa-ultima | 500000.0 | 19.0 | 217.455330 | 0.010241 | 21234.7x |
-| exitosa-aleatorias | 262251.4 | 17.9 | 123.452297 | 0.010553 | 11698.4x |
-| fallida | 500000.0 | 18.7 | 159.886300 | 0.005041 | 31718.6x |
+| exitosa-primera | 1.0 | 18.0 | 0.000200 | 0.009236 | 0.0x |
+| exitosa-mitad | 250001.0 | 18.0 | 72.240943 | 0.009316 | 7754.6x |
+| exitosa-ultima | 500000.0 | 19.0 | 123.050907 | 0.007568 | 16259.4x |
+| exitosa-aleatorias | 262251.4 | 17.9 | 73.599532 | 0.008208 | 8966.5x |
+| fallida | 500000.0 | 18.7 | 103.686239 | 0.004072 | 25461.4x |
 
