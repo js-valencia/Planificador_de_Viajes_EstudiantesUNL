@@ -64,8 +64,6 @@ function estadisticas(muestras) {
 const promedio = (xs) => xs.reduce((s, x) => s + x, 0) / xs.length;
 
 // ---- Conjuntos ordenados ----
-// TODO: si DatasetBusqueda.js exporta una función que genera estos conjuntos, úsala aquí
-// para que las huellas coincidan con las de metodologia_busqueda.md.
 function obtenerConjuntoOrdenado(n) {
   const base = rutas;
   const datos = new Array(n);
@@ -108,7 +106,7 @@ function verificar(arreglo, claves) {
   }
 }
 
-// ---- (A) Tiempo de acceso al archivo (separado de la búsqueda) ----
+// ---- (A) Tiempo de acceso al archivo  ----
 function medirAccesoArchivo(arreglo) {
   const ruta = path.join(os.tmpdir(), `indice_busqueda_${arreglo.length}_${process.pid}.json`);
   fs.writeFileSync(ruta, JSON.stringify(arreglo));
@@ -149,7 +147,7 @@ function agregarPorCategoria(detalle) {
   const categoriaFinal = (c) => c;
   for (const d of detalle) (grupos[categoriaFinal(d.categoria)] ||= []).push(d);
   const salida = {};
-  // Las 20 aleatorias se promedian en una sola categoría; las fallidas también.
+
   for (const [cat, items] of Object.entries(grupos)) {
     salida[cat] = {
       claves: items.length,
@@ -183,8 +181,7 @@ function main() {
       console.log(`  (B) búsqueda ${nombre}...`);
       const reps = REPS[n][nombre];
       const detalle = claves.map((c) => ({ categoria: c.categoria, etiqueta: c.etiqueta, ...medirClave(fn, arreglo, c.clave, reps) }));
-      busqueda[nombre] = { repeticionesPorMedicion: reps, porCategoria: agregarPorCategoria(detalle), detalle };
-    }
+      busqueda[nombre] = { repeticionesPorMedicion: reps, porCategoria: agregarPorCategoria(detalle) };    }
     resultados.tamanos.push({ n, archivo, busqueda });
   }
 
