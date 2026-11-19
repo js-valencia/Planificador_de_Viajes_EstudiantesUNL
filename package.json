@@ -8,7 +8,8 @@
     "dev": "node --watch src/main/view/servidor.js",
     "demo": "node src/main/js/index.js",
     "test": "node tests/smoke.test.js && node tests/listaDoble.test.js && node tests/sort.test.js && node tests/search.test.js && node tests/datosBusqueda.test.js",
-"datos:busqueda": "node scripts/preparar_datos_busqueda.js",
+    "benchmark:busqueda": "node scripts/benchmark_busqueda.js",
+    "datos:busqueda": "node scripts/preparar_datos_busqueda.js",
     "benchmark": "node scripts/benchmark.js",
     "benchmark:sort": "node --expose-gc scripts/benchmark.js --ordenamiento"
   },

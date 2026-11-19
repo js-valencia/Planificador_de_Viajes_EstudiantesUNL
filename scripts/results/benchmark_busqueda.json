@@ -1,0 +1,2175 @@
+{
+  "meta": {
+    "node": "v24.21.0",
+    "plataforma": "win32 x64",
+    "semilla": 20261118,
+    "mediciones": 30,
+    "calentamiento": 5,
+    "fecha": "2026-11-19T17:01:25.434Z"
+  },
+  "tamanos": [
+    {
+      "n": 1000,
+      "archivo": {
+        "bytes": 236486,
+        "lecturaMs": {
+          "media": 0.5143966666666662,
+          "mediana": 0.4412500000000037,
+          "desviacion": 0.16534621667221594,
+          "min": 0.35949999999999704,
+          "max": 0.9921999999999969
+        },
+        "parseoMs": {
+          "media": 1.3612766666666658,
+          "mediana": 1.2060999999999922,
+          "desviacion": 0.31578526824992637,
+          "min": 1.0874000000000024,
+          "max": 2.241199999999992
+        },
+        "totalMedioMs": 1.875673333333332
+      },
+      "busqueda": {
+        "secuencial": {
+          "repeticionesPorMedicion": 100,
+          "porCategoria": {
+            "exitosa-primera": {
+              "claves": 1,
+              "tiempoMedioMs": 0.00022383333333331732,
+              "desviacionMediaMs": 0.00018368753140974504,
+              "comparacionesMedias": 1
+            },
+            "exitosa-mitad": {
+              "claves": 1,
+              "tiempoMedioMs": 0.12973739999999992,
+              "desviacionMediaMs": 0.007487653509335436,
+              "comparacionesMedias": 501
+            },
+            "exitosa-ultima": {
+              "claves": 1,
+              "tiempoMedioMs": 0.23773059999999974,
+              "desviacionMediaMs": 0.03815795781837624,
+              "comparacionesMedias": 1000
+            },
+            "exitosa-aleatorias": {
+              "claves": 20,
+              "tiempoMedioMs": 0.14152144333333322,
+              "desviacionMediaMs": 0.022038793098598252,
+              "comparacionesMedias": 587.35
+            },
+            "fallida": {
+              "claves": 3,
+              "tiempoMedioMs": 0.18334969999999964,
+              "desviacionMediaMs": 0.054979490462835394,
+              "comparacionesMedias": 1000
+            }
+          },
+          "detalle": [
+            {
+              "categoria": "exitosa-primera",
+              "etiqueta": "primera",
+              "comparaciones": 1,
+              "tiempoMs": {
+                "media": 0.00022383333333331732,
+                "mediana": 0.0001649999999999352,
+                "desviacion": 0.00018368753140974504,
+                "min": 0.00015999999999991133,
+                "max": 0.0010020000000000096
+              }
+            },
+            {
+              "categoria": "exitosa-mitad",
+              "etiqueta": "mitad",
+              "comparaciones": 501,
+              "tiempoMs": {
+                "media": 0.12973739999999992,
+                "mediana": 0.12814200000000056,
+                "desviacion": 0.007487653509335436,
+                "min": 0.11769199999999955,
+                "max": 0.15246500000000027
+              }
+            },
+            {
+              "categoria": "exitosa-ultima",
+              "etiqueta": "última",
+              "comparaciones": 1000,
+              "tiempoMs": {
+                "media": 0.23773059999999974,
+                "mediana": 0.22652649999999938,
+                "desviacion": 0.03815795781837624,
+                "min": 0.2052229999999986,
+                "max": 0.3635529999999994
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 1",
+              "comparaciones": 407,
+              "tiempoMs": {
+                "media": 0.08974729999999982,
+                "mediana": 0.08693000000000098,
+                "desviacion": 0.009785877703309775,
+                "min": 0.0788799999999992,
+                "max": 0.11580399999999827
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 2",
+              "comparaciones": 978,
+              "tiempoMs": {
+                "media": 0.20671436666666726,
+                "mediana": 0.20108999999999924,
+                "desviacion": 0.019013508668717396,
+                "min": 0.18459299999999984,
+                "max": 0.2605839999999989
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 3",
+              "comparaciones": 908,
+              "tiempoMs": {
+                "media": 0.21482993333333297,
+                "mediana": 0.21294000000000096,
+                "desviacion": 0.01760702593291394,
+                "min": 0.19647599999999785,
+                "max": 0.2848700000000008
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 4",
+              "comparaciones": 892,
+              "tiempoMs": {
+                "media": 0.20561163333333313,
+                "mediana": 0.20422900000000027,
+                "desviacion": 0.008235087263667971,
+                "min": 0.19131599999999707,
+                "max": 0.2282529999999997
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 5",
+              "comparaciones": 795,
+              "tiempoMs": {
+                "media": 0.2541810333333327,
+                "mediana": 0.20285150000000157,
+                "desviacion": 0.0844305184256234,
+                "min": 0.17819300000000113,
+                "max": 0.4097360000000026
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 6",
+              "comparaciones": 780,
+              "tiempoMs": {
+                "media": 0.18705296666666643,
+                "mediana": 0.1812915000000021,
+                "desviacion": 0.019018335204858846,
+                "min": 0.17143199999999525,
+                "max": 0.24570200000000114
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 7",
+              "comparaciones": 778,
+              "tiempoMs": {
+                "media": 0.18208503333333464,
+                "mediana": 0.17820400000000064,
+                "desviacion": 0.01304761300004212,
+                "min": 0.17099299999999856,
+                "max": 0.2349210000000039
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 8",
+              "comparaciones": 227,
+              "tiempoMs": {
+                "media": 0.04591309999999946,
+                "mediana": 0.045972499999998036,
+                "desviacion": 0.002421470248023971,
+                "min": 0.041637000000000625,
+                "max": 0.05022399999999834
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 9",
+              "comparaciones": 852,
+              "tiempoMs": {
+                "media": 0.1916083666666676,
+                "mediana": 0.19016700000000128,
+                "desviacion": 0.011005951172240647,
+                "min": 0.17416799999999966,
+                "max": 0.2239969999999994
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 10",
+              "comparaciones": 487,
+              "tiempoMs": {
+                "media": 0.14718033333333214,
+                "mediana": 0.12164600000000064,
+                "desviacion": 0.08210799722666885,
+                "min": 0.11089699999999539,
+                "max": 0.5269599999999991
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 11",
+              "comparaciones": 948,
+              "tiempoMs": {
+                "media": 0.21550293333333473,
+                "mediana": 0.1884050000000025,
+                "desviacion": 0.09302173275098417,
+                "min": 0.1734730000000036,
+                "max": 0.6532110000000011
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 12",
+              "comparaciones": 233,
+              "tiempoMs": {
+                "media": 0.04841669999999975,
+                "mediana": 0.04755400000000008,
+                "desviacion": 0.0036882999835921608,
+                "min": 0.04399900000000343,
+                "max": 0.0579320000000007
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 13",
+              "comparaciones": 243,
+              "tiempoMs": {
+                "media": 0.05464956666666391,
+                "mediana": 0.05373199999999087,
+                "desviacion": 0.005967013361883961,
+                "min": 0.049534999999996214,
+                "max": 0.08244499999998879
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 14",
+              "comparaciones": 118,
+              "tiempoMs": {
+                "media": 0.026227533333332158,
+                "mediana": 0.02485099999999875,
+                "desviacion": 0.004637871797408556,
+                "min": 0.022455000000009023,
+                "max": 0.044505000000008295
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 15",
+              "comparaciones": 259,
+              "tiempoMs": {
+                "media": 0.0603021000000008,
+                "mediana": 0.06045500000000174,
+                "desviacion": 0.0024703891826551344,
+                "min": 0.054983000000011086,
+                "max": 0.0648149999999987
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 16",
+              "comparaciones": 502,
+              "tiempoMs": {
+                "media": 0.12888476666666795,
+                "mediana": 0.12794700000000375,
+                "desviacion": 0.01096696599254185,
+                "min": 0.11626400000001012,
+                "max": 0.1765519999999924
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 17",
+              "comparaciones": 908,
+              "tiempoMs": {
+                "media": 0.21722916666666606,
+                "mediana": 0.21090149999999086,
+                "desviacion": 0.0223465255882816,
+                "min": 0.20155300000000353,
+                "max": 0.3072599999999875
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 18",
+              "comparaciones": 426,
+              "tiempoMs": {
+                "media": 0.09485090000000009,
+                "mediana": 0.09496200000000499,
+                "desviacion": 0.004842384788295502,
+                "min": 0.08682899999999791,
+                "max": 0.10770799999998416
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 19",
+              "comparaciones": 534,
+              "tiempoMs": {
+                "media": 0.14473289999999847,
+                "mediana": 0.1413785000000007,
+                "desviacion": 0.019567381949788517,
+                "min": 0.1285779999999977,
+                "max": 0.2405619999999908
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 20",
+              "comparaciones": 472,
+              "tiempoMs": {
+                "media": 0.11470823333333466,
+                "mediana": 0.11329399999999623,
+                "desviacion": 0.006593911730466722,
+                "min": 0.10326300000000628,
+                "max": 0.13291000000001077
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "menor que todas",
+              "comparaciones": 1000,
+              "tiempoMs": {
+                "media": 0.08409043333333346,
+                "mediana": 0.081524500000005,
+                "desviacion": 0.009413106521864036,
+                "min": 0.07460399999999937,
+                "max": 0.1197609999999986
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "intermedia",
+              "comparaciones": 1000,
+              "tiempoMs": {
+                "media": 0.28363089999999946,
+                "mediana": 0.2773200000000088,
+                "desviacion": 0.027121504204227667,
+                "min": 0.25552100000000794,
+                "max": 0.3808059999999932
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "mayor que todas",
+              "comparaciones": 1000,
+              "tiempoMs": {
+                "media": 0.182327766666666,
+                "mediana": 0.1420905000000039,
+                "desviacion": 0.12840386066241447,
+                "min": 0.0769210000000021,
+                "max": 0.6065250000000014
+              }
+            }
+          ]
+        },
+        "binaria": {
+          "repeticionesPorMedicion": 5000,
+          "porCategoria": {
+            "exitosa-primera": {
+              "claves": 1,
+              "tiempoMedioMs": 0.004198813999999984,
+              "desviacionMediaMs": 0.0006342230419405284,
+              "comparacionesMedias": 9
+            },
+            "exitosa-mitad": {
+              "claves": 1,
+              "tiempoMedioMs": 0.005483420666666668,
+              "desviacionMediaMs": 0.0016929633458238477,
+              "comparacionesMedias": 9
+            },
+            "exitosa-ultima": {
+              "claves": 1,
+              "tiempoMedioMs": 0.009880155333333312,
+              "desviacionMediaMs": 0.010497218255735371,
+              "comparacionesMedias": 10
+            },
+            "exitosa-aleatorias": {
+              "claves": 20,
+              "tiempoMedioMs": 0.00770229040000001,
+              "desviacionMediaMs": 0.0023479586619791805,
+              "comparacionesMedias": 9.55
+            },
+            "fallida": {
+              "claves": 3,
+              "tiempoMedioMs": 0.004167337999999986,
+              "desviacionMediaMs": 0.00015888386927416273,
+              "comparacionesMedias": 9.666666666666666
+            }
+          },
+          "detalle": [
+            {
+              "categoria": "exitosa-primera",
+              "etiqueta": "primera",
+              "comparaciones": 9,
+              "tiempoMs": {
+                "media": 0.004198813999999984,
+                "mediana": 0.004133789999999863,
+                "desviacion": 0.0006342230419405284,
+                "min": 0.0033473799999999753,
+                "max": 0.005992380000000048
+              }
+            },
+            {
+              "categoria": "exitosa-mitad",
+              "etiqueta": "mitad",
+              "comparaciones": 9,
+              "tiempoMs": {
+                "media": 0.005483420666666668,
+                "mediana": 0.005545629999999983,
+                "desviacion": 0.0016929633458238477,
+                "min": 0.0035628199999999197,
+                "max": 0.010563260000000083
+              }
+            },
+            {
+              "categoria": "exitosa-ultima",
+              "etiqueta": "última",
+              "comparaciones": 10,
+              "tiempoMs": {
+                "media": 0.009880155333333312,
+                "mediana": 0.007271220000000175,
+                "desviacion": 0.010497218255735371,
+                "min": 0.004143940000000294,
+                "max": 0.06073428000000022
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 1",
+              "comparaciones": 9,
+              "tiempoMs": {
+                "media": 0.0053123813333332765,
+                "mediana": 0.004510060000000158,
+                "desviacion": 0.002248978651197767,
+                "min": 0.0038364999999997962,
+                "max": 0.015733220000000436
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 2",
+              "comparaciones": 10,
+              "tiempoMs": {
+                "media": 0.0045728546666666085,
+                "mediana": 0.004444989999999961,
+                "desviacion": 0.00063635229021913,
+                "min": 0.0037643599999995785,
+                "max": 0.00619722000000038
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 3",
+              "comparaciones": 9,
+              "tiempoMs": {
+                "media": 0.011005910000000027,
+                "mediana": 0.0051317399999999905,
+                "desviacion": 0.013985812449925467,
+                "min": 0.004020639999999548,
+                "max": 0.06536368000000002
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 4",
+              "comparaciones": 9,
+              "tiempoMs": {
+                "media": 0.008561614666666668,
+                "mediana": 0.007725189999999929,
+                "desviacion": 0.0028077359798117335,
+                "min": 0.005564059999999881,
+                "max": 0.01703897999999972
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 5",
+              "comparaciones": 10,
+              "tiempoMs": {
+                "media": 0.007399986000000063,
+                "mediana": 0.0074021799999998625,
+                "desviacion": 0.0017187353022591451,
+                "min": 0.004859960000000137,
+                "max": 0.011714020000000163
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 6",
+              "comparaciones": 10,
+              "tiempoMs": {
+                "media": 0.008016057333333302,
+                "mediana": 0.007615090000000055,
+                "desviacion": 0.002042768094541255,
+                "min": 0.006345060000000376,
+                "max": 0.017112840000000143
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 7",
+              "comparaciones": 10,
+              "tiempoMs": {
+                "media": 0.011022565333333356,
+                "mediana": 0.00928331999999973,
+                "desviacion": 0.0049656750980359024,
+                "min": 0.006180460000000312,
+                "max": 0.02591684000000023
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 8",
+              "comparaciones": 10,
+              "tiempoMs": {
+                "media": 0.008742719999999999,
+                "mediana": 0.007456270000000222,
+                "desviacion": 0.0044311956850306405,
+                "min": 0.005066139999999723,
+                "max": 0.028577739999999904
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 9",
+              "comparaciones": 10,
+              "tiempoMs": {
+                "media": 0.008621445333333394,
+                "mediana": 0.007670850000000064,
+                "desviacion": 0.0024215812543727185,
+                "min": 0.005854920000000129,
+                "max": 0.014093100000000414
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 10",
+              "comparaciones": 10,
+              "tiempoMs": {
+                "media": 0.006443714000000109,
+                "mediana": 0.00654703000000045,
+                "desviacion": 0.0010958244020185719,
+                "min": 0.004488440000000264,
+                "max": 0.009157519999999931
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 11",
+              "comparaciones": 10,
+              "tiempoMs": {
+                "media": 0.007517705333333335,
+                "mediana": 0.006965380000000005,
+                "desviacion": 0.0016717945835119739,
+                "min": 0.005878740000000107,
+                "max": 0.012439899999999761
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 12",
+              "comparaciones": 10,
+              "tiempoMs": {
+                "media": 0.010151129333333253,
+                "mediana": 0.008132299999999669,
+                "desviacion": 0.00597325694882716,
+                "min": 0.006806620000000112,
+                "max": 0.031212600000000385
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 13",
+              "comparaciones": 10,
+              "tiempoMs": {
+                "media": 0.007929077999999961,
+                "mediana": 0.0077839800000001555,
+                "desviacion": 0.0006975040661129077,
+                "min": 0.007077820000000065,
+                "max": 0.010791099999999278
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 14",
+              "comparaciones": 10,
+              "tiempoMs": {
+                "media": 0.007764369999999909,
+                "mediana": 0.007823619999999937,
+                "desviacion": 0.00036683471191938707,
+                "min": 0.006902519999998913,
+                "max": 0.008309719999998924
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 15",
+              "comparaciones": 9,
+              "tiempoMs": {
+                "media": 0.006983151999999973,
+                "mediana": 0.0070314899999997585,
+                "desviacion": 0.00026975909853829553,
+                "min": 0.006272019999999611,
+                "max": 0.007372119999999995
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 16",
+              "comparaciones": 10,
+              "tiempoMs": {
+                "media": 0.008353328000000186,
+                "mediana": 0.00847951999999932,
+                "desviacion": 0.0003905785320513209,
+                "min": 0.006920859999999812,
+                "max": 0.008765039999999863
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 17",
+              "comparaciones": 9,
+              "tiempoMs": {
+                "media": 0.005180220666666766,
+                "mediana": 0.005222179999999935,
+                "desviacion": 0.00023417224043992648,
+                "min": 0.004549760000000242,
+                "max": 0.005499599999999919
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 18",
+              "comparaciones": 10,
+              "tiempoMs": {
+                "media": 0.00849827866666669,
+                "mediana": 0.008591740000000573,
+                "desviacion": 0.0004605923715939884,
+                "min": 0.007491240000000107,
+                "max": 0.00906588000000047
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 19",
+              "comparaciones": 8,
+              "tiempoMs": {
+                "media": 0.005844924666666873,
+                "mediana": 0.005899749999999767,
+                "desviacion": 0.0003023236890433859,
+                "min": 0.005149839999999677,
+                "max": 0.006295820000000822
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 20",
+              "comparaciones": 8,
+              "tiempoMs": {
+                "media": 0.0061243726666664585,
+                "mediana": 0.006178589999999531,
+                "desviacion": 0.00023769779013293565,
+                "min": 0.005371920000000682,
+                "max": 0.006697380000000703
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "menor que todas",
+              "comparaciones": 9,
+              "tiempoMs": {
+                "media": 0.0017690479999998448,
+                "mediana": 0.0017883900000000722,
+                "desviacion": 0.00011494767152466237,
+                "min": 0.0014226399999999557,
+                "max": 0.0019421199999997043
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "intermedia",
+              "comparaciones": 10,
+              "tiempoMs": {
+                "media": 0.008716935333333339,
+                "mediana": 0.00873090000000011,
+                "desviacion": 0.000277655323150909,
+                "min": 0.0077848800000007035,
+                "max": 0.009247740000000339
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "mayor que todas",
+              "comparaciones": 10,
+              "tiempoMs": {
+                "media": 0.0020160306666667746,
+                "mediana": 0.002035259999999835,
+                "desviacion": 0.00008404861314691678,
+                "min": 0.0017631000000008499,
+                "max": 0.0021584399999992456
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "n": 50000,
+      "archivo": {
+        "bytes": 11822851,
+        "lecturaMs": {
+          "media": 28.570156666666783,
+          "mediana": 26.3070000000007,
+          "desviacion": 6.425872849965669,
+          "min": 20.06420000000071,
+          "max": 48.34270000000106
+        },
+        "parseoMs": {
+          "media": 105.56667333333341,
+          "mediana": 100.31335000000036,
+          "desviacion": 24.281499345116124,
+          "min": 67.69789999999921,
+          "max": 161.63590000000113
+        },
+        "totalMedioMs": 134.1368300000002
+      },
+      "busqueda": {
+        "secuencial": {
+          "repeticionesPorMedicion": 5,
+          "porCategoria": {
+            "exitosa-primera": {
+              "claves": 1,
+              "tiempoMedioMs": 0.00031733333327186615,
+              "desviacionMediaMs": 0.000026643668243433135,
+              "comparacionesMedias": 1
+            },
+            "exitosa-mitad": {
+              "claves": 1,
+              "tiempoMedioMs": 13.987536000000011,
+              "desviacionMediaMs": 4.340022726946468,
+              "comparacionesMedias": 25001
+            },
+            "exitosa-ultima": {
+              "claves": 1,
+              "tiempoMedioMs": 20.17343066666663,
+              "desviacionMediaMs": 7.1834364807854785,
+              "comparacionesMedias": 50000
+            },
+            "exitosa-aleatorias": {
+              "claves": 20,
+              "tiempoMedioMs": 13.691338966666583,
+              "desviacionMediaMs": 2.870708531388512,
+              "comparacionesMedias": 29572.4
+            },
+            "fallida": {
+              "claves": 3,
+              "tiempoMedioMs": 14.553850888888896,
+              "desviacionMediaMs": 3.7065074559523943,
+              "comparacionesMedias": 50000
+            }
+          },
+          "detalle": [
+            {
+              "categoria": "exitosa-primera",
+              "etiqueta": "primera",
+              "comparaciones": 1,
+              "tiempoMs": {
+                "media": 0.00031733333327186615,
+                "mediana": 0.00031999999991967344,
+                "desviacion": 0.000026643668243433135,
+                "min": 0.0002599999992526136,
+                "max": 0.0003799999991315417
+              }
+            },
+            {
+              "categoria": "exitosa-mitad",
+              "etiqueta": "mitad",
+              "comparaciones": 25001,
+              "tiempoMs": {
+                "media": 13.987536000000011,
+                "mediana": 13.009879999999974,
+                "desviacion": 4.340022726946468,
+                "min": 7.731680000000051,
+                "max": 26.443000000000758
+              }
+            },
+            {
+              "categoria": "exitosa-ultima",
+              "etiqueta": "última",
+              "comparaciones": 50000,
+              "tiempoMs": {
+                "media": 20.17343066666663,
+                "mediana": 18.10219999999972,
+                "desviacion": 7.1834364807854785,
+                "min": 14.719120000000112,
+                "max": 54.959079999999084
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 1",
+              "comparaciones": 35646,
+              "tiempoMs": {
+                "media": 15.569011333333329,
+                "mediana": 15.293530000000464,
+                "desviacion": 2.076612825790814,
+                "min": 12.573919999999635,
+                "max": 20.59817999999941
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 2",
+              "comparaciones": 35338,
+              "tiempoMs": {
+                "media": 16.145135999999958,
+                "mediana": 15.931859999999869,
+                "desviacion": 3.0075789360439202,
+                "min": 12.033039999999165,
+                "max": 26.784419999999226
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 3",
+              "comparaciones": 7472,
+              "tiempoMs": {
+                "media": 4.226442666666893,
+                "mediana": 3.7663100000005216,
+                "desviacion": 1.502719801846962,
+                "min": 2.18403999999864,
+                "max": 7.841900000002352
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 4",
+              "comparaciones": 31673,
+              "tiempoMs": {
+                "media": 15.823857333333194,
+                "mediana": 15.172929999999177,
+                "desviacion": 2.6863961866016637,
+                "min": 10.816300000000046,
+                "max": 23.041120000000227
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 5",
+              "comparaciones": 31025,
+              "tiempoMs": {
+                "media": 15.451590000000145,
+                "mediana": 15.368899999999849,
+                "desviacion": 3.405322399882128,
+                "min": 9.9715200000006,
+                "max": 22.510819999998784
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 6",
+              "comparaciones": 26556,
+              "tiempoMs": {
+                "media": 12.21381733333333,
+                "mediana": 11.640380000000004,
+                "desviacion": 2.8132147145319517,
+                "min": 8.486880000002566,
+                "max": 21.857859999997892
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 7",
+              "comparaciones": 16166,
+              "tiempoMs": {
+                "media": 10.367924000000057,
+                "mediana": 10.049280000002181,
+                "desviacion": 2.0141880463143043,
+                "min": 5.9106199999980165,
+                "max": 14.532700000001933
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 8",
+              "comparaciones": 27553,
+              "tiempoMs": {
+                "media": 10.83611600000004,
+                "mediana": 10.610319999999774,
+                "desviacion": 2.523945033684429,
+                "min": 7.634719999998924,
+                "max": 17.690420000001904
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 9",
+              "comparaciones": 45330,
+              "tiempoMs": {
+                "media": 21.02393199999982,
+                "mediana": 19.488099999999392,
+                "desviacion": 4.949090169474109,
+                "min": 13.512119999999413,
+                "max": 38.41827999999805
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 10",
+              "comparaciones": 26728,
+              "tiempoMs": {
+                "media": 13.353673333333091,
+                "mediana": 12.225669999998354,
+                "desviacion": 2.8037491091521107,
+                "min": 9.324520000000485,
+                "max": 18.514619999998832
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 11",
+              "comparaciones": 21842,
+              "tiempoMs": {
+                "media": 12.565204000000085,
+                "mediana": 10.975860000000102,
+                "desviacion": 4.7723699489813844,
+                "min": 7.663160000002245,
+                "max": 28.542639999999665
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 12",
+              "comparaciones": 47412,
+              "tiempoMs": {
+                "media": 16.76995999999975,
+                "mediana": 16.60229999999865,
+                "desviacion": 1.7012335961398155,
+                "min": 13.478740000000107,
+                "max": 20.16923999999999
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 13",
+              "comparaciones": 49653,
+              "tiempoMs": {
+                "media": 19.321593333332952,
+                "mediana": 19.273510000000535,
+                "desviacion": 2.507625850298461,
+                "min": 13.335039999999571,
+                "max": 25.516159999999218
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 14",
+              "comparaciones": 28018,
+              "tiempoMs": {
+                "media": 14.370647333333038,
+                "mediana": 14.882130000001052,
+                "desviacion": 3.4335214339213813,
+                "min": 7.781199999997625,
+                "max": 19.836559999999007
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 15",
+              "comparaciones": 25828,
+              "tiempoMs": {
+                "media": 12.342518000000078,
+                "mediana": 11.070400000001246,
+                "desviacion": 3.3540508324706138,
+                "min": 8.309140000000479,
+                "max": 22.724340000000666
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 16",
+              "comparaciones": 22144,
+              "tiempoMs": {
+                "media": 11.491172666666582,
+                "mediana": 11.838340000000608,
+                "desviacion": 2.0313390942617167,
+                "min": 8.026720000000205,
+                "max": 14.00795999999973
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 17",
+              "comparaciones": 47953,
+              "tiempoMs": {
+                "media": 19.073312666666656,
+                "mediana": 18.4883600000001,
+                "desviacion": 3.284134682136381,
+                "min": 14.813539999999922,
+                "max": 25.298259999998844
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 18",
+              "comparaciones": 3528,
+              "tiempoMs": {
+                "media": 2.183615333332951,
+                "mediana": 2.070679999999993,
+                "desviacion": 0.42365619811104743,
+                "min": 1.5692600000009407,
+                "max": 3.3280999999988126
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 19",
+              "comparaciones": 23425,
+              "tiempoMs": {
+                "media": 11.124351333333179,
+                "mediana": 10.421450000000185,
+                "desviacion": 2.0853098793537,
+                "min": 8.336139999999432,
+                "max": 17.183280000000376
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 20",
+              "comparaciones": 38158,
+              "tiempoMs": {
+                "media": 19.57290466666658,
+                "mediana": 18.343479999998817,
+                "desviacion": 6.038111888773351,
+                "min": 12.665400000000954,
+                "max": 36.809520000001065
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "menor que todas",
+              "comparaciones": 50000,
+              "tiempoMs": {
+                "media": 8.889130666666606,
+                "mediana": 8.78191999999981,
+                "desviacion": 1.1886044442548238,
+                "min": 6.123520000002463,
+                "max": 11.103159999998752
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "intermedia",
+              "comparaciones": 50000,
+              "tiempoMs": {
+                "media": 23.37780733333358,
+                "mediana": 22.66567000000068,
+                "desviacion": 3.4980673944709126,
+                "min": 18.760980000000565,
+                "max": 34.203979999999866
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "mayor que todas",
+              "comparaciones": 50000,
+              "tiempoMs": {
+                "media": 11.394614666666506,
+                "mediana": 9.339620000000286,
+                "desviacion": 6.4328505291314455,
+                "min": 5.689220000000205,
+                "max": 35.3988400000002
+              }
+            }
+          ]
+        },
+        "binaria": {
+          "repeticionesPorMedicion": 5000,
+          "porCategoria": {
+            "exitosa-primera": {
+              "claves": 1,
+              "tiempoMedioMs": 0.006811979333333244,
+              "desviacionMediaMs": 0.0011831715166248189,
+              "comparacionesMedias": 15
+            },
+            "exitosa-mitad": {
+              "claves": 1,
+              "tiempoMedioMs": 0.012534099999999842,
+              "desviacionMediaMs": 0.006287519453913186,
+              "comparacionesMedias": 15
+            },
+            "exitosa-ultima": {
+              "claves": 1,
+              "tiempoMedioMs": 0.009065168000000219,
+              "desviacionMediaMs": 0.0013732972781575505,
+              "comparacionesMedias": 16
+            },
+            "exitosa-aleatorias": {
+              "claves": 20,
+              "tiempoMedioMs": 0.008427302033333379,
+              "desviacionMediaMs": 0.002312310449865503,
+              "comparacionesMedias": 14.6
+            },
+            "fallida": {
+              "claves": 3,
+              "tiempoMedioMs": 0.004657371777777704,
+              "desviacionMediaMs": 0.0009554021344125508,
+              "comparacionesMedias": 15.666666666666666
+            }
+          },
+          "detalle": [
+            {
+              "categoria": "exitosa-primera",
+              "etiqueta": "primera",
+              "comparaciones": 15,
+              "tiempoMs": {
+                "media": 0.006811979333333244,
+                "mediana": 0.006440929999999935,
+                "desviacion": 0.0011831715166248189,
+                "min": 0.005319620000000577,
+                "max": 0.01092730000000156
+              }
+            },
+            {
+              "categoria": "exitosa-mitad",
+              "etiqueta": "mitad",
+              "comparaciones": 15,
+              "tiempoMs": {
+                "media": 0.012534099999999842,
+                "mediana": 0.011060509999998611,
+                "desviacion": 0.006287519453913186,
+                "min": 0.007396439999999711,
+                "max": 0.03993269999999902
+              }
+            },
+            {
+              "categoria": "exitosa-ultima",
+              "etiqueta": "última",
+              "comparaciones": 16,
+              "tiempoMs": {
+                "media": 0.009065168000000219,
+                "mediana": 0.008924750000001223,
+                "desviacion": 0.0013732972781575505,
+                "min": 0.006938940000001457,
+                "max": 0.011797639999998501
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 1",
+              "comparaciones": 14,
+              "tiempoMs": {
+                "media": 0.007437582666666131,
+                "mediana": 0.006774539999998524,
+                "desviacion": 0.0016537209513318987,
+                "min": 0.0059098400000017134,
+                "max": 0.014094679999997606
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 2",
+              "comparaciones": 12,
+              "tiempoMs": {
+                "media": 0.0063298093333330075,
+                "mediana": 0.0062098100000002885,
+                "desviacion": 0.0008828184614683264,
+                "min": 0.00500458000000217,
+                "max": 0.00838169999999809
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 3",
+              "comparaciones": 14,
+              "tiempoMs": {
+                "media": 0.007339509333333312,
+                "mediana": 0.007067900000000373,
+                "desviacion": 0.0016583132429332263,
+                "min": 0.005964040000003297,
+                "max": 0.015338299999997253
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 4",
+              "comparaciones": 14,
+              "tiempoMs": {
+                "media": 0.006789982666666425,
+                "mediana": 0.006684479999999167,
+                "desviacion": 0.0011015117201096682,
+                "min": 0.005365460000000894,
+                "max": 0.010701680000004125
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 5",
+              "comparaciones": 16,
+              "tiempoMs": {
+                "media": 0.00944346666666679,
+                "mediana": 0.00885847000000067,
+                "desviacion": 0.0018302917720170095,
+                "min": 0.007124060000001918,
+                "max": 0.015262940000003437
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 6",
+              "comparaciones": 15,
+              "tiempoMs": {
+                "media": 0.009200482000000195,
+                "mediana": 0.00922208999999857,
+                "desviacion": 0.0017648399462320353,
+                "min": 0.00627951999999932,
+                "max": 0.013336139999999433
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 7",
+              "comparaciones": 16,
+              "tiempoMs": {
+                "media": 0.009642508666666303,
+                "mediana": 0.00956628999999666,
+                "desviacion": 0.001640183729250767,
+                "min": 0.007227840000001015,
+                "max": 0.012775279999995837
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 8",
+              "comparaciones": 14,
+              "tiempoMs": {
+                "media": 0.008890570000000299,
+                "mediana": 0.00863190000000177,
+                "desviacion": 0.0014597918033298313,
+                "min": 0.005854700000002049,
+                "max": 0.012723420000000624
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 9",
+              "comparaciones": 13,
+              "tiempoMs": {
+                "media": 0.0058946886666670145,
+                "mediana": 0.0058190199999982725,
+                "desviacion": 0.0010700148108247513,
+                "min": 0.004315480000001844,
+                "max": 0.00910681999999797
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 10",
+              "comparaciones": 16,
+              "tiempoMs": {
+                "media": 0.009195331999999858,
+                "mediana": 0.008512880000000587,
+                "desviacion": 0.0019216821334448247,
+                "min": 0.0071775199999974575,
+                "max": 0.015054060000000754
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 11",
+              "comparaciones": 15,
+              "tiempoMs": {
+                "media": 0.00924690533333303,
+                "mediana": 0.008830290000000969,
+                "desviacion": 0.0021936559120611762,
+                "min": 0.0068097200000018345,
+                "max": 0.014802679999999237
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 12",
+              "comparaciones": 15,
+              "tiempoMs": {
+                "media": 0.008117126666666785,
+                "mediana": 0.007506469999998808,
+                "desviacion": 0.0017640818524245348,
+                "min": 0.006374359999998706,
+                "max": 0.0135227200000023
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 13",
+              "comparaciones": 15,
+              "tiempoMs": {
+                "media": 0.010934777333334013,
+                "mediana": 0.008199649999997928,
+                "desviacion": 0.010168739666058722,
+                "min": 0.006345880000002217,
+                "max": 0.06010114000000176
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 14",
+              "comparaciones": 15,
+              "tiempoMs": {
+                "media": 0.0086747833333341,
+                "mediana": 0.007985690000001341,
+                "desviacion": 0.0018917717125241033,
+                "min": 0.006387440000002971,
+                "max": 0.012896100000001024
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 15",
+              "comparaciones": 16,
+              "tiempoMs": {
+                "media": 0.010245702666667057,
+                "mediana": 0.010017060000001219,
+                "desviacion": 0.0026955153210838577,
+                "min": 0.00686699999999837,
+                "max": 0.018986759999999776
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 16",
+              "comparaciones": 16,
+              "tiempoMs": {
+                "media": 0.008875455999999154,
+                "mediana": 0.008445629999999073,
+                "desviacion": 0.002165367414521449,
+                "min": 0.006723939999996219,
+                "max": 0.016967199999996227
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 17",
+              "comparaciones": 15,
+              "tiempoMs": {
+                "media": 0.00857479666666671,
+                "mediana": 0.008014870000001974,
+                "desviacion": 0.0019728387431527435,
+                "min": 0.00617160000000149,
+                "max": 0.013087659999995957
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 18",
+              "comparaciones": 15,
+              "tiempoMs": {
+                "media": 0.008038079333334076,
+                "mediana": 0.007103469999998925,
+                "desviacion": 0.002015386197900535,
+                "min": 0.005821940000000177,
+                "max": 0.01297396000000299
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 19",
+              "comparaciones": 15,
+              "tiempoMs": {
+                "media": 0.008781909333333218,
+                "mediana": 0.008188790000000154,
+                "desviacion": 0.0023257642897360977,
+                "min": 0.006107699999999022,
+                "max": 0.014554999999998836
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 20",
+              "comparaciones": 11,
+              "tiempoMs": {
+                "media": 0.006892572000000122,
+                "mediana": 0.005830689999999595,
+                "desviacion": 0.004069919316904506,
+                "min": 0.004688339999999153,
+                "max": 0.025883819999999832
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "menor que todas",
+              "comparaciones": 15,
+              "tiempoMs": {
+                "media": 0.0016160440000001109,
+                "mediana": 0.00148524000000034,
+                "desviacion": 0.00034243197531964756,
+                "min": 0.001196899999998277,
+                "max": 0.0023944200000027196
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "intermedia",
+              "comparaciones": 16,
+              "tiempoMs": {
+                "media": 0.009943822666666628,
+                "mediana": 0.00960748999999778,
+                "desviacion": 0.0017478412457839383,
+                "min": 0.0070913799999980254,
+                "max": 0.013749360000004526
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "mayor que todas",
+              "comparaciones": 16,
+              "tiempoMs": {
+                "media": 0.002412248666666371,
+                "mediana": 0.0023914300000004007,
+                "desviacion": 0.0007759331821340664,
+                "min": 0.0014100399999995715,
+                "max": 0.0038974199999996925
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "n": 500000,
+      "archivo": {
+        "bytes": 118227423,
+        "lecturaMs": {
+          "media": 399.1935133333347,
+          "mediana": 289.0058500000014,
+          "desviacion": 500.760340355467,
+          "min": 202.56079999997746,
+          "max": 3026.4424
+        },
+        "parseoMs": {
+          "media": 1685.1771233333352,
+          "mediana": 1525.5043999999907,
+          "desviacion": 668.6581967218534,
+          "min": 1006.4206999999878,
+          "max": 3532.4752000000153
+        },
+        "totalMedioMs": 2084.3706366666697
+      },
+      "busqueda": {
+        "secuencial": {
+          "repeticionesPorMedicion": 1,
+          "porCategoria": {
+            "exitosa-primera": {
+              "claves": 1,
+              "tiempoMedioMs": 0.00025333333566474416,
+              "desviacionMediaMs": 0.00005713464615855826,
+              "comparacionesMedias": 1
+            },
+            "exitosa-mitad": {
+              "claves": 1,
+              "tiempoMedioMs": 136.90247999999943,
+              "desviacionMediaMs": 46.32976021571661,
+              "comparacionesMedias": 250001
+            },
+            "exitosa-ultima": {
+              "claves": 1,
+              "tiempoMedioMs": 217.45533000000094,
+              "desviacionMediaMs": 44.57102136453617,
+              "comparacionesMedias": 500000
+            },
+            "exitosa-aleatorias": {
+              "claves": 20,
+              "tiempoMedioMs": 123.4522973333338,
+              "desviacionMediaMs": 31.167637511936267,
+              "comparacionesMedias": 262251.4
+            },
+            "fallida": {
+              "claves": 3,
+              "tiempoMedioMs": 159.8862999999986,
+              "desviacionMediaMs": 30.870869519231892,
+              "comparacionesMedias": 500000
+            }
+          },
+          "detalle": [
+            {
+              "categoria": "exitosa-primera",
+              "etiqueta": "primera",
+              "comparaciones": 1,
+              "tiempoMs": {
+                "media": 0.00025333333566474416,
+                "mediana": 0.0002499999973224476,
+                "desviacion": 0.00005713464615855826,
+                "min": 0.0001999999803956598,
+                "max": 0.0004000000189989805
+              }
+            },
+            {
+              "categoria": "exitosa-mitad",
+              "etiqueta": "mitad",
+              "comparaciones": 250001,
+              "tiempoMs": {
+                "media": 136.90247999999943,
+                "mediana": 128.89770000000135,
+                "desviacion": 46.32976021571661,
+                "min": 94.5452000000223,
+                "max": 333.90810000000056
+              }
+            },
+            {
+              "categoria": "exitosa-ultima",
+              "etiqueta": "última",
+              "comparaciones": 500000,
+              "tiempoMs": {
+                "media": 217.45533000000094,
+                "mediana": 202.16905000001134,
+                "desviacion": 44.57102136453617,
+                "min": 165.45290000000386,
+                "max": 350.7398000000394
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 1",
+              "comparaciones": 198800,
+              "tiempoMs": {
+                "media": 95.01574666666177,
+                "mediana": 86.35524999999325,
+                "desviacion": 32.58817362029394,
+                "min": 63.72119999997085,
+                "max": 208.4662000000244
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 2",
+              "comparaciones": 65898,
+              "tiempoMs": {
+                "media": 30.260286666668254,
+                "mediana": 30.422300000005635,
+                "desviacion": 4.818891184719921,
+                "min": 22.20300000003772,
+                "max": 43.93080000003101
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 3",
+              "comparaciones": 342664,
+              "tiempoMs": {
+                "media": 161.8036066666614,
+                "mediana": 153.70524999999907,
+                "desviacion": 34.71587031820006,
+                "min": 127.41830000001937,
+                "max": 314.595500000054
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 4",
+              "comparaciones": 308579,
+              "tiempoMs": {
+                "media": 115.10003999999996,
+                "mediana": 110.63255000000936,
+                "desviacion": 20.74073555616579,
+                "min": 89.12489999999525,
+                "max": 169.8701000000001
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 5",
+              "comparaciones": 112212,
+              "tiempoMs": {
+                "media": 53.24616666666892,
+                "mediana": 54.2297499999986,
+                "desviacion": 10.280337365438896,
+                "min": 32.71999999997206,
+                "max": 73.62349999998696
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 6",
+              "comparaciones": 249098,
+              "tiempoMs": {
+                "media": 115.04209999999536,
+                "mediana": 114.3969999999681,
+                "desviacion": 14.518173187397787,
+                "min": 86.27419999998529,
+                "max": 141.06070000003092
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 7",
+              "comparaciones": 339777,
+              "tiempoMs": {
+                "media": 128.92527666666817,
+                "mediana": 113.51185000000987,
+                "desviacion": 43.374067779319425,
+                "min": 94.6762999999919,
+                "max": 289.62510000000475
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 8",
+              "comparaciones": 421698,
+              "tiempoMs": {
+                "media": 186.27825000000496,
+                "mediana": 181.10805000000983,
+                "desviacion": 63.215722074557,
+                "min": 111.27779999998165,
+                "max": 330.82050000003073
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 9",
+              "comparaciones": 433086,
+              "tiempoMs": {
+                "media": 205.42478333333855,
+                "mediana": 200.05624999999418,
+                "desviacion": 64.0769698054065,
+                "min": 118.36609999998473,
+                "max": 411.1197000000393
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 10",
+              "comparaciones": 65371,
+              "tiempoMs": {
+                "media": 34.958703333337326,
+                "mediana": 31.196600000024773,
+                "desviacion": 15.345774439406584,
+                "min": 22.763299999991432,
+                "max": 92.8068000000203
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 11",
+              "comparaciones": 488017,
+              "tiempoMs": {
+                "media": 191.78140333334062,
+                "mediana": 188.874599999981,
+                "desviacion": 28.333349949571684,
+                "min": 144.02739999996265,
+                "max": 277.0804000000353
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 12",
+              "comparaciones": 88777,
+              "tiempoMs": {
+                "media": 44.56879666667082,
+                "mediana": 43.624299999995856,
+                "desviacion": 5.903302554324875,
+                "min": 36.305099999997765,
+                "max": 59.774399999994785
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 13",
+              "comparaciones": 159544,
+              "tiempoMs": {
+                "media": 89.16729333333011,
+                "mediana": 85.75709999998799,
+                "desviacion": 13.031201191122856,
+                "min": 72.27919999998994,
+                "max": 134.3469000000041
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 14",
+              "comparaciones": 281603,
+              "tiempoMs": {
+                "media": 135.04896333333647,
+                "mediana": 136.58185000001686,
+                "desviacion": 19.537080822570687,
+                "min": 102.8234999999986,
+                "max": 171.46850000001723
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 15",
+              "comparaciones": 361412,
+              "tiempoMs": {
+                "media": 181.5478133333362,
+                "mediana": 183.15160000001197,
+                "desviacion": 25.36469104784432,
+                "min": 139.039300000004,
+                "max": 221.05890000000363
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 16",
+              "comparaciones": 217848,
+              "tiempoMs": {
+                "media": 100.17542333332433,
+                "mediana": 99.56849999999395,
+                "desviacion": 17.373274330970382,
+                "min": 75.95799999998417,
+                "max": 144.98420000000624
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 17",
+              "comparaciones": 79035,
+              "tiempoMs": {
+                "media": 41.55383000000341,
+                "mediana": 38.98660000000382,
+                "desviacion": 9.915144379849004,
+                "min": 28.64279999997234,
+                "max": 63.710699999995995
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 18",
+              "comparaciones": 251612,
+              "tiempoMs": {
+                "media": 125.77165000000386,
+                "mediana": 117.21140000000014,
+                "desviacion": 27.008498878361724,
+                "min": 92.84799999999814,
+                "max": 188.00199999997858
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 19",
+              "comparaciones": 362808,
+              "tiempoMs": {
+                "media": 250.34887333333026,
+                "mediana": 212.77865000002203,
+                "desviacion": 140.7107490799413,
+                "min": 139.63829999999143,
+                "max": 791.2282000000123
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 20",
+              "comparaciones": 417189,
+              "tiempoMs": {
+                "media": 183.02693999999514,
+                "mediana": 173.3530000000028,
+                "desviacion": 32.50074267326255,
+                "min": 143.24969999998575,
+                "max": 243.5299000000232
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "menor que todas",
+              "comparaciones": 500000,
+              "tiempoMs": {
+                "media": 129.38559333333396,
+                "mediana": 116.8101500000048,
+                "desviacion": 36.64311553308584,
+                "min": 100.76519999996526,
+                "max": 261.62650000001304
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "intermedia",
+              "comparaciones": 500000,
+              "tiempoMs": {
+                "media": 242.6268099999967,
+                "mediana": 228.68234999995911,
+                "desviacion": 41.27377336608953,
+                "min": 178.1765000000014,
+                "max": 362.62650000001304
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "mayor que todas",
+              "comparaciones": 500000,
+              "tiempoMs": {
+                "media": 107.64649666666519,
+                "mediana": 103.17240000001038,
+                "desviacion": 14.695719658520307,
+                "min": 91.24670000001788,
+                "max": 145.15830000001006
+              }
+            }
+          ]
+        },
+        "binaria": {
+          "repeticionesPorMedicion": 5000,
+          "porCategoria": {
+            "exitosa-primera": {
+              "claves": 1,
+              "tiempoMedioMs": 0.010372971333332825,
+              "desviacionMediaMs": 0.0020162485043265957,
+              "comparacionesMedias": 18
+            },
+            "exitosa-mitad": {
+              "claves": 1,
+              "tiempoMedioMs": 0.010821734666666794,
+              "desviacionMediaMs": 0.0014491124011529678,
+              "comparacionesMedias": 18
+            },
+            "exitosa-ultima": {
+              "claves": 1,
+              "tiempoMedioMs": 0.0102405593333339,
+              "desviacionMediaMs": 0.001781045344513383,
+              "comparacionesMedias": 19
+            },
+            "exitosa-aleatorias": {
+              "claves": 20,
+              "tiempoMedioMs": 0.01055288316666655,
+              "desviacionMediaMs": 0.002040249982617975,
+              "comparacionesMedias": 17.85
+            },
+            "fallida": {
+              "claves": 3,
+              "tiempoMedioMs": 0.005040779999999665,
+              "desviacionMediaMs": 0.0006878692411347705,
+              "comparacionesMedias": 18.666666666666668
+            }
+          },
+          "detalle": [
+            {
+              "categoria": "exitosa-primera",
+              "etiqueta": "primera",
+              "comparaciones": 18,
+              "tiempoMs": {
+                "media": 0.010372971333332825,
+                "mediana": 0.009867489999998362,
+                "desviacion": 0.0020162485043265957,
+                "min": 0.007540280000003986,
+                "max": 0.015370060000009836
+              }
+            },
+            {
+              "categoria": "exitosa-mitad",
+              "etiqueta": "mitad",
+              "comparaciones": 18,
+              "tiempoMs": {
+                "media": 0.010821734666666794,
+                "mediana": 0.010404280000005383,
+                "desviacion": 0.0014491124011529678,
+                "min": 0.008842639999999664,
+                "max": 0.014365780000004451
+              }
+            },
+            {
+              "categoria": "exitosa-ultima",
+              "etiqueta": "última",
+              "comparaciones": 19,
+              "tiempoMs": {
+                "media": 0.0102405593333339,
+                "mediana": 0.009837320000003091,
+                "desviacion": 0.001781045344513383,
+                "min": 0.007858639999991283,
+                "max": 0.015352599999995437
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 1",
+              "comparaciones": 19,
+              "tiempoMs": {
+                "media": 0.01186301533333142,
+                "mediana": 0.010962229999992997,
+                "desviacion": 0.0024575649893596417,
+                "min": 0.008382720000005792,
+                "max": 0.01756474000000162
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 2",
+              "comparaciones": 19,
+              "tiempoMs": {
+                "media": 0.016319547333333177,
+                "mediana": 0.014353860000002897,
+                "desviacion": 0.007591307527880374,
+                "min": 0.008809380000003147,
+                "max": 0.04816013999999268
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 3",
+              "comparaciones": 19,
+              "tiempoMs": {
+                "media": 0.011582451333332964,
+                "mediana": 0.01106309000000474,
+                "desviacion": 0.0026655934004675146,
+                "min": 0.00832389999999432,
+                "max": 0.017744720000005328
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 4",
+              "comparaciones": 18,
+              "tiempoMs": {
+                "media": 0.010857211333334367,
+                "mediana": 0.010248389999999198,
+                "desviacion": 0.002031350111058606,
+                "min": 0.008591620000009424,
+                "max": 0.015204899999999907
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 5",
+              "comparaciones": 14,
+              "tiempoMs": {
+                "media": 0.008333937333333308,
+                "mediana": 0.007690110000001733,
+                "desviacion": 0.0019106630584189677,
+                "min": 0.006114199999999255,
+                "max": 0.013615119999996386
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 6",
+              "comparaciones": 19,
+              "tiempoMs": {
+                "media": 0.011685813333334325,
+                "mediana": 0.011412679999996908,
+                "desviacion": 0.0019157519927487075,
+                "min": 0.009118400000000838,
+                "max": 0.01813625999999931
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 7",
+              "comparaciones": 17,
+              "tiempoMs": {
+                "media": 0.010131796666667019,
+                "mediana": 0.0099312900000019,
+                "desviacion": 0.0022060113759794398,
+                "min": 0.007896180000004823,
+                "max": 0.015648199999995994
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 8",
+              "comparaciones": 16,
+              "tiempoMs": {
+                "media": 0.009325493999999405,
+                "mediana": 0.008837690000003205,
+                "desviacion": 0.001778769466298998,
+                "min": 0.00700344000000041,
+                "max": 0.013909179999993648
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 9",
+              "comparaciones": 18,
+              "tiempoMs": {
+                "media": 0.010541078666666679,
+                "mediana": 0.009840479999996023,
+                "desviacion": 0.001590027553455075,
+                "min": 0.008036540000000968,
+                "max": 0.014403800000005868
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 10",
+              "comparaciones": 17,
+              "tiempoMs": {
+                "media": 0.009708835333333894,
+                "mediana": 0.009439959999994607,
+                "desviacion": 0.0015951800562317832,
+                "min": 0.007448979999998119,
+                "max": 0.013327939999999944
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 11",
+              "comparaciones": 19,
+              "tiempoMs": {
+                "media": 0.010190033999999676,
+                "mediana": 0.010114789999998175,
+                "desviacion": 0.001346849966804005,
+                "min": 0.008002799999993294,
+                "max": 0.01353644000000786
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 12",
+              "comparaciones": 17,
+              "tiempoMs": {
+                "media": 0.00923390933333314,
+                "mediana": 0.00903874000000651,
+                "desviacion": 0.0012290405924966742,
+                "min": 0.007101959999999963,
+                "max": 0.012004639999999199
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 13",
+              "comparaciones": 19,
+              "tiempoMs": {
+                "media": 0.010538037333332858,
+                "mediana": 0.01053066000000108,
+                "desviacion": 0.0008659914190811903,
+                "min": 0.009141700000001583,
+                "max": 0.012318559999996797
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 14",
+              "comparaciones": 19,
+              "tiempoMs": {
+                "media": 0.011158952666666978,
+                "mediana": 0.010960060000000521,
+                "desviacion": 0.0019482152729893595,
+                "min": 0.008490100000007078,
+                "max": 0.016884679999994115
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 15",
+              "comparaciones": 19,
+              "tiempoMs": {
+                "media": 0.010949339333333773,
+                "mediana": 0.010500820000004024,
+                "desviacion": 0.0018538701281418295,
+                "min": 0.008510499999998138,
+                "max": 0.017953720000002067
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 16",
+              "comparaciones": 19,
+              "tiempoMs": {
+                "media": 0.011347082000000326,
+                "mediana": 0.010832490000000689,
+                "desviacion": 0.001866992861913802,
+                "min": 0.008730480000004173,
+                "max": 0.016395039999997245
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 17",
+              "comparaciones": 19,
+              "tiempoMs": {
+                "media": 0.010647453333331893,
+                "mediana": 0.010077699999994364,
+                "desviacion": 0.0021328745629171334,
+                "min": 0.007895939999993424,
+                "max": 0.01754888000000501
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 18",
+              "comparaciones": 17,
+              "tiempoMs": {
+                "media": 0.008981130666665654,
+                "mediana": 0.008667949999996927,
+                "desviacion": 0.0012084685391274418,
+                "min": 0.007618559999996796,
+                "max": 0.012939639999996871
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 19",
+              "comparaciones": 18,
+              "tiempoMs": {
+                "media": 0.009576917333333598,
+                "mediana": 0.009526610000006621,
+                "desviacion": 0.0010690592651769197,
+                "min": 0.00803271999999415,
+                "max": 0.011952720000001136
+              }
+            },
+            {
+              "categoria": "exitosa-aleatorias",
+              "etiqueta": "aleatoria 20",
+              "comparaciones": 15,
+              "tiempoMs": {
+                "media": 0.008085626666666552,
+                "mediana": 0.007432730000000447,
+                "desviacion": 0.0015414175118120303,
+                "min": 0.006130519999994431,
+                "max": 0.012289459999999962
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "menor que todas",
+              "comparaciones": 18,
+              "tiempoMs": {
+                "media": 0.001954751333333164,
+                "mediana": 0.0018013299999991431,
+                "desviacion": 0.00047127929318366773,
+                "min": 0.001488380000006873,
+                "max": 0.00312493999999715
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "intermedia",
+              "comparaciones": 19,
+              "tiempoMs": {
+                "media": 0.011036046666665932,
+                "mediana": 0.010930489999998827,
+                "desviacion": 0.0012260794350849348,
+                "min": 0.009218420000001788,
+                "max": 0.015818739999993704
+              }
+            },
+            {
+              "categoria": "fallida",
+              "etiqueta": "mayor que todas",
+              "comparaciones": 19,
+              "tiempoMs": {
+                "media": 0.0021315419999999,
+                "mediana": 0.002090959999995539,
+                "desviacion": 0.0003662489951357093,
+                "min": 0.0016059000000008383,
+                "max": 0.0029247800000011923
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
