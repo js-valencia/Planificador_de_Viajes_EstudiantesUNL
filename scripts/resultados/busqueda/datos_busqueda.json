@@ -32,7 +32,7 @@
    "primerId": "LOJA-10",
    "ultimoId": "LOJA-02-000090",
    "techoLog2": 10,
-   "msGeneracionYOrden": 10,
+   "msGeneracionYOrden": 7,
    "claves": [
     {
      "tipo": "exitosa",
@@ -250,7 +250,7 @@
    "primerId": "LOJA-10",
    "ultimoId": "LOJA-02-004545",
    "techoLog2": 16,
-   "msGeneracionYOrden": 330,
+   "msGeneracionYOrden": 136,
    "claves": [
     {
      "tipo": "exitosa",
@@ -468,7 +468,7 @@
    "primerId": "LOJA-10",
    "ultimoId": "LOJA-02-045454",
    "techoLog2": 19,
-   "msGeneracionYOrden": 8113,
+   "msGeneracionYOrden": 1624,
    "claves": [
     {
      "tipo": "exitosa",

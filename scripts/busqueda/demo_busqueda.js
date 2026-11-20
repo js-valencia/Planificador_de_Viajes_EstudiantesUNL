@@ -1,12 +1,12 @@
 // Demo: búsqueda secuencial vs binaria sobre el MISMO arreglo ordenado.
-// Ejecutar desde la raíz del proyecto: node scripts/demo_busqueda.js
+// Ejecutar desde la raíz del proyecto: npm run demo:busqueda
 'use strict';
-const { busquedaSecuencial } = require('../src/main/domain/search/BusquedaSecuencial');
-const { busquedaBinaria } = require('../src/main/domain/search/BusquedaBinaria');
-const { medirBusqueda } = require('../src/main/domain/search/medicion');
-const { mergeSort } = require('../src/main/domain/sort/MergeSort');
-const { compararRutas } = require('../src/main/domain/sort/comparadorRutas');
-const { rutas } = require('../src/main/data/rutas.json');
+const { busquedaSecuencial } = require('../../src/main/domain/search/BusquedaSecuencial');
+const { busquedaBinaria } = require('../../src/main/domain/search/BusquedaBinaria');
+const { medirBusqueda } = require('../../src/main/domain/search/medicion');
+const { mergeSort } = require('../../src/main/domain/sort/MergeSort');
+const { compararRutas } = require('../../src/main/domain/sort/comparadorRutas');
+const { rutas } = require('../../src/main/data/rutas.json');
 
 const arreglo = mergeSort(rutas, compararRutas); // mismo arreglo ordenado para ambas
 const claves = [

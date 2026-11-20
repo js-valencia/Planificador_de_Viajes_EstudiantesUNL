@@ -1,0 +1,291 @@
+{
+  "meta": {
+    "node": "v24.21.0",
+    "plataforma": "linux x64",
+    "semilla": 20261118,
+    "mediciones": 30,
+    "calentamiento": 5,
+    "fecha": "2026-11-20T04:25:14.297Z"
+  },
+  "tamanos": [
+    {
+      "n": 1000,
+      "archivo": {
+        "bytes": 236409,
+        "lecturaMs": {
+          "media": 0.28810013333333445,
+          "mediana": 0.2695380000000007,
+          "desviacion": 0.049866884454055516,
+          "min": 0.24018600000000134,
+          "max": 0.40651100000000895
+        },
+        "parseoMs": {
+          "media": 0.7400626333333326,
+          "mediana": 0.7117074999999957,
+          "desviacion": 0.09813936394616435,
+          "min": 0.6364269999999976,
+          "max": 0.9839819999999975
+        },
+        "totalMedioMs": 1.028162766666667
+      },
+      "busqueda": {
+        "secuencial": {
+          "repeticionesPorMedicion": 100,
+          "porCategoria": {
+            "exitosa-primera": {
+              "claves": 1,
+              "tiempoMedioMs": 0.00015677033333335544,
+              "desviacionMediaMs": 0.0000325705739294101,
+              "comparacionesMedias": 1
+            },
+            "exitosa-mitad": {
+              "claves": 1,
+              "tiempoMedioMs": 0.06337241266666667,
+              "desviacionMediaMs": 0.0003977905370741798,
+              "comparacionesMedias": 501
+            },
+            "exitosa-ultima": {
+              "claves": 1,
+              "tiempoMedioMs": 0.11201370899999999,
+              "desviacionMediaMs": 0.0015631051807757964,
+              "comparacionesMedias": 1000
+            },
+            "exitosa-aleatorias": {
+              "claves": 20,
+              "tiempoMedioMs": 0.06756664944999984,
+              "desviacionMediaMs": 0.0009288873232129763,
+              "comparacionesMedias": 582.9
+            },
+            "fallida": {
+              "claves": 3,
+              "tiempoMedioMs": 0.07784192555555526,
+              "desviacionMediaMs": 0.004543460073654733,
+              "comparacionesMedias": 1000
+            }
+          }
+        },
+        "binaria": {
+          "repeticionesPorMedicion": 5000,
+          "porCategoria": {
+            "exitosa-primera": {
+              "claves": 1,
+              "tiempoMedioMs": 0.0010615988133333483,
+              "desviacionMediaMs": 0.00000815789195116221,
+              "comparacionesMedias": 9
+            },
+            "exitosa-mitad": {
+              "claves": 1,
+              "tiempoMedioMs": 0.0018129237333333124,
+              "desviacionMediaMs": 0.00013784687109622047,
+              "comparacionesMedias": 9
+            },
+            "exitosa-ultima": {
+              "claves": 1,
+              "tiempoMedioMs": 0.0019049268400000193,
+              "desviacionMediaMs": 0.00009731247624900896,
+              "comparacionesMedias": 10
+            },
+            "exitosa-aleatorias": {
+              "claves": 20,
+              "tiempoMedioMs": 0.0018481309483333389,
+              "desviacionMediaMs": 0.00005365098117329531,
+              "comparacionesMedias": 9.45
+            },
+            "fallida": {
+              "claves": 3,
+              "tiempoMedioMs": 0.0010266162555555437,
+              "desviacionMediaMs": 0.00004457692647607275,
+              "comparacionesMedias": 9.666666666666666
+            }
+          }
+        }
+      }
+    },
+    {
+      "n": 50000,
+      "archivo": {
+        "bytes": 11822774,
+        "lecturaMs": {
+          "media": 13.158676299999874,
+          "mediana": 12.43003250000038,
+          "desviacion": 2.3208693288596822,
+          "min": 11.424331000000166,
+          "max": 23.959068000000116
+        },
+        "parseoMs": {
+          "media": 37.57461503333331,
+          "mediana": 37.24698950000038,
+          "desviacion": 5.425563846574832,
+          "min": 31.8403500000004,
+          "max": 54.92505899999924
+        },
+        "totalMedioMs": 50.733291333333185
+      },
+      "busqueda": {
+        "secuencial": {
+          "repeticionesPorMedicion": 5,
+          "porCategoria": {
+            "exitosa-primera": {
+              "claves": 1,
+              "tiempoMedioMs": 0.00010330666669081738,
+              "desviacionMediaMs": 0.000007501307139222044,
+              "comparacionesMedias": 1
+            },
+            "exitosa-mitad": {
+              "claves": 1,
+              "tiempoMedioMs": 3.453286073333329,
+              "desviacionMediaMs": 0.23963378573903893,
+              "comparacionesMedias": 25001
+            },
+            "exitosa-ultima": {
+              "claves": 1,
+              "tiempoMedioMs": 5.606172659999889,
+              "desviacionMediaMs": 0.22556480571701046,
+              "comparacionesMedias": 50000
+            },
+            "exitosa-aleatorias": {
+              "claves": 20,
+              "tiempoMedioMs": 3.740548505666653,
+              "desviacionMediaMs": 0.17779818072486758,
+              "comparacionesMedias": 29572.4
+            },
+            "fallida": {
+              "claves": 3,
+              "tiempoMedioMs": 4.034864953333308,
+              "desviacionMediaMs": 0.2830928613562195,
+              "comparacionesMedias": 50000
+            }
+          }
+        },
+        "binaria": {
+          "repeticionesPorMedicion": 5000,
+          "porCategoria": {
+            "exitosa-primera": {
+              "claves": 1,
+              "tiempoMedioMs": 0.0019818894266667485,
+              "desviacionMediaMs": 0.00017612584957894405,
+              "comparacionesMedias": 15
+            },
+            "exitosa-mitad": {
+              "claves": 1,
+              "tiempoMedioMs": 0.003208733126666435,
+              "desviacionMediaMs": 0.00009434687524611806,
+              "comparacionesMedias": 15
+            },
+            "exitosa-ultima": {
+              "claves": 1,
+              "tiempoMedioMs": 0.0035335755999999436,
+              "desviacionMediaMs": 0.00015951932897111367,
+              "comparacionesMedias": 16
+            },
+            "exitosa-aleatorias": {
+              "claves": 20,
+              "tiempoMedioMs": 0.0031061252556666757,
+              "desviacionMediaMs": 0.0001135885727328202,
+              "comparacionesMedias": 14.6
+            },
+            "fallida": {
+              "claves": 3,
+              "tiempoMedioMs": 0.0017407739777777328,
+              "desviacionMediaMs": 0.00006010603196284603,
+              "comparacionesMedias": 15.666666666666666
+            }
+          }
+        }
+      }
+    },
+    {
+      "n": 500000,
+      "archivo": {
+        "bytes": 118227346,
+        "lecturaMs": {
+          "media": 132.74954963333366,
+          "mediana": 128.49712999999974,
+          "desviacion": 13.962968154542564,
+          "min": 114.29292599999462,
+          "max": 160.87157000000298
+        },
+        "parseoMs": {
+          "media": 445.3145871333315,
+          "mediana": 434.69069749999835,
+          "desviacion": 41.58217340352077,
+          "min": 394.91408899999806,
+          "max": 555.1969739999986
+        },
+        "totalMedioMs": 578.0641367666651
+      },
+      "busqueda": {
+        "secuencial": {
+          "repeticionesPorMedicion": 1,
+          "porCategoria": {
+            "exitosa-primera": {
+              "claves": 1,
+              "tiempoMedioMs": 0.00011100000022755315,
+              "desviacionMediaMs": 0.0000015312828499977593,
+              "comparacionesMedias": 1
+            },
+            "exitosa-mitad": {
+              "claves": 1,
+              "tiempoMedioMs": 32.19775433333368,
+              "desviacionMediaMs": 0.6293964645872506,
+              "comparacionesMedias": 250001
+            },
+            "exitosa-ultima": {
+              "claves": 1,
+              "tiempoMedioMs": 59.299202466666365,
+              "desviacionMediaMs": 1.0010424157253521,
+              "comparacionesMedias": 500000
+            },
+            "exitosa-aleatorias": {
+              "claves": 20,
+              "tiempoMedioMs": 33.493333094999905,
+              "desviacionMediaMs": 0.9689136808838865,
+              "comparacionesMedias": 262251.4
+            },
+            "fallida": {
+              "claves": 3,
+              "tiempoMedioMs": 40.19815070000106,
+              "desviacionMediaMs": 1.2617158418653711,
+              "comparacionesMedias": 500000
+            }
+          }
+        },
+        "binaria": {
+          "repeticionesPorMedicion": 5000,
+          "porCategoria": {
+            "exitosa-primera": {
+              "claves": 1,
+              "tiempoMedioMs": 0.0021954971933333825,
+              "desviacionMediaMs": 0.000018047227760582602,
+              "comparacionesMedias": 18
+            },
+            "exitosa-mitad": {
+              "claves": 1,
+              "tiempoMedioMs": 0.003921230100000005,
+              "desviacionMediaMs": 0.00013069065664794187,
+              "comparacionesMedias": 18
+            },
+            "exitosa-ultima": {
+              "claves": 1,
+              "tiempoMedioMs": 0.004009193373333159,
+              "desviacionMediaMs": 0.000041127070228563377,
+              "comparacionesMedias": 19
+            },
+            "exitosa-aleatorias": {
+              "claves": 20,
+              "tiempoMedioMs": 0.003909545230666806,
+              "desviacionMediaMs": 0.00009092925308864876,
+              "comparacionesMedias": 17.85
+            },
+            "fallida": {
+              "claves": 3,
+              "tiempoMedioMs": 0.0020396716355552454,
+              "desviacionMediaMs": 0.00004541908148314,
+              "comparacionesMedias": 18.666666666666668
+            }
+          }
+        }
+      }
+    }
+  ]
+}

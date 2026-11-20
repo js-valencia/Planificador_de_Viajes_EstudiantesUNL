@@ -3,17 +3,18 @@
   "version": "0.2.0",
   "description": "Planificador de viajes intercantonales para estudiantes de la UNL (DAG, orden topologico y Floyd-Warshall)",
   "main": "src/main/view/servidor.js",
-"scripts": {
+  "scripts": {
     "start": "PORT=3001 node src/main/view/servidor.js",
     "dev": "node --watch src/main/view/servidor.js",
     "demo": "node src/main/js/index.js",
     "test": "node tests/smoke.test.js && node tests/listaDoble.test.js && node tests/sort.test.js && node tests/search.test.js && node tests/datosBusqueda.test.js",
-    "benchmark:busqueda": "node scripts/benchmark_busqueda.js",
-    "datos:busqueda": "node scripts/preparar_datos_busqueda.js",
-    "benchmark": "node scripts/benchmark.js",
-    "benchmark:sort": "node --expose-gc scripts/benchmark.js --ordenamiento"
+    "benchmark:busqueda": "node scripts/busqueda/benchmark_busqueda.js",
+    "datos:busqueda": "node scripts/busqueda/preparar_datos_busqueda.js",
+    "benchmark": "node scripts/ordenamiento/benchmark_ordenamiento.js",
+    "benchmark:sort": "node --expose-gc scripts/ordenamiento/benchmark_ordenamiento.js --ordenamiento",
+    "demo:busqueda": "node scripts/busqueda/demo_busqueda.js",
+    "comparar:busqueda": "node scripts/busqueda/benchmark_comparativo.js"
   },
- 
   "engines": {
     "node": ">=20"
   },
