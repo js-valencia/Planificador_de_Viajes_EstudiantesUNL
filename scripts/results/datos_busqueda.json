@@ -1,0 +1,684 @@
+{
+ "node": "v24.21.0",
+ "semilla": 20261118,
+ "criterioOrden": "cooperativa -> nombre -> id",
+ "config": {
+  "semilla": 20261118,
+  "tamanios": [
+   1000,
+   50000,
+   500000
+  ],
+  "clavesAleatoriasPorTamanio": 20,
+  "calentamiento": 5,
+  "medicionesPorClave": 30,
+  "repeticionesInternas": {
+   "secuencial": {
+    "1000": 100,
+    "50000": 5,
+    "500000": 1
+   },
+   "binaria": {
+    "1000": 5000,
+    "50000": 5000,
+    "500000": 5000
+   }
+  }
+ },
+ "conjuntos": [
+  {
+   "n": 1000,
+   "huella": "b319c75fc1f8",
+   "primerId": "LOJA-10",
+   "ultimoId": "LOJA-02-000090",
+   "techoLog2": 10,
+   "msGeneracionYOrden": 10,
+   "claves": [
+    {
+     "tipo": "exitosa",
+     "etiqueta": "primera",
+     "indice": 0,
+     "id": "LOJA-10",
+     "compSecuencial": 1,
+     "compBinaria": 9
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "mitad",
+     "indice": 500,
+     "id": "LOJA-05-000046",
+     "compSecuencial": 501,
+     "compBinaria": 9
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "ultima",
+     "indice": 999,
+     "id": "LOJA-02-000090",
+     "compSecuencial": 1000,
+     "compBinaria": 10
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-1",
+     "indice": 406,
+     "id": "LOJA-09-000043",
+     "compSecuencial": 407,
+     "compBinaria": 9
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-2",
+     "indice": 977,
+     "id": "LOJA-02-000068",
+     "compSecuencial": 978,
+     "compBinaria": 10
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-3",
+     "indice": 907,
+     "id": "LOJA-06-000089",
+     "compSecuencial": 908,
+     "compBinaria": 9
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-4",
+     "indice": 891,
+     "id": "LOJA-06-000073",
+     "compSecuencial": 892,
+     "compBinaria": 9
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-5",
+     "indice": 794,
+     "id": "LOJA-01-000067",
+     "compSecuencial": 795,
+     "compBinaria": 10
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-6",
+     "indice": 779,
+     "id": "LOJA-01-000052",
+     "compSecuencial": 780,
+     "compBinaria": 10
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-7",
+     "indice": 777,
+     "id": "LOJA-01-000050",
+     "compSecuencial": 778,
+     "compBinaria": 10
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-8",
+     "indice": 226,
+     "id": "LOJA-07-000045",
+     "compSecuencial": 227,
+     "compBinaria": 10
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-9",
+     "indice": 851,
+     "id": "LOJA-06-000033",
+     "compSecuencial": 852,
+     "compBinaria": 10
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-10",
+     "indice": 486,
+     "id": "LOJA-05-000032",
+     "compSecuencial": 487,
+     "compBinaria": 10
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-11",
+     "indice": 947,
+     "id": "LOJA-02-000038",
+     "compSecuencial": 948,
+     "compBinaria": 10
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-12",
+     "indice": 232,
+     "id": "LOJA-07-000051",
+     "compSecuencial": 233,
+     "compBinaria": 10
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-13",
+     "indice": 242,
+     "id": "LOJA-07-000061",
+     "compSecuencial": 243,
+     "compBinaria": 10
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-14",
+     "indice": 117,
+     "id": "LOJA-11-000026",
+     "compSecuencial": 118,
+     "compBinaria": 10
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-15",
+     "indice": 258,
+     "id": "LOJA-07-000077",
+     "compSecuencial": 259,
+     "compBinaria": 9
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-16",
+     "indice": 501,
+     "id": "LOJA-05-000047",
+     "compSecuencial": 502,
+     "compBinaria": 10
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-17",
+     "indice": 425,
+     "id": "LOJA-09-000062",
+     "compSecuencial": 426,
+     "compBinaria": 10
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-18",
+     "indice": 533,
+     "id": "LOJA-05-000079",
+     "compSecuencial": 534,
+     "compBinaria": 8
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-19",
+     "indice": 471,
+     "id": "LOJA-05-000017",
+     "compSecuencial": 472,
+     "compBinaria": 8
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-20",
+     "indice": 818,
+     "id": "LOJA-06",
+     "compSecuencial": 819,
+     "compBinaria": 7
+    },
+    {
+     "tipo": "fallida",
+     "etiqueta": "menor-que-todas",
+     "indice": -1,
+     "id": "AAA-00",
+     "compSecuencial": 1000,
+     "compBinaria": 9
+    },
+    {
+     "tipo": "fallida",
+     "etiqueta": "intermedia",
+     "indice": -1,
+     "id": "LOJA-05-000046-x",
+     "compSecuencial": 1000,
+     "compBinaria": 10
+    },
+    {
+     "tipo": "fallida",
+     "etiqueta": "mayor-que-todas",
+     "indice": -1,
+     "id": "ZZZ-99",
+     "compSecuencial": 1000,
+     "compBinaria": 10
+    }
+   ]
+  },
+  {
+   "n": 50000,
+   "huella": "a05927b8ee6c",
+   "primerId": "LOJA-10",
+   "ultimoId": "LOJA-02-004545",
+   "techoLog2": 16,
+   "msGeneracionYOrden": 330,
+   "claves": [
+    {
+     "tipo": "exitosa",
+     "etiqueta": "primera",
+     "indice": 0,
+     "id": "LOJA-10",
+     "compSecuencial": 1,
+     "compBinaria": 15
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "mitad",
+     "indice": 25000,
+     "id": "LOJA-05-002275",
+     "compSecuencial": 25001,
+     "compBinaria": 15
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "ultima",
+     "indice": 49999,
+     "id": "LOJA-02-004545",
+     "compSecuencial": 50000,
+     "compBinaria": 16
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-1",
+     "indice": 35645,
+     "id": "LOJA-03-003828",
+     "compSecuencial": 35646,
+     "compBinaria": 14
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-2",
+     "indice": 35337,
+     "id": "LOJA-03-003520",
+     "compSecuencial": 35338,
+     "compBinaria": 12
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-3",
+     "indice": 7471,
+     "id": "LOJA-11-002926",
+     "compSecuencial": 7472,
+     "compBinaria": 14
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-4",
+     "indice": 31672,
+     "id": "LOJA-04-004401",
+     "compSecuencial": 31673,
+     "compBinaria": 14
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-5",
+     "indice": 31024,
+     "id": "LOJA-04-003753",
+     "compSecuencial": 31025,
+     "compBinaria": 16
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-6",
+     "indice": 26555,
+     "id": "LOJA-05-003830",
+     "compSecuencial": 26556,
+     "compBinaria": 15
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-7",
+     "indice": 16165,
+     "id": "LOJA-08-002530",
+     "compSecuencial": 16166,
+     "compBinaria": 16
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-8",
+     "indice": 27552,
+     "id": "LOJA-04-000281",
+     "compSecuencial": 27553,
+     "compBinaria": 14
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-9",
+     "indice": 45329,
+     "id": "LOJA-06-004420",
+     "compSecuencial": 45330,
+     "compBinaria": 13
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-10",
+     "indice": 26727,
+     "id": "LOJA-05-004002",
+     "compSecuencial": 26728,
+     "compBinaria": 16
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-11",
+     "indice": 21841,
+     "id": "LOJA-09-003661",
+     "compSecuencial": 21842,
+     "compBinaria": 15
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-12",
+     "indice": 47411,
+     "id": "LOJA-02-001957",
+     "compSecuencial": 47412,
+     "compBinaria": 15
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-13",
+     "indice": 49652,
+     "id": "LOJA-02-004198",
+     "compSecuencial": 49653,
+     "compBinaria": 15
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-14",
+     "indice": 28017,
+     "id": "LOJA-04-000746",
+     "compSecuencial": 28018,
+     "compBinaria": 15
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-15",
+     "indice": 25827,
+     "id": "LOJA-05-003102",
+     "compSecuencial": 25828,
+     "compBinaria": 16
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-16",
+     "indice": 22143,
+     "id": "LOJA-09-003963",
+     "compSecuencial": 22144,
+     "compBinaria": 16
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-17",
+     "indice": 47952,
+     "id": "LOJA-02-002498",
+     "compSecuencial": 47953,
+     "compBinaria": 15
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-18",
+     "indice": 3527,
+     "id": "LOJA-10-003527",
+     "compSecuencial": 3528,
+     "compBinaria": 15
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-19",
+     "indice": 23424,
+     "id": "LOJA-05-000699",
+     "compSecuencial": 23425,
+     "compBinaria": 15
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-20",
+     "indice": 38157,
+     "id": "LOJA-01-001794",
+     "compSecuencial": 38158,
+     "compBinaria": 11
+    },
+    {
+     "tipo": "fallida",
+     "etiqueta": "menor-que-todas",
+     "indice": -1,
+     "id": "AAA-00",
+     "compSecuencial": 50000,
+     "compBinaria": 15
+    },
+    {
+     "tipo": "fallida",
+     "etiqueta": "intermedia",
+     "indice": -1,
+     "id": "LOJA-05-002275-x",
+     "compSecuencial": 50000,
+     "compBinaria": 16
+    },
+    {
+     "tipo": "fallida",
+     "etiqueta": "mayor-que-todas",
+     "indice": -1,
+     "id": "ZZZ-99",
+     "compSecuencial": 50000,
+     "compBinaria": 16
+    }
+   ]
+  },
+  {
+   "n": 500000,
+   "huella": "6be6d956f940",
+   "primerId": "LOJA-10",
+   "ultimoId": "LOJA-02-045454",
+   "techoLog2": 19,
+   "msGeneracionYOrden": 8113,
+   "claves": [
+    {
+     "tipo": "exitosa",
+     "etiqueta": "primera",
+     "indice": 0,
+     "id": "LOJA-10",
+     "compSecuencial": 1,
+     "compBinaria": 18
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "mitad",
+     "indice": 250000,
+     "id": "LOJA-05-022730",
+     "compSecuencial": 250001,
+     "compBinaria": 18
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "ultima",
+     "indice": 499999,
+     "id": "LOJA-02-045454",
+     "compSecuencial": 500000,
+     "compBinaria": 19
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-1",
+     "indice": 198799,
+     "id": "LOJA-09-016983",
+     "compSecuencial": 198800,
+     "compBinaria": 19
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-2",
+     "indice": 65897,
+     "id": "LOJA-11-020443",
+     "compSecuencial": 65898,
+     "compBinaria": 19
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-3",
+     "indice": 342663,
+     "id": "LOJA-03-024483",
+     "compSecuencial": 342664,
+     "compBinaria": 19
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-4",
+     "indice": 308578,
+     "id": "LOJA-04-035853",
+     "compSecuencial": 308579,
+     "compBinaria": 18
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-5",
+     "indice": 112211,
+     "id": "LOJA-07-021303",
+     "compSecuencial": 112212,
+     "compBinaria": 14
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-6",
+     "indice": 249097,
+     "id": "LOJA-05-021827",
+     "compSecuencial": 249098,
+     "compBinaria": 19
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-7",
+     "indice": 339776,
+     "id": "LOJA-03-021596",
+     "compSecuencial": 339777,
+     "compBinaria": 17
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-8",
+     "indice": 421697,
+     "id": "LOJA-06-012607",
+     "compSecuencial": 421698,
+     "compBinaria": 16
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-9",
+     "indice": 433085,
+     "id": "LOJA-06-023995",
+     "compSecuencial": 433086,
+     "compBinaria": 18
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-10",
+     "indice": 65370,
+     "id": "LOJA-11-019916",
+     "compSecuencial": 65371,
+     "compBinaria": 17
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-11",
+     "indice": 488016,
+     "id": "LOJA-02-033471",
+     "compSecuencial": 488017,
+     "compBinaria": 19
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-12",
+     "indice": 88776,
+     "id": "LOJA-11-043322",
+     "compSecuencial": 88777,
+     "compBinaria": 17
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-13",
+     "indice": 159543,
+     "id": "LOJA-08-023181",
+     "compSecuencial": 159544,
+     "compBinaria": 19
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-14",
+     "indice": 281602,
+     "id": "LOJA-04-008877",
+     "compSecuencial": 281603,
+     "compBinaria": 19
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-15",
+     "indice": 361411,
+     "id": "LOJA-03-043231",
+     "compSecuencial": 361412,
+     "compBinaria": 19
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-16",
+     "indice": 217847,
+     "id": "LOJA-09-036031",
+     "compSecuencial": 217848,
+     "compBinaria": 19
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-17",
+     "indice": 79034,
+     "id": "LOJA-11-033580",
+     "compSecuencial": 79035,
+     "compBinaria": 19
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-18",
+     "indice": 251611,
+     "id": "LOJA-05-024341",
+     "compSecuencial": 251612,
+     "compBinaria": 17
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-19",
+     "indice": 362807,
+     "id": "LOJA-03-044627",
+     "compSecuencial": 362808,
+     "compBinaria": 18
+    },
+    {
+     "tipo": "exitosa",
+     "etiqueta": "aleatoria-20",
+     "indice": 417188,
+     "id": "LOJA-06-008098",
+     "compSecuencial": 417189,
+     "compBinaria": 15
+    },
+    {
+     "tipo": "fallida",
+     "etiqueta": "menor-que-todas",
+     "indice": -1,
+     "id": "AAA-00",
+     "compSecuencial": 500000,
+     "compBinaria": 18
+    },
+    {
+     "tipo": "fallida",
+     "etiqueta": "intermedia",
+     "indice": -1,
+     "id": "LOJA-05-022730-x",
+     "compSecuencial": 500000,
+     "compBinaria": 19
+    },
+    {
+     "tipo": "fallida",
+     "etiqueta": "mayor-que-todas",
+     "indice": -1,
+     "id": "ZZZ-99",
+     "compSecuencial": 500000,
+     "compBinaria": 19
+    }
+   ]
+  }
+ ]
+}

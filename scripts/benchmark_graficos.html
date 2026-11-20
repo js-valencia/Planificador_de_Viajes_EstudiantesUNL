@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Curvas de Rendimiento - Benchmark</title>
+    <!-- Importamos Chart.js para los gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1e1e1e; color: white; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background-color: #2d2d2d; padding: 20px; border-radius: 8px; }
+        h2 { text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Curvas de Rendimiento: Búsqueda Secuencial vs Binaria</h2>
+        <canvas id="graficoRendimiento"></canvas>
+    </div>
+
+    <script>
+        // Leemos el archivo JSON generado por tus compañeras
+        fetch('./results/benchmark_busqueda.json')
+            .then(response => response.json())
+            .then(data => {
+                // Extraemos los datos para los ejes X e Y
+                const etiquetasN = data.tamanos.map(item => item.n);
+                const tiemposSecuencial = data.tamanos.map(item => item.busqueda.secuencial.porCategoria['exitosa-aleatorias'].tiempoMedioMs);
+                const tiemposBinaria = data.tamanos.map(item => item.busqueda.binaria.porCategoria['exitosa-aleatorias'].tiempoMedioMs);
+
+                // Configuramos y dibujamos el gráfico
+                const ctx = document.getElementById('graficoRendimiento').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: etiquetasN,
+                        datasets: [
+                            {
+                                label: 'Secuencial O(n)',
+                                data: tiemposSecuencial,
+                                borderColor: '#ff6384',
+                                backgroundColor: '#ff6384',
+                                tension: 0.3
+                            },
+                            {
+                                label: 'Binaria O(log n)',
+                                data: tiemposBinaria,
+                                borderColor: '#36a2eb',
+                                backgroundColor: '#36a2eb',
+                                tension: 0.3
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: { title: { display: true, text: 'Cantidad de Datos (n)', color: '#ccc' }, ticks: { color: '#ccc'} },
+                            y: { type: 'logarithmic', title: { display: true, text: 'Tiempo Medio (ms, escala logarítmica)', color: '#ccc' }, ticks: { color: '#ccc'} }
+                        },
+                        plugins: {
+                            legend: { labels: { color: 'white' } }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error al cargar el JSON:', error));
+    </script>
+</body>
+</html>
