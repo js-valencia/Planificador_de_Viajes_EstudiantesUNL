@@ -3,10 +3,10 @@ const path = require('node:path');
 const fs = require('node:fs');
 const crypto = require('node:crypto');
 const { performance } = require('node:perf_hooks');
-const { CONFIG_BUSQUEDA: C, construirDatasetOrdenado, generarClaves } = require('../src/main/domain/datos/DatasetBusqueda');
-const { compararRutas } = require('../src/main/domain/sort/comparadorRutas');
-const { busquedaSecuencial } = require('../src/main/domain/search/BusquedaSecuencial');
-const { busquedaBinaria } = require('../src/main/domain/search/BusquedaBinaria');
+const { CONFIG_BUSQUEDA: C, construirDatasetOrdenado, generarClaves } = require('../../src/main/domain/datos/DatasetBusqueda');
+const { compararRutas } = require('../../src/main/domain/sort/comparadorRutas');
+const { busquedaSecuencial } = require('../../src/main/domain/search/BusquedaSecuencial');
+const { busquedaBinaria } = require('../../src/main/domain/search/BusquedaBinaria');
 
 const huella = (arr) => crypto.createHash('sha1').update(arr.map((r) => r.id).join('|')).digest('hex').slice(0, 12);
 // Orden ESTRICTO (< 0): ningún par de registros es equivalente, así que la posición de cada clave es única.
@@ -93,8 +93,8 @@ Una búsqueda dura microsegundos (binaria) o milisegundos (secuencial en 500.000
 El proyecto almacena sus datos en archivos JSON (\`terminales.json\`, \`horarios.json\`, \`rutas.json\`), que se leen con \`fs.readFileSync\` y \`JSON.parse\`. Para este benchmark se usó ese mismo mecanismo: se guarda el arreglo ordenado en un archivo JSON, se mide por separado el tiempo de lectura y de parseo, y luego se mide la búsqueda sobre el arreglo cargado.
 El proyecto no cuenta con archivos indexados propiamente dichos (con una estructura de índice aparte). Por eso, el arreglo ordenado cumple el papel de índice, ya que la búsqueda binaria depende de ese orden. Es una adaptación del mecanismo de archivos del proyecto.
 `;
-const dir = path.join(__dirname, 'results');
+const dir = path.join(__dirname, '..', 'resultados', 'busqueda');
 fs.mkdirSync(dir, { recursive: true });
 fs.writeFileSync(path.join(dir, 'datos_busqueda.json'), JSON.stringify(manifiesto, null, 1));
 fs.writeFileSync(path.join(dir, 'metodologia_busqueda.md'), md);
-console.log('Guardado: scripts/results/datos_busqueda.json y scripts/results/metodologia_busqueda.md');
+console.log('Guardado: scripts/resultados/busqueda/datos_busqueda.json y scripts/resultados/busqueda/metodologia_busqueda.md');

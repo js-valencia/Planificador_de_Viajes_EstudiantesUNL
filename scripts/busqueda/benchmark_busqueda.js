@@ -1,17 +1,17 @@
 // Corrección del Benchmark #18: búsqueda secuencial vs binaria sobre archivos indexados.
 // Mide POR SEPARADO: (A) tiempo de acceso al archivo y (B) comparaciones/tiempo de búsqueda.
-// Metodología: scripts/results/metodologia_busqueda.md (issue #15).
-// Ejecutar desde la raíz del proyecto: node scripts/benchmark_busqueda.js
+// Metodología: scripts/resultados/busqueda/metodologia_busqueda.md (issue #15).
+// Ejecutar desde la raíz del proyecto: npm run benchmark:busqueda
 'use strict';
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { performance } = require('node:perf_hooks');
-const { busquedaSecuencial } = require('../src/main/domain/search/BusquedaSecuencial');
-const { busquedaBinaria } = require('../src/main/domain/search/BusquedaBinaria');
-const { medirBusqueda } = require('../src/main/domain/search/medicion');
-const { compararRutas } = require('../src/main/domain/sort/comparadorRutas');
-const { CONFIG_BUSQUEDA, construirDatasetOrdenado, generarClaves } = require('../src/main/domain/datos/DatasetBusqueda');
+const { busquedaSecuencial } = require('../../src/main/domain/search/BusquedaSecuencial');
+const { busquedaBinaria } = require('../../src/main/domain/search/BusquedaBinaria');
+const { medirBusqueda } = require('../../src/main/domain/search/medicion');
+const { compararRutas } = require('../../src/main/domain/sort/comparadorRutas');
+const { CONFIG_BUSQUEDA, construirDatasetOrdenado, generarClaves } = require('../../src/main/domain/datos/DatasetBusqueda');
 
 // ---- Parámetros: una sola fuente de verdad (DatasetBusqueda.js, ver metodología) ----
 const {
@@ -152,11 +152,11 @@ function main() {
     resultados.tamanos.push({ n, archivo, busqueda });
   }
 
-  const dir = path.join(__dirname, 'results');
+  const dir = path.join(__dirname, '..', 'resultados', 'busqueda');
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'benchmark_busqueda.json'), JSON.stringify(resultados, null, 2));
   fs.writeFileSync(path.join(dir, 'benchmark_busqueda.md'), generarMarkdown(resultados));
-  console.log('\nListo: scripts/results/benchmark_busqueda.json y benchmark_busqueda.md');
+  console.log('\nListo: scripts/resultados/busqueda/benchmark_busqueda.json y benchmark_busqueda.md');
 }
 
 // ---- Reporte Markdown ----

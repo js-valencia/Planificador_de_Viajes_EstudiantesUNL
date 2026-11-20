@@ -48,8 +48,5 @@ Una búsqueda dura microsegundos (binaria) o milisegundos (secuencial en 500.000
 5. **Reproducibilidad:** semilla fija, mismo Node y misma máquina; se anotan versión de Node y plataforma en los resultados.
 
 ## 5. Mecanismo de archivos utilizado
-
-El proyecto almacena sus datos en archivos JSON (\`terminales.json\`, \`horarios.json\`, \`rutas.json\`), que se leen con \`fs.readFileSync\` y \`JSON.parse\`. Para este benchmark se usó ese mismo mecanismo: se guarda el arreglo ordenado en un archivo JSON, se mide por separado el tiempo de lectura y de parseo, y luego se mide la búsqueda sobre el arreglo cargado.
-
+El proyecto almacena sus datos en archivos JSON (`terminales.json`, `horarios.json`, `rutas.json`), que se leen con `fs.readFileSync` y `JSON.parse`. Para este benchmark se usó ese mismo mecanismo: se guarda el arreglo ordenado en un archivo JSON, se mide por separado el tiempo de lectura y de parseo, y luego se mide la búsqueda sobre el arreglo cargado.
 El proyecto no cuenta con archivos indexados propiamente dichos (con una estructura de índice aparte). Por eso, el arreglo ordenado cumple el papel de índice, ya que la búsqueda binaria depende de ese orden. Es una adaptación del mecanismo de archivos del proyecto.
-`;

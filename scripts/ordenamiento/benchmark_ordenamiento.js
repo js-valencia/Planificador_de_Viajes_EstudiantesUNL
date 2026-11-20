@@ -1,10 +1,10 @@
-// Benchmark de rendimiento: ejecutar desde la raíz del proyecto -> node benchmark.js
+// Benchmark de rendimiento: ejecutar desde la raíz con npm run benchmark:sort
 'use strict';
 const path = require('node:path');
 const fs = require('node:fs');
 const crypto = require('node:crypto');
 const { performance } = require('node:perf_hooks');
-const root = path.join(__dirname, '..');
+const root = path.join(__dirname, '..', '..');
 const S = (p) => require(path.join(root, 'src/main', p));
 const { generarFrecuencias, ventanaDeFechas } = S('domain/datos/GenerarFrecuencias');
 const GrafoHorarios = S('domain/graph/GrafoHorarios');
@@ -248,14 +248,14 @@ function benchmarkOrdenamiento() {
   log(tablaMd(`Casos de entrada (n = ${N_CASOS})`, ['Caso', 'Algoritmo', 'Mediana (ms)', 'Desv. (ms)', 'Δ heap (KB)'], filasCasos));
 
   // ---- Persistencia ----
-  const dir = path.join(__dirname, 'results');
+  const dir = path.join(__dirname, '..', 'resultados', 'ordenamiento');
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'benchmark_ordenamiento.md'), salida.join('\n') + '\n');
   fs.writeFileSync(path.join(dir, 'benchmark_ordenamiento.json'), JSON.stringify({
     node: process.version, plataforma: `${process.platform} ${process.arch}`, semilla: SEMILLA, repeticiones: REPETICIONES,
     calentamiento: CALENTAMIENTO, gcForzado: Boolean(gc), resultados: resumen,
   }, null, 1));
-  console.log('Resultados guardados en scripts/results/benchmark_ordenamiento.md y .json');
+  console.log('Resultados guardados en scripts/resultados/ordenamiento/benchmark_ordenamiento.md y .json');
 }
 
 if (process.argv.includes('--ordenamiento')) benchmarkOrdenamiento();

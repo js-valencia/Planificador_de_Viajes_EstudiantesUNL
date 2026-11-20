@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const resultadosPath = path.join(__dirname, 'results', 'benchmark_busqueda.json');
+const resultadosPath = path.join(__dirname, '..', 'resultados', 'busqueda', 'benchmark_busqueda.json');
 
 try {
     const dataRaw = fs.readFileSync(resultadosPath, 'utf8');
