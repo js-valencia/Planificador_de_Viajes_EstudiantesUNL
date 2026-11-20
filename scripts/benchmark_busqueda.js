@@ -1,4 +1,4 @@
-// Benchmark #18: búsqueda secuencial vs binaria sobre archivos indexados.
+// Corrección del Benchmark #18: búsqueda secuencial vs binaria sobre archivos indexados.
 // Mide POR SEPARADO: (A) tiempo de acceso al archivo y (B) comparaciones/tiempo de búsqueda.
 // Metodología: scripts/results/metodologia_busqueda.md (issue #15).
 // Ejecutar desde la raíz del proyecto: node scripts/benchmark_busqueda.js
@@ -10,36 +10,23 @@ const { performance } = require('node:perf_hooks');
 const { busquedaSecuencial } = require('../src/main/domain/search/BusquedaSecuencial');
 const { busquedaBinaria } = require('../src/main/domain/search/BusquedaBinaria');
 const { medirBusqueda } = require('../src/main/domain/search/medicion');
-const { mergeSort } = require('../src/main/domain/sort/MergeSort');
 const { compararRutas } = require('../src/main/domain/sort/comparadorRutas');
-const { rutas } = require('../src/main/data/rutas.json');
+const { CONFIG_BUSQUEDA, construirDatasetOrdenado, generarClaves } = require('../src/main/domain/datos/DatasetBusqueda');
 
-// ---- Parámetros (tomados de la metodología) ----
-const SEMILLA = 20261118;
-const TAMANOS = [1000, 50000, 500000];
-const REPS = {
-  1000: { secuencial: 100, binaria: 5000 },
-  50000: { secuencial: 5, binaria: 5000 },
-  500000: { secuencial: 1, binaria: 5000 },
-};
-const MEDICIONES = 30;
-const CALENTAMIENTO = 5;
-const ALEATORIAS = 20;
+// ---- Parámetros: una sola fuente de verdad (DatasetBusqueda.js, ver metodología) ----
+const {
+  semilla: SEMILLA,
+  tamanios: TAMANOS,
+  repeticionesInternas: REPS, // REPS[algoritmo][n]
+  medicionesPorClave: MEDICIONES,
+  calentamiento: CALENTAMIENTO,
+} = CONFIG_BUSQUEDA;
 const ALGORITMOS = [
   ['secuencial', busquedaSecuencial],
   ['binaria', busquedaBinaria],
 ];
 
 // ---- Utilidades ----
-function mulberry32(a) {
-  return function () {
-    a |= 0; a = (a + 0x6d2b79f5) | 0;
-    let t = Math.imul(a ^ (a >>> 15), 1 | a);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
 // Ordenamiento por inserción (la metodología prohíbe .sort())
 function ordenarInsercion(muestras) {
   const a = muestras.slice();
@@ -63,36 +50,15 @@ function estadisticas(muestras) {
 
 const promedio = (xs) => xs.reduce((s, x) => s + x, 0) / xs.length;
 
-// ---- Conjuntos ordenados ----
-function obtenerConjuntoOrdenado(n) {
-  const base = rutas;
-  const datos = new Array(n);
-  for (let i = 0; i < n; i++) {
-    const r = base[i % base.length];
-    datos[i] = { ...r, id: `${r.id}-${String(i + 1).padStart(6, '0')}` };
-  }
-  return mergeSort(datos, compararRutas);
-}
-
-// ---- Claves de búsqueda ----
-function construirClaves(arreglo, azar) {
-  const n = arreglo.length;
-  const mid = Math.floor(n / 2);
-  const claves = [
-    { categoria: 'exitosa-primera', etiqueta: 'primera', clave: arreglo[0], esperado: 0 },
-    { categoria: 'exitosa-mitad', etiqueta: 'mitad', clave: arreglo[mid], esperado: mid },
-    { categoria: 'exitosa-ultima', etiqueta: 'última', clave: arreglo[n - 1], esperado: n - 1 },
+// ---- Claves de búsqueda (generadas por DatasetBusqueda.generarClaves) ----
+// Aplana { exitosas, fallidas } al formato del benchmark y asigna la categoría de la metodología.
+function construirClaves(arreglo) {
+  const { exitosas, fallidas } = generarClaves(arreglo);
+  const categoriaExitosa = (etiqueta) => (etiqueta.startsWith('aleatoria') ? 'exitosa-aleatorias' : `exitosa-${etiqueta}`);
+  return [
+    ...exitosas.map((c) => ({ categoria: categoriaExitosa(c.etiqueta), etiqueta: c.etiqueta, clave: c.clave, esperado: c.indiceEsperado })),
+    ...fallidas.map((c) => ({ categoria: 'fallida', etiqueta: c.etiqueta, clave: c.clave, esperado: -1 })),
   ];
-  for (let k = 0; k < ALEATORIAS; k++) {
-    const idx = Math.floor(azar() * n);
-    claves.push({ categoria: 'exitosa-aleatorias', etiqueta: `aleatoria ${k + 1}`, clave: arreglo[idx], esperado: idx });
-  }
-  claves.push(
-    { categoria: 'fallida', etiqueta: 'menor que todas', clave: { id: 'AAA-00', cooperativa: 'AAA', nombre: 'AAA' }, esperado: -1 },
-    { categoria: 'fallida', etiqueta: 'intermedia', clave: { ...arreglo[mid], id: `${arreglo[mid].id}-x` }, esperado: -1 },
-    { categoria: 'fallida', etiqueta: 'mayor que todas', clave: { id: 'ZZZ-99', cooperativa: 'ZZZ', nombre: 'ZZZ' }, esperado: -1 },
-  );
-  return claves;
 }
 
 // Comprobación previa: ambos algoritmos deben coincidir con lo esperado
@@ -168,8 +134,8 @@ function main() {
 
   for (const n of TAMANOS) {
     console.log(`\n== n = ${n} ==`);
-    const arreglo = obtenerConjuntoOrdenado(n);
-    const claves = construirClaves(arreglo, mulberry32(SEMILLA + n));
+    const arreglo = construirDatasetOrdenado(n);
+    const claves = construirClaves(arreglo);
     verificar(arreglo, claves);
     console.log('  verificación previa OK');
 
@@ -179,9 +145,10 @@ function main() {
     const busqueda = {};
     for (const [nombre, fn] of ALGORITMOS) {
       console.log(`  (B) búsqueda ${nombre}...`);
-      const reps = REPS[n][nombre];
+      const reps = REPS[nombre][n];
       const detalle = claves.map((c) => ({ categoria: c.categoria, etiqueta: c.etiqueta, ...medirClave(fn, arreglo, c.clave, reps) }));
-      busqueda[nombre] = { repeticionesPorMedicion: reps, porCategoria: agregarPorCategoria(detalle) };    }
+      busqueda[nombre] = { repeticionesPorMedicion: reps, porCategoria: agregarPorCategoria(detalle) };
+    }
     resultados.tamanos.push({ n, archivo, busqueda });
   }
 
@@ -223,4 +190,3 @@ function generarMarkdown(r) {
 }
 
 main();
-
