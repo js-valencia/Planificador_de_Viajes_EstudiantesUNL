@@ -2,17 +2,17 @@
 
 # 🚌 Planificador de Viajes Estudiantes UNL
 
-### Planificación inteligente de rutas intercantonales
+### App móvil para planificar rutas intercantonales
 
 **Encuentra la mejor conexión. Optimiza tu tiempo. Llega a tu destino.**
 
-Aplicación web para la planificación de viajes intercantonales de los estudiantes de la Universidad Nacional de Loja, mediante estructuras de grafos, algoritmos de optimización y visualización geográfica interactiva.
+Aplicación móvil para Android e iOS que ayuda a estudiantes de la Universidad Nacional de Loja a planificar viajes intercantonales. La app usa React Native y Expo; un backend Express calcula los itinerarios mediante estructuras de grafos y algoritmos de optimización.
 
 ![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-orange?style=for-the-badge)
 ![Node.js](https://img.shields.io/badge/Node.js-24.x-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-5.x-000000?style=for-the-badge&logo=express&logoColor=white)
-![Vue.js](https://img.shields.io/badge/Vue.js-3-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white)
-![Leaflet](https://img.shields.io/badge/Leaflet-Maps-199900?style=for-the-badge&logo=leaflet&logoColor=white)
+![React Native](https://img.shields.io/badge/React_Native-0.88-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Expo](https://img.shields.io/badge/Expo-58-000020?style=for-the-badge&logo=expo&logoColor=white)
 
 [Descripción](#-descripción) · [Características](#-características) · [Tecnologías](#-tecnologías) · [Arquitectura](#️-arquitectura) · [Instalación](#-instalación-y-ejecución) · [API](#-api-rest)
 
@@ -26,7 +26,7 @@ Los estudiantes de la **Universidad Nacional de Loja (UNL)** necesitan desplazar
 
 La consulta de horarios publicados por distintas cooperativas puede dificultar la planificación de estos viajes, especialmente cuando es necesario combinar varios buses para llegar al destino.
 
-El **Planificador de Viajes Estudiantes UNL** busca solucionar esta problemática mediante una aplicación web que centraliza la información de transporte, calcula itinerarios viables y permite visualizar las rutas obtenidas sobre un mapa interactivo.
+El **Planificador de Viajes Estudiantes UNL** busca solucionar esta problemática mediante una app móvil para consultar terminales, encontrar itinerarios viables y ver el recorrido sobre un mapa. El backend centraliza los datos y realiza los cálculos de rutas.
 
 ### 🎯 Objetivo
 
@@ -34,10 +34,10 @@ Facilitar la planificación de viajes intercantonales mediante la generación de
 
 ## ✨ Características
 
-### 🗺️ Visualización geográfica interactiva
+### 🗺️ App móvil y visualización geográfica
 
-- Mapa interactivo implementado con Leaflet.
-- OpenStreetMap como proveedor de mapas base.
+- Aplicación para Android e iOS implementada con React Native y Expo.
+- Mapa móvil implementado con `react-native-maps`.
 - Marcadores para identificar el origen y destino.
 - Representación gráfica de los itinerarios calculados.
 - Visualización de los diferentes tramos del recorrido.
@@ -75,7 +75,7 @@ El usuario puede seleccionar diferentes criterios para encontrar un itinerario:
 
 Uno de los componentes principales de la aplicación es la representación geográfica de los itinerarios.
 
-El frontend utiliza **Leaflet** para renderizar el mapa y **OpenStreetMap** como fuente de los mapas base.
+La app móvil utiliza **React Native Maps** para mostrar terminales y dibujar el itinerario calculado.
 
 Cuando el usuario consulta una ruta, el sistema obtiene el itinerario calculado por el backend y lo representa visualmente.
 
@@ -83,9 +83,9 @@ Cuando el usuario consulta una ruta, el sistema obtiene el itinerario calculado 
 
 1. Se cargan las terminales disponibles mediante `/api/terminales`.
 2. El usuario selecciona el origen, destino y parámetros de búsqueda.
-3. El frontend realiza una petición HTTP mediante `fetch` al endpoint `/api/ruta`.
+3. La app móvil realiza una petición HTTP mediante `fetch` al endpoint `/api/ruta`.
 4. El backend procesa la consulta y devuelve el itinerario.
-5. El frontend representa el recorrido en el mapa, mostrando los tramos, tiempos, marcadores y colores por cooperativa.
+5. La app representa el recorrido en el mapa y muestra los tramos, horarios y tiempos.
 
 ---
 
@@ -95,13 +95,11 @@ Cuando el usuario consulta una ruta, el sistema obtiene el itinerario calculado 
 |---|---|
 | JavaScript | Lenguaje principal del proyecto. |
 | Node.js | Entorno de ejecución del backend. |
-| Express | Servidor web y API REST. |
-| Vue 3 | Gestión de la interfaz y estado del frontend mediante CDN. |
-| Leaflet | Renderización y visualización del mapa interactivo. |
-| OpenStreetMap | Datos cartográficos para el mapa base. |
-| Fetch API | Comunicación entre frontend y backend. |
-| HTML5 | Estructura de la interfaz web. |
-| CSS3 | Estilos de la aplicación. |
+| Express | Backend y API REST. |
+| React Native | Interfaz móvil multiplataforma. |
+| Expo | Desarrollo y ejecución de la app en Android e iOS. |
+| `react-native-maps` | Renderización del mapa y del recorrido. |
+| Fetch API | Comunicación entre la app móvil y el backend. |
 | Jest | Ejecución de pruebas automatizadas, si está configurado en el proyecto. |
 | Git y GitHub | Control de versiones y colaboración. |
 
@@ -118,7 +116,8 @@ El proyecto utiliza una organización modular que separa las responsabilidades d
 | **Datos** | Almacenamiento y acceso a la información de terminales y horarios. |
 | **Dominio** | Estructuras de datos, grafos y lógica relacionada con la planificación. |
 | **Servicios** | Coordinación de la lógica de planificación y procesamiento de las solicitudes. |
-| **Vista** | Interfaz web, visualización del mapa y comunicación con la API. |
+| **App móvil** | Interfaz React Native, visualización del mapa y comunicación con la API. |
+| **API** | Endpoints Express para terminales y planificación de itinerarios. |
 
 ### 🔄 Flujo general del sistema
 
@@ -127,11 +126,11 @@ El proyecto utiliza una organización modular que separa las responsabilidades d
                    |
                    v
        +------------------------+
-       |       FRONTEND         |
+     |      APP MÓVIL        |
        |                        |
-       |  HTML + Vue 3 + CSS    |
+     | React Native + Expo    |
        |                        |
-       |  Leaflet + OpenStreetMap|
+     |  react-native-maps      |
        +-----------+------------+
                    |
               Fetch API
@@ -162,8 +161,8 @@ El proyecto utiliza una organización modular que separa las responsabilidades d
        +------------------------+
        |         DATOS          |
        |                        |
-       |  terminales.json       |
-       |  horarios.json         |
+      |  rutas.json            |
+      |  terminales.json       |
        +------------------------+
 ```
 
@@ -173,10 +172,12 @@ El proyecto utiliza una organización modular que separa las responsabilidades d
 
 | Archivo | Descripción |
 |---|---|
+| `mobile-app/App.tsx` | Pantalla móvil de búsqueda, resultados y mapa. |
+| `mobile-app/src/api.ts` | Comunicación de la app con el backend. |
 | `servidor.js` | Inicialización del servidor Express y exposición de los endpoints. |
 | `planificadorService.js` | Servicio encargado de coordinar la planificación de itinerarios. |
+| `rutas.json` | Rutas y horarios base usados para generar frecuencias. |
 | `terminales.json` | Información de las terminales utilizadas por el sistema. |
-| `index.html` | Interfaz web, interacción con el usuario y visualización del mapa. |
 | `smoke.test.js` | Prueba de humo para verificar componentes fundamentales del sistema. |
 
 ---
@@ -239,21 +240,40 @@ git switch feature/start-proyect
 npm install
 ```
 
-### 5. Iniciar la aplicación
+### 5. Instalar e iniciar la app móvil
 
 ```bash
+npm run mobile:install
 npm start
 ```
 
-Abre la aplicación desde:
+Abre el proyecto con Expo Go o con un emulador Android/iOS. `npm start` inicia Expo; el backend se ejecuta por separado.
 
-**http://localhost:3000**
+En una segunda terminal, desde la raíz:
 
-### 🔄 Modo de desarrollo
+```bash
+npm run api
+```
+
+La API queda disponible en `http://localhost:3001`.
+
+Para un teléfono físico, averigua la IP local de tu computadora con `hostname -I` y usa esa IP en la URL de la API:
+
+```bash
+EXPO_PUBLIC_API_URL=http://TU_IP_LOCAL:3001 npm start
+```
+
+El teléfono y la computadora deben estar en la misma red.
+
+Para iniciar Expo directamente en Android o iOS, usa `npm run mobile:android` o `npm run mobile:ios`.
+
+### 🔄 Desarrollo
 
 ```bash
 npm run dev
 ```
+
+En otra terminal, `npm run api:dev` inicia el backend con recarga al cambiar archivos.
 
 ### 💻 Demostración por consola
 
@@ -269,8 +289,15 @@ Este comando ejecuta la demostración de planificación directamente en la termi
 
 | Comando | Descripción |
 |---|---|
-| `npm start` | Inicia el servidor web. |
-| `npm run dev` | Inicia el servidor con vigilancia de cambios. |
+| `npm start` | Inicia Expo para la app móvil. |
+| `npm run dev` | Inicia Expo en modo desarrollo. |
+| `npm run mobile:install` | Instala dependencias de la app móvil. |
+| `npm run mobile:android` | Inicia Expo para Android. |
+| `npm run mobile:ios` | Inicia Expo para iOS. |
+| `npm run mobile:lint` | Ejecuta ESLint en la app móvil. |
+| `npm run mobile:typecheck` | Comprueba los tipos de TypeScript de la app. |
+| `npm run api` | Inicia el backend Express en el puerto 3001. |
+| `npm run api:dev` | Inicia el backend con vigilancia de cambios. |
 | `npm run demo` | Ejecuta la demostración por consola. |
 
 La configuración de los comandos se encuentra en `package.json`.
@@ -307,7 +334,7 @@ GET /api/ruta?origen=...&destino=...&desde=...&criterio=...
 ### Ejemplo de petición
 
 ```bash
-curl "http://localhost:3000/api/ruta?origen=Catamayo&destino=Cariamanga&desde=2026-11-02T06:30:00-05:00&criterio=tiempo"
+curl "http://localhost:3001/api/ruta?origen=Catamayo&destino=Cariamanga&desde=2026-11-02T06:30:00-05:00&criterio=tiempo"
 ```
 
 ---
@@ -337,8 +364,8 @@ La primera etapa del sistema se concentra en una solución delimitada para evalu
 | 🎓 Público objetivo | Estudiantes de la Universidad Nacional de Loja. |
 | 📍 Punto de partida | Terminal Terrestre Reina del Cisne, Loja. |
 | 🚌 Cooperativas | Loja y Catamayo. |
-| 🌐 Plataforma | Aplicación web. |
-| 🗺️ Visualización | Mapa interactivo con Leaflet y OpenStreetMap. |
+| 📱 Plataforma | Aplicación móvil para Android e iOS con Expo. |
+| 🗺️ Visualización | Mapa con `react-native-maps`. |
 | ⚙️ Procesamiento | Node.js y Express. |
 | 📂 Datos | Archivos JSON. |
 
@@ -353,9 +380,8 @@ El proyecto se encuentra en desarrollo continuo.
 - [x] Implementación del servidor Express.
 - [x] Organización modular del backend.
 - [x] Servicio de planificación de itinerarios.
-- [x] Integración de Vue 3 en la interfaz.
-- [x] Integración de Leaflet y OpenStreetMap.
-- [x] Comunicación entre frontend y backend mediante Fetch API.
+- [x] Primera versión de la app React Native con Expo.
+- [x] Mapa móvil y comunicación con el backend mediante Fetch API.
 - [x] Validaciones del formulario de búsqueda.
 - [x] Visualización geográfica de los itinerarios.
 - [x] Incorporación de prueba de humo.
@@ -371,7 +397,7 @@ El proyecto se encuentra en desarrollo continuo.
 
 **Universidad Nacional de Loja**
 
-Proyecto académico orientado a la aplicación de estructuras de datos, algoritmos y tecnologías web para resolver una problemática de movilidad de la comunidad universitaria.
+Proyecto académico orientado a la aplicación de estructuras de datos, algoritmos y tecnologías móviles para resolver una problemática de movilidad de la comunidad universitaria.
 
 ---
 
