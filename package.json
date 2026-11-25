@@ -11,19 +11,20 @@
     "mobile:ios": "npm --prefix mobile-app run ios",
     "mobile:lint": "npm --prefix mobile-app run lint",
     "mobile:typecheck": "npm --prefix mobile-app run typecheck",
-    "api": "PORT=3001 node src/main/view/servidor.js",
-    "api:dev": "PORT=3001 node --watch src/main/view/servidor.js",
+    "api": "node src/main/view/servidor.js",
+    "api:dev": "node --watch src/main/view/servidor.js",
     "demo": "node src/main/js/index.js",
-    "test": "node tests/smoke.test.js && node tests/listaDoble.test.js && node tests/sort.test.js && node tests/search.test.js && node tests/datosBusqueda.test.js",
+    "test": "node tests/smoke.test.js && node tests/listaDoble.test.js && node tests/sort.test.js && node tests/search.test.js && node tests/datosBusqueda.test.js && node tests/planificador.test.js && node tests/api.test.js",
     "benchmark:busqueda": "node scripts/busqueda/benchmark_busqueda.js",
     "datos:busqueda": "node scripts/busqueda/preparar_datos_busqueda.js",
     "benchmark": "node scripts/ordenamiento/benchmark_ordenamiento.js",
     "benchmark:sort": "node --expose-gc scripts/ordenamiento/benchmark_ordenamiento.js --ordenamiento",
     "demo:busqueda": "node scripts/busqueda/demo_busqueda.js",
-    "comparar:busqueda": "node scripts/busqueda/benchmark_comparativo.js"
+    "comparar:busqueda": "node scripts/busqueda/benchmark_comparativo.js",
+    "mobile:test": "npm --prefix mobile-app test"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.13.0"
   },
   "dependencies": {
     "express": "^5.1.0"

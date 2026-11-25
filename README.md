@@ -9,7 +9,7 @@
 Aplicación móvil para Android e iOS que ayuda a estudiantes de la Universidad Nacional de Loja a planificar viajes intercantonales. La app usa React Native y Expo; un backend Express calcula los itinerarios mediante estructuras de grafos y algoritmos de optimización.
 
 ![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-orange?style=for-the-badge)
-![Node.js](https://img.shields.io/badge/Node.js-24.x-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-%3E%3D22.13-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-5.x-000000?style=for-the-badge&logo=express&logoColor=white)
 ![React Native](https://img.shields.io/badge/React_Native-0.88-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Expo](https://img.shields.io/badge/Expo-58-000020?style=for-the-badge&logo=expo&logoColor=white)
@@ -94,7 +94,7 @@ Cuando el usuario consulta una ruta, el sistema obtiene el itinerario calculado 
 | Tecnología | Utilización |
 |---|---|
 | JavaScript | Lenguaje principal del proyecto. |
-| Node.js | Entorno de ejecución del backend. |
+| Node.js 22.13+ | Runtime del backend y requisito de React Native 0.88. |
 | Express | Backend y API REST. |
 | React Native | Interfaz móvil multiplataforma. |
 | Expo | Desarrollo y ejecución de la app en Android e iOS. |
@@ -212,7 +212,7 @@ El sistema considera los horarios de llegada y salida para comprobar que los tra
 
 ### 📋 Requisitos previos
 
-- Node.js compatible con el proyecto.
+- Node.js 22.13 o superior (requerido por React Native 0.88).
 - npm.
 - Git.
 
@@ -256,14 +256,15 @@ npm run api
 ```
 
 La API queda disponible en `http://localhost:3001`.
+Comprueba el estado en `http://localhost:3001/api/health`.
 
-Para un teléfono físico, averigua la IP local de tu computadora con `hostname -I` y usa esa IP en la URL de la API:
+Con un teléfono físico, `npm run api` imprime la URL que debe usar el teléfono (por ejemplo `http://192.168.16.24:3001`). Ábrela con `/api/health` en el navegador del teléfono para comprobar la red y el firewall. En Expo Go la app detecta sola la IP de la computadora que ejecuta Expo; usa `EXPO_PUBLIC_API_URL=http://TU_IP_LOCAL:3001 npm start` solo si el backend está en otra máquina o usas `--tunnel`.
 
-```bash
-EXPO_PUBLIC_API_URL=http://TU_IP_LOCAL:3001 npm start
-```
+> **Expo Go debe ser de SDK 58.** Si Expo Go muestra *"Project is incompatible with this version of Expo Go"*, instala la versión de SDK 58 (con el teléfono por USB, `npm start` y luego `a`, o desde https://expo.dev/go).
 
-El teléfono y la computadora deben estar en la misma red.
+Los datos actuales solo incluyen salidas desde Loja. La búsqueda inicial es Loja → Machala; todavía no hay rutas de regreso ni salidas desde Catamayo.
+
+Para el APK, compila el perfil `preview` (`cd mobile-app && npx eas-cli@latest build -p android --profile preview`) después de poner en `mobile-app/eas.json` la IP actual de tu computadora. Un APK para usuarios reales necesita el backend desplegado con HTTPS (`EXPO_PUBLIC_API_URL` en el entorno EAS) y una clave `GOOGLE_MAPS_API_KEY` para que se muestre el mapa. `app.config.js` detiene el build de EAS con un mensaje claro si falta la URL o si el perfil `development` se compila sin `expo-dev-client`. La guía completa y la tabla de solución de problemas están en [`mobile-app/README.md`](mobile-app/README.md).
 
 Para iniciar Expo directamente en Android o iOS, usa `npm run mobile:android` o `npm run mobile:ios`.
 
@@ -299,6 +300,8 @@ Este comando ejecuta la demostración de planificación directamente en la termi
 | `npm run api` | Inicia el backend Express en el puerto 3001. |
 | `npm run api:dev` | Inicia el backend con vigilancia de cambios. |
 | `npm run demo` | Ejecuta la demostración por consola. |
+| `npm test` | Pruebas del backend: dominio, planificador y API HTTP. |
+| `npm run mobile:test` | Pruebas de la app: URL de la API, fechas y cliente HTTP contra el backend. |
 
 La configuración de los comandos se encuentra en `package.json`.
 
@@ -315,6 +318,14 @@ GET /api/terminales
 ```
 
 Permite obtener las terminales disponibles para realizar consultas.
+
+### Estado del backend
+
+```http
+GET /api/health
+```
+
+Devuelve `{"ok":true}` cuando la API está disponible.
 
 ### 🗺️ Consultar itinerarios
 
@@ -334,7 +345,11 @@ GET /api/ruta?origen=...&destino=...&desde=...&criterio=...
 ### Ejemplo de petición
 
 ```bash
-curl "http://localhost:3001/api/ruta?origen=Catamayo&destino=Cariamanga&desde=2026-11-02T06:30:00-05:00&criterio=tiempo"
+curl --get "http://localhost:3001/api/ruta" \
+  --data-urlencode "origen=Loja" \
+  --data-urlencode "destino=Machala" \
+  --data-urlencode "desde=$(date +%F)T06:30:00-05:00" \
+  --data-urlencode "criterio=tiempo"
 ```
 
 ---

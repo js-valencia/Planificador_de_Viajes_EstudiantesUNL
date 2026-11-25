@@ -1,51 +1,38 @@
 import { Platform } from 'react-native';
+import Constants from 'expo-constants';
 
-const HOST = Platform.OS === 'android' ? '10.0.2.2' : 'localhost';
-const DEFAULT_API_URL = `http://${HOST}:3001`;
+import { resolverApiUrl } from './apiUrl';
+import { crearClienteApi, type ConsultaRuta, type Ruta, type Terminal } from './http';
 
-export const API_URL = process.env.EXPO_PUBLIC_API_URL ?? DEFAULT_API_URL;
+export type { ConsultaRuta, Ruta, Terminal, Tramo } from './http';
+export { ApiError } from './http';
 
-export type Terminal = {
-  nombre: string;
-  lat: number;
-  lng: number;
-};
+// `process.env.EXPO_PUBLIC_API_URL` debe escribirse literalmente: babel-preset-expo
+// lo reemplaza por su valor al generar el bundle (Expo Go y compilaciones EAS).
+const configuracion = resolverApiUrl({
+  envUrl: process.env.EXPO_PUBLIC_API_URL,
+  hostUri: Constants.expoConfig?.hostUri,
+  plataforma: Platform.OS,
+  esDesarrollo: __DEV__,
+});
 
-export type Tramo = {
-  cooperativa: string;
-  nombreRuta?: string;
-  cantones?: string[];
-  desde: string;
-  hasta: string;
-  salida: string;
-  llegada: string;
-};
+export const API_URL = configuracion.url;
+export const FUENTE_API_URL = configuracion.fuente;
 
-export type Ruta = {
-  criterio: string;
-  tramos: Tramo[];
-  transbordos: number;
-  esperaTotalMin: number;
-  duracionViajeMin: number;
-  esperaInicialMin: number;
-};
-
-export async function obtenerTerminales(): Promise<{ terminales: Terminal[]; criterios: string[] }> {
-  const response = await fetch(`${API_URL}/api/terminales`);
-  const data = await response.json();
-  if (!response.ok) throw new Error(data.error ?? 'No se pudo cargar las terminales');
-  return data;
+if (__DEV__) {
+  console.log(`[api] Backend: ${API_URL || '(sin configurar)'} (origen: ${FUENTE_API_URL})`);
+  if (configuracion.problema) console.warn(`[api] ${configuracion.problema}`);
 }
 
-export async function buscarRuta(params: {
-  origen: string;
-  destino: string;
-  desde: string;
-  criterio: string;
-}): Promise<Ruta | null> {
-  const query = new URLSearchParams(params);
-  const response = await fetch(`${API_URL}/api/ruta?${query.toString()}`);
-  const data = await response.json();
-  if (!response.ok) throw new Error(data.error ?? 'No se pudo consultar la ruta');
-  return data.ruta ?? null;
+const cliente = crearClienteApi(API_URL, {
+  timeoutMs: 12000,
+  problemaConfiguracion: configuracion.problema,
+});
+
+export function obtenerTerminales(): Promise<{ terminales: Terminal[]; criterios: string[] }> {
+  return cliente.obtenerTerminales();
+}
+
+export function buscarRuta(params: ConsultaRuta): Promise<Ruta | null> {
+  return cliente.buscarRuta(params);
 }

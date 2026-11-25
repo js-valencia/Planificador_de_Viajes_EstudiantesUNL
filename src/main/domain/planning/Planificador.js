@@ -1,7 +1,7 @@
 const { floydWarshall, reconstruirCamino } = require('../graph/floydWarshall');
 
 const CRITERIOS = {
-  // menor tiempo total: viaje + esperas
+  // menor tiempo total: viaje + esperas (la espera inicial se suma en buscarRuta)
   tiempo: (a) => a.peso,
   // menor tiempo de espera: solo cuentan las esperas
   espera: (a) => (a.tipo === 'espera' ? a.peso : 0),
@@ -41,11 +41,21 @@ class Planificador {
     let mejor = null;
     for (const s of salidas) {
       for (const l of llegadas) {
-        const costo = dist[s.id][l.id];
-        if (costo === Infinity) continue;
-        // desempate: llegar más temprano
-        if (!mejor || costo < mejor.costo || (costo === mejor.costo && l.instante < mejor.llegada.instante)) {
-          mejor = { costo, salida: s, llegada: l };
+        const costoCamino = dist[s.id][l.id];
+        if (costoCamino === Infinity) continue;
+        // "Menor tiempo total" se mide desde la hora pedida por el estudiante: la espera
+        // en la terminal de origen también cuenta (equivale a llegar lo antes posible).
+        // Floyd-Warshall solo cubre salida -> llegada, así que se suma aquí.
+        const costo = criterio === 'tiempo'
+          ? costoCamino + (s.instante - instanteDesde) / 60000
+          : costoCamino;
+        // desempates: llegar más temprano y, después, pasar menos tiempo en el camino
+        const esMejor = !mejor
+          || costo < mejor.costo
+          || (costo === mejor.costo && l.instante < mejor.llegada.instante)
+          || (costo === mejor.costo && l.instante === mejor.llegada.instante && costoCamino < mejor.costoCamino);
+        if (esMejor) {
+          mejor = { costo, costoCamino, salida: s, llegada: l };
         }
       }
     }
