@@ -1,5 +1,5 @@
 {
-  "_aviso": "Coordenadas tomadas de Google Maps: terminales/estaciones donde existen (Loja, Catamayo, Macará, Catacocha, Cariamanga, Zapotillo, Alamor, Machala) y centro del poblado en Chaguarpamba, Sozoranga y Amaluza.",
+  "_aviso": "Coordenadas tomadas de Google Maps: terminales/estaciones donde existen (Loja, Catamayo, Macará, Catacocha, Cariamanga, Zapotillo, Alamor, Machala) y centro del poblado en Chaguarpamba, Sozoranga, Amaluza, Cangonama, Quilanga, Lauro Guerrero, Casanga, Sacapalca, Chagaimina, El Cisne y Orianga.",
   "terminales": [
     { "nombre": "Loja", "lat": -3.9775779, "lng": -79.2050981 },
     { "nombre": "Catamayo", "lat": -3.9867524, "lng": -79.3569835 },
@@ -11,6 +11,14 @@
     { "nombre": "Zapotillo", "lat": -4.3859962, "lng": -80.2437657 },
     { "nombre": "Alamor", "lat": -4.0147715, "lng": -80.021289 },
     { "nombre": "Amaluza", "lat": -4.5830149, "lng": -79.4267845 },
-    { "nombre": "Machala", "lat": -3.2812196, "lng": -79.9169826 }
+    { "nombre": "Machala", "lat": -3.2812196, "lng": -79.9169826 },
+    { "nombre": "Cangonama", "lat": -3.964955, "lng": -79.699043 },
+    { "nombre": "Quilanga", "lat": -4.2969856, "lng": -79.400753 },
+    { "nombre": "Lauro Guerrero", "lat": -3.967297, "lng": -79.7606406 },
+    { "nombre": "Casanga", "lat": -4.014875, "lng": -79.765167 },
+    { "nombre": "Sacapalca", "lat": -4.1430418, "lng": -79.5378634 },
+    { "nombre": "Chagaimina", "lat": -4.218602, "lng": -79.523354 },
+    { "nombre": "El Cisne", "lat": -3.8520334, "lng": -79.4260811 },
+    { "nombre": "Orianga", "lat": -3.897635, "lng": -79.8709837 }
   ]
 }

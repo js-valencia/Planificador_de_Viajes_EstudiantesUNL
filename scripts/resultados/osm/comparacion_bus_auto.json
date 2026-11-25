@@ -1,0 +1,313 @@
+{
+  "resumen": {
+    "estimado": {
+      "tramos": 16,
+      "medianaRazon": 1.4121466527629334,
+      "busMasRapidoQueAuto": 0
+    },
+    "verificado": {
+      "tramos": 11,
+      "medianaRazon": 1.1416272867636739,
+      "busMasRapidoQueAuto": 3
+    }
+  },
+  "tramos": [
+    {
+      "ruta": "LOJA-01",
+      "cooperativa": "Loja",
+      "origen": "Loja",
+      "destino": "Chaguarpamba",
+      "busMin": 150,
+      "autoMin": 99.68333333333334,
+      "distanciaKm": 98.9475,
+      "razon": 1.5047650894499247,
+      "fuente": "estimado"
+    },
+    {
+      "ruta": "LOJA-01",
+      "cooperativa": "Loja",
+      "origen": "Loja",
+      "destino": "Machala",
+      "busMin": 360,
+      "autoMin": 195.63,
+      "distanciaKm": 226.9494,
+      "razon": 1.84020855696979,
+      "fuente": "estimado"
+    },
+    {
+      "ruta": "LOJA-02",
+      "cooperativa": "Loja",
+      "origen": "Loja",
+      "destino": "Zapotillo",
+      "busMin": 270,
+      "autoMin": 197.85,
+      "distanciaKm": 214.3051,
+      "razon": 1.3646702047005308,
+      "fuente": "estimado"
+    },
+    {
+      "ruta": "LOJA-03",
+      "cooperativa": "Loja",
+      "origen": "Loja",
+      "destino": "Catacocha",
+      "busMin": 135,
+      "autoMin": 90.52166666666668,
+      "distanciaKm": 85.5926,
+      "razon": 1.4913556607073812,
+      "fuente": "estimado"
+    },
+    {
+      "ruta": "LOJA-03",
+      "cooperativa": "Loja",
+      "origen": "Loja",
+      "destino": "Macará",
+      "busMin": 225,
+      "autoMin": 152.18833333333333,
+      "distanciaKm": 173.8618,
+      "razon": 1.4784313296025757,
+      "fuente": "estimado"
+    },
+    {
+      "ruta": "LOJA-04",
+      "cooperativa": "Loja",
+      "origen": "Loja",
+      "destino": "Cariamanga",
+      "busMin": 135,
+      "autoMin": 115.58,
+      "distanciaKm": 98.0949,
+      "razon": 1.1680221491607545,
+      "fuente": "estimado"
+    },
+    {
+      "ruta": "LOJA-04",
+      "cooperativa": "Loja",
+      "origen": "Loja",
+      "destino": "Macará",
+      "busMin": 240,
+      "autoMin": 152.18833333333333,
+      "distanciaKm": 173.8618,
+      "razon": 1.5769934182427474,
+      "fuente": "estimado"
+    },
+    {
+      "ruta": "LOJA-04",
+      "cooperativa": "Loja",
+      "origen": "Cariamanga",
+      "destino": "Macará",
+      "busMin": 105,
+      "autoMin": 72.69333333333334,
+      "distanciaKm": 77.67710000000001,
+      "razon": 1.4444240645634627,
+      "fuente": "estimado"
+    },
+    {
+      "ruta": "LOJA-05",
+      "cooperativa": "Loja",
+      "origen": "Loja",
+      "destino": "Macará",
+      "busMin": 210,
+      "autoMin": 152.18833333333333,
+      "distanciaKm": 173.8618,
+      "razon": 1.379869240962404,
+      "fuente": "estimado"
+    },
+    {
+      "ruta": "LOJA-06",
+      "cooperativa": "Loja",
+      "origen": "Loja",
+      "destino": "Cariamanga",
+      "busMin": 135,
+      "autoMin": 115.58,
+      "distanciaKm": 98.0949,
+      "razon": 1.1680221491607545,
+      "fuente": "estimado"
+    },
+    {
+      "ruta": "LOJA-06",
+      "cooperativa": "Loja",
+      "origen": "Loja",
+      "destino": "Sozoranga",
+      "busMin": 195,
+      "autoMin": 157.79333333333335,
+      "distanciaKm": 143.4496,
+      "razon": 1.2357936541467742,
+      "fuente": "estimado"
+    },
+    {
+      "ruta": "LOJA-07",
+      "cooperativa": "Loja",
+      "origen": "Loja",
+      "destino": "Cariamanga",
+      "busMin": 135,
+      "autoMin": 115.58,
+      "distanciaKm": 98.0949,
+      "razon": 1.1680221491607545,
+      "fuente": "estimado"
+    },
+    {
+      "ruta": "LOJA-08",
+      "cooperativa": "Loja",
+      "origen": "Loja",
+      "destino": "Cariamanga",
+      "busMin": 120,
+      "autoMin": 115.58,
+      "distanciaKm": 98.0949,
+      "razon": 1.038241910365115,
+      "fuente": "estimado"
+    },
+    {
+      "ruta": "LOJA-09",
+      "cooperativa": "Loja",
+      "origen": "Loja",
+      "destino": "Catacocha",
+      "busMin": 135,
+      "autoMin": 90.52166666666668,
+      "distanciaKm": 85.5926,
+      "razon": 1.4913556607073812,
+      "fuente": "estimado"
+    },
+    {
+      "ruta": "LOJA-10",
+      "cooperativa": "Loja",
+      "origen": "Loja",
+      "destino": "Alamor",
+      "busMin": 210,
+      "autoMin": 168.89333333333335,
+      "distanciaKm": 181.079,
+      "razon": 1.2433883318860028,
+      "fuente": "estimado"
+    },
+    {
+      "ruta": "LOJA-11",
+      "cooperativa": "Loja",
+      "origen": "Loja",
+      "destino": "Amaluza",
+      "busMin": 270,
+      "autoMin": 156.16,
+      "distanciaKm": 132.417,
+      "razon": 1.7289959016393444,
+      "fuente": "estimado"
+    },
+    {
+      "ruta": "CATAMAYO-01",
+      "cooperativa": "Catamayo",
+      "origen": "Loja",
+      "destino": "Catamayo",
+      "busMin": 40,
+      "autoMin": 48.83166666666667,
+      "distanciaKm": 28.1361,
+      "razon": 0.8191405850029011,
+      "fuente": "verificado"
+    },
+    {
+      "ruta": "CATAMAYO-02",
+      "cooperativa": "Catamayo",
+      "origen": "Loja",
+      "destino": "Cangonama",
+      "busMin": 150,
+      "autoMin": 105.91666666666667,
+      "distanciaKm": 93.9766,
+      "razon": 1.4162077104642015,
+      "fuente": "verificado"
+    },
+    {
+      "ruta": "CATAMAYO-03",
+      "cooperativa": "Catamayo",
+      "origen": "Loja",
+      "destino": "Lauro Guerrero",
+      "busMin": 150,
+      "autoMin": 120.94666666666667,
+      "distanciaKm": 107.8677,
+      "razon": 1.2402160732003087,
+      "fuente": "verificado"
+    },
+    {
+      "ruta": "CATAMAYO-04",
+      "cooperativa": "Catamayo",
+      "origen": "Loja",
+      "destino": "Casanga",
+      "busMin": 130,
+      "autoMin": 108.34833333333333,
+      "distanciaKm": 109.2723,
+      "razon": 1.1998338691565784,
+      "fuente": "verificado"
+    },
+    {
+      "ruta": "CATAMAYO-05",
+      "cooperativa": "Catamayo",
+      "origen": "Loja",
+      "destino": "Quilanga",
+      "busMin": 122,
+      "autoMin": 106.865,
+      "distanciaKm": 87.1412,
+      "razon": 1.1416272867636739,
+      "fuente": "verificado"
+    },
+    {
+      "ruta": "CATAMAYO-06A",
+      "cooperativa": "Catamayo",
+      "origen": "Loja",
+      "destino": "Sacapalca",
+      "busMin": 130,
+      "autoMin": 111.64166666666667,
+      "distanciaKm": 87.9797,
+      "razon": 1.1644397999552139,
+      "fuente": "verificado"
+    },
+    {
+      "ruta": "CATAMAYO-06B",
+      "cooperativa": "Catamayo",
+      "origen": "Loja",
+      "destino": "Chagaimina",
+      "busMin": 111,
+      "autoMin": 110.56333333333333,
+      "distanciaKm": 91.91369999999999,
+      "razon": 1.003949470891495,
+      "fuente": "verificado"
+    },
+    {
+      "ruta": "CATAMAYO-07",
+      "cooperativa": "Catamayo",
+      "origen": "Loja",
+      "destino": "El Cisne",
+      "busMin": 64,
+      "autoMin": 81.445,
+      "distanciaKm": 62.0586,
+      "razon": 0.7858063723985512,
+      "fuente": "verificado"
+    },
+    {
+      "ruta": "CATAMAYO-08",
+      "cooperativa": "Catamayo",
+      "origen": "Loja",
+      "destino": "Chaguarpamba",
+      "busMin": 85,
+      "autoMin": 99.68333333333334,
+      "distanciaKm": 98.9475,
+      "razon": 0.8527002173549574,
+      "fuente": "verificado"
+    },
+    {
+      "ruta": "CATAMAYO-09",
+      "cooperativa": "Catamayo",
+      "origen": "Loja",
+      "destino": "Orianga",
+      "busMin": 149,
+      "autoMin": 146.18333333333334,
+      "distanciaKm": 153.18110000000001,
+      "razon": 1.0192680424124958,
+      "fuente": "verificado"
+    },
+    {
+      "ruta": "CATAMAYO-10",
+      "cooperativa": "Catamayo",
+      "origen": "Loja",
+      "destino": "Catacocha",
+      "busMin": 110,
+      "autoMin": 90.52166666666668,
+      "distanciaKm": 85.5926,
+      "razon": 1.2151786865023106,
+      "fuente": "verificado"
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "meta": {
+    "baseUrl": "https://router.project-osrm.org",
+    "perfil": "driving",
+    "fecha": "2026-11-25T06:28:40.853Z",
+    "node": "v24.21.0",
+    "total": 21,
+    "exitosos": 21,
+    "fallidos": 0
+  },
+  "resultados": [
+    {
+      "origen": "Loja",
+      "destino": "Catamayo",
+      "distanciaKm": 28.1361,
+      "duracionMin": 48.83166666666667,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 11.38358143,
+      "calleOrigen": "",
+      "calleDestino": "Avenida Catamayo"
+    },
+    {
+      "origen": "Loja",
+      "destino": "Chaguarpamba",
+      "distanciaKm": 98.9475,
+      "duracionMin": 99.68333333333334,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 4.473092484,
+      "calleOrigen": "",
+      "calleDestino": "La Unión"
+    },
+    {
+      "origen": "Loja",
+      "destino": "Catacocha",
+      "distanciaKm": 85.5926,
+      "duracionMin": 90.52166666666668,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 2.127262212,
+      "calleOrigen": "",
+      "calleDestino": "Universitaria"
+    },
+    {
+      "origen": "Loja",
+      "destino": "Cariamanga",
+      "distanciaKm": 98.0949,
+      "duracionMin": 115.58,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 37.02059308,
+      "calleOrigen": "",
+      "calleDestino": "Avenida Del Ejército"
+    },
+    {
+      "origen": "Loja",
+      "destino": "Sozoranga",
+      "distanciaKm": 143.4496,
+      "duracionMin": 157.79333333333335,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 12.94818486,
+      "calleOrigen": "",
+      "calleDestino": ""
+    },
+    {
+      "origen": "Loja",
+      "destino": "Macará",
+      "distanciaKm": 173.8618,
+      "duracionMin": 152.18833333333333,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 12.17043349,
+      "calleOrigen": "",
+      "calleDestino": "Juvenal Jaramillo"
+    },
+    {
+      "origen": "Loja",
+      "destino": "Zapotillo",
+      "distanciaKm": 214.3051,
+      "duracionMin": 197.85,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 11.98974645,
+      "calleOrigen": "",
+      "calleDestino": "Avenida Quito"
+    },
+    {
+      "origen": "Loja",
+      "destino": "Alamor",
+      "distanciaKm": 181.079,
+      "duracionMin": 168.89333333333335,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 9.621532194,
+      "calleOrigen": "",
+      "calleDestino": "Avenida Eugenio Espejo"
+    },
+    {
+      "origen": "Loja",
+      "destino": "Amaluza",
+      "distanciaKm": 132.417,
+      "duracionMin": 156.16,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 4.927429589,
+      "calleOrigen": "",
+      "calleDestino": "Francisco Chigua"
+    },
+    {
+      "origen": "Loja",
+      "destino": "Machala",
+      "distanciaKm": 226.9494,
+      "duracionMin": 195.63,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 3.419502087,
+      "calleOrigen": "",
+      "calleDestino": ""
+    },
+    {
+      "origen": "Loja",
+      "destino": "Cangonama",
+      "distanciaKm": 93.9766,
+      "duracionMin": 105.91666666666667,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 273.2534116,
+      "calleOrigen": "",
+      "calleDestino": "29 de Mayo"
+    },
+    {
+      "origen": "Loja",
+      "destino": "Quilanga",
+      "distanciaKm": 87.1412,
+      "duracionMin": 106.865,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 26.66577917,
+      "calleOrigen": "",
+      "calleDestino": "Bolivar"
+    },
+    {
+      "origen": "Loja",
+      "destino": "Lauro Guerrero",
+      "distanciaKm": 107.8677,
+      "duracionMin": 120.94666666666667,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 9.952035605,
+      "calleOrigen": "",
+      "calleDestino": "J. M. Zárate"
+    },
+    {
+      "origen": "Loja",
+      "destino": "Casanga",
+      "distanciaKm": 109.2723,
+      "duracionMin": 108.34833333333333,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 73.44644558,
+      "calleOrigen": "",
+      "calleDestino": ""
+    },
+    {
+      "origen": "Loja",
+      "destino": "Sacapalca",
+      "distanciaKm": 87.9797,
+      "duracionMin": 111.64166666666667,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 391.013655,
+      "calleOrigen": "",
+      "calleDestino": ""
+    },
+    {
+      "origen": "Loja",
+      "destino": "Chagaimina",
+      "distanciaKm": 91.91369999999999,
+      "duracionMin": 110.56333333333333,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 29.32934058,
+      "calleOrigen": "",
+      "calleDestino": "Changaimina - Sacapalca"
+    },
+    {
+      "origen": "Loja",
+      "destino": "El Cisne",
+      "distanciaKm": 62.0586,
+      "duracionMin": 81.445,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 16.74725302,
+      "calleOrigen": "",
+      "calleDestino": "Angel Polivio Vega Mora"
+    },
+    {
+      "origen": "Loja",
+      "destino": "Orianga",
+      "distanciaKm": 153.18110000000001,
+      "duracionMin": 146.18333333333334,
+      "desvioOrigenM": 23.56791745,
+      "desvioDestinoM": 12.91976186,
+      "calleOrigen": "",
+      "calleDestino": "14 de Septiembre"
+    },
+    {
+      "origen": "Catamayo",
+      "destino": "Catacocha",
+      "distanciaKm": 57.5071,
+      "duracionMin": 41.905,
+      "desvioOrigenM": 11.38358143,
+      "desvioDestinoM": 2.127262212,
+      "calleOrigen": "Avenida Catamayo",
+      "calleDestino": "Universitaria"
+    },
+    {
+      "origen": "Cariamanga",
+      "destino": "Macará",
+      "distanciaKm": 77.67710000000001,
+      "duracionMin": 72.69333333333334,
+      "desvioOrigenM": 37.02059308,
+      "desvioDestinoM": 12.17043349,
+      "calleOrigen": "Avenida Del Ejército",
+      "calleDestino": "Juvenal Jaramillo"
+    },
+    {
+      "origen": "Macará",
+      "destino": "Zapotillo",
+      "distanciaKm": 59.8221,
+      "duracionMin": 60.531666666666666,
+      "desvioOrigenM": 12.17043349,
+      "desvioDestinoM": 11.98974645,
+      "calleOrigen": "Juvenal Jaramillo",
+      "calleDestino": "Avenida Quito"
+    }
+  ]
+}

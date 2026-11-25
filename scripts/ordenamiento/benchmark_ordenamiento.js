@@ -208,7 +208,7 @@ function benchmarkOrdenamiento() {
   log('- Δ heap = heapUsed después − antes (incluye el arreglo resultado y los temporales aún no recolectados)');
   log('');
 
-  // ---- 1) Muestra antes / después sobre el dataset real (11 rutas) ----
+  // ---- 1) Muestra antes / después sobre el dataset real (22 rutas) ----
   const real = mezclarDeterminista(base, aleatorio);
   const rReal = correr('real', real);
   const filasMuestra = real.map((r, i) => [String(i + 1), r.id, rReal.ordenado[i].id, `${rReal.ordenado[i].cooperativa} · ${rReal.ordenado[i].nombre}`]);

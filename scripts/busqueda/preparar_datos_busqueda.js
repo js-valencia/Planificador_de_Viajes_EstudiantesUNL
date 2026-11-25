@@ -51,7 +51,7 @@ const md = `# Datos y metodología: búsqueda secuencial vs binaria (issue #15)
 
 ## 1. Conjuntos ordenados
 
-Cada conjunto parte de las 11 rutas reales de \`rutas.json\`, repetidas con id único (LOJA-01-000001, ...), y se ordena con el MergeSort del proyecto (sin \`.sort()\`). Se verifica que el orden sea estricto (sin empates) y que \`n\` coincida. No se guardan los 500.000 registros en disco: se regeneran con la semilla y la huella (SHA-1 de los ids, 12 caracteres) confirma que son idénticos.
+Cada conjunto parte de las 22 rutas reales de \`rutas.json\`, repetidas con id único (LOJA-01-000001, ...), y se ordena con el MergeSort del proyecto (sin \`.sort()\`). Se verifica que el orden sea estricto (sin empates) y que \`n\` coincida. No se guardan los 500.000 registros en disco: se regeneran con la semilla y la huella (SHA-1 de los ids, 12 caracteres) confirma que son idénticos.
 
 | n | Huella | Primer id | Último id | ⌊log2 n⌋+1 |
 | --- | --- | --- | --- | --- |
