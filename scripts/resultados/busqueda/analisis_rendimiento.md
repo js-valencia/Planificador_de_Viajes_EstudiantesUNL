@@ -1,6 +1,6 @@
 # Análisis de rendimiento: búsqueda secuencial vs binaria
 
-Fuente: `scripts/results/benchmark_busqueda.json` (Node v24.21.0, linux x64, semilla 20261118, 30 mediciones válidas por clave, 5 de calentamiento descartadas). Gráfico: `curvas_busqueda.png`.
+Fuente: `scripts/resultados/busqueda/benchmark_busqueda.json` (Node v24.21.0, linux x64, semilla 20261118, 30 mediciones válidas por clave, 5 de calentamiento descartadas). Gráfico: `curvas_busqueda.png`.
 
 ## 1. Cuadro comparativo consolidado
 
