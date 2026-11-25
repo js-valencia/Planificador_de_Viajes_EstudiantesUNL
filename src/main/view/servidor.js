@@ -1,6 +1,7 @@
 const os = require('node:os');
 const path = require('node:path');
 const express = require('express');
+const { trazadoTramo } = require('../services/geometrias');
 
 const { crearPlanificador, cargarDatos } = require('../services/planificadorService');
 const { ventanaDeFechas } = require('../domain/datos/GenerarFrecuencias');
@@ -75,7 +76,13 @@ app.get('/api/ruta', (req, res) => {
   }
 
   const ruta = planificadorPara(desde).buscarRuta({ origen, destino, desde, criterio });
-  res.json({ ruta }); // ruta = null cuando no hay conexión válida (RF-07)
+  if (ruta) {
+  ruta.tramos = ruta.tramos.map((t) => ({
+    ...t,
+    geometria: trazadoTramo(t.paradasRuta, t.desde, t.hasta),
+  }));
+}
+res.json({ ruta }); // ruta = null cuando no hay conexión válida (RF-07)
 });
 
 app.use((req, res) => {
