@@ -48,7 +48,7 @@ function prueba(nombre, cuerpo) {
 const reg = (id, cooperativa, nombre) => ({ id, cooperativa, nombre });
 
 // Siempre devuelve objetos nuevos (cada prueba trabaja con su propia copia).
-// Se usa 'Catamayo' porque en rutas.json todas las rutas son de 'Loja'.
+// Se usan ids 'CAT-xx' de prueba para no depender de los datos reales de rutas.json.
 const crearRegistros = () => [
   reg('CAT-02', 'Catamayo', 'Catamayo - Loja'),
   reg('LOJA-10', 'Loja', 'Loja - Alamor'),
@@ -177,7 +177,7 @@ for (const { nombre, fn } of algoritmos) {
     assert.equal(resultado.length, rutas.length);
     assert.ok(estaOrdenado(resultado, compararRutas));
     assert.ok(mismosRegistros(rutas, resultado));
-    assert.equal(resultado[0].id, 'LOJA-10', 'Loja - Alamor debe ir primero');
+    assert.equal(resultado[0].id, 'CATAMAYO-02', 'Loja - Cangonama x Catamayo, Velacruz y Catacocha debe ir primero');
     assert.equal(resultado[resultado.length - 1].id, 'LOJA-02', 'Loja - Zapotillo debe ir al final');
   });
 
