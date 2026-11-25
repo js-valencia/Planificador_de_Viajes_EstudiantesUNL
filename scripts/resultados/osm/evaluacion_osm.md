@@ -15,8 +15,6 @@ No se probó GraphHopper. La evaluación se limitó a OSRM.
 | Datos de mapa | OpenStreetMap, licencia ODbL |
 | Condiciones de uso | Uso razonable y no comercial, máximo 1 petición por segundo, `User-Agent` que identifique la aplicación, sin garantía de disponibilidad |
 
-Referencias: [demo server](https://github.com/Project-OSRM/osrm-backend/wiki/Demo-server) y [política de uso](https://github.com/Project-OSRM/osrm-backend/wiki/Api-usage-policy).
-
 ## 3. Método
 
 1. Se tomaron las coordenadas (`lat`, `lng`) de las 19 terminales de `src/main/data/terminales.json`. OSRM recibe las coordenadas como `longitud,latitud`, por lo que el script las invierte.
@@ -70,12 +68,10 @@ Detalle por tramo: `scripts/resultados/osm/comparacion_bus_auto.md`.
 
 ## 7. Cambios necesarios para integrarlo
 
-1. Calcular las distancias y duraciones una sola vez y guardarlas en un archivo, sin consultar el servicio en cada búsqueda del planificador.
-2. Agregar `distanciaKm` y `duracionAutoMin` a cada tramo como dato adicional. El grafo seguiría usando los minutos del horario.
-3. Corregir las coordenadas con desvío alto (Sacapalca y Cangonama) para que caigan sobre una vía.
-4. Si se necesita independencia del servicio externo o más peticiones, ejecutar OSRM en un servidor propio con un extracto de OSM de la zona.
-5. Si se quiere mostrar el recorrido en el mapa, guardar la geometría de cada tramo (formato GeoJSON, como en `osrm_rutas.geojson`).
-6. Usar la comparación con OSRM como control de razonabilidad de los tiempos estimados, no como reemplazo del horario.
+1. Almacenar las distancias y duraciones calculadas por OSRM para evitar consultas repetidas al servicio.
+2. Incorporar distanciaKm y duracionAutoMin como datos complementarios, sin modificar los horarios utilizados por el grafo.
+3. Corregir las coordenadas de Sacapalca y Cangonama para mejorar la precisión de los recorridos.
+4. Guardar las geometrías en formato GeoJSON para permitir la visualización de los recorridos en un mapa.
 
 ## 8. Nodos de calles frente a paradas y horarios
 
@@ -105,5 +101,3 @@ Para reproducir, desde la raíz del proyecto:
 node scripts/osm/prueba_osrm.js
 node scripts/osm/comparar_con_horarios.js
 ```
-
-Datos de mapa: © colaboradores de OpenStreetMap (ODbL). Enrutamiento: OSRM.
