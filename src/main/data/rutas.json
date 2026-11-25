@@ -1,5 +1,6 @@
 {
-  "_aviso": "Cooperativa Loja: las horas de SALIDA son las publicadas por la cooperativa. Cooperativa Catamayo (Catamayo Express): salidas y llegadas verificadas. En las rutas de Loja, los minutos de llegada son ESTIMADOS: corregirlos cuando se consigan los reales. Aun no se cargan los viajes de regreso a Loja.",  "llegadasEstimadas": true,
+  "_aviso": "Los horarios de SALIDA se consultaron en cada cooperativa. Los minutos de llegada de las rutas de la cooperativa Loja son ESTIMADOS: corregirlos cuando se consigan los reales. Las rutas de la cooperativa Catamayo están verificadas.",
+  "llegadasEstimadas": true,
   "minutosMinimosTransbordo": 20,
   "rutas": [
     { "id": "LOJA-01", "cooperativa": "Loja", "nombre": "Loja - Machala normal x Chaguarpamba", "cantones": ["Chaguarpamba"],
