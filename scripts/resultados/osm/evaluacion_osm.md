@@ -2,9 +2,7 @@
 
 ## 1. Objetivo y alcance
 
-Evaluar si la red de calles y caminos de OpenStreetMap (OSM) sirve para calcular o visualizar recorridos entre las terminales del proyecto. Se probó un servicio de enrutamiento compatible con OSM, se comprobó si devuelve recorridos entre las terminales, se comparó el resultado con el trazado actual (`rutas.json`) y se documentaron sus límites.
-
-No se probó GraphHopper. La evaluación se limitó a OSRM.
+Evaluar si la red de calles y caminos de OpenStreetMap (OSM) sirve para calcular o visualizar recorridos entre las terminales del proyecto. Se probó un servicio de enrutamiento compatible con OSM, se comprobó si devuelve recorridos entre las terminales, se comparó el resultado con el trazado actual (`rutas.json`) y se documentaron sus límites. Además, se integró el trazado por carretera en la app móvil (sección 11).
 
 ## 2. Servicio probado
 
@@ -68,10 +66,10 @@ Detalle por tramo: `scripts/resultados/osm/comparacion_bus_auto.md`.
 
 ## 7. Cambios necesarios para integrarlo
 
-1. Almacenar las distancias y duraciones calculadas por OSRM para evitar consultas repetidas al servicio.
-2. Incorporar distanciaKm y duracionAutoMin como datos complementarios, sin modificar los horarios utilizados por el grafo.
-3. Corregir las coordenadas de Sacapalca y Cangonama para mejorar la precisión de los recorridos.
-4. Guardar las geometrías en formato GeoJSON para permitir la visualización de los recorridos en un mapa.
+1. Almacenar las distancias y duraciones calculadas por OSRM para evitar consultas repetidas al servicio. Parcialmente hecho: `generar_geometrias.js` guarda `distanciaKm` y `duracionAutoMin` por tramo en `src/main/data/geometrias.json`, pero la app todavía no los usa.
+2. Incorporar `distanciaKm` y `duracionAutoMin` como datos complementarios, sin modificar los horarios utilizados por el grafo. Pendiente.
+3. Corregir las coordenadas de Sacapalca y Cangonama para mejorar la precisión de los recorridos. Pendiente.
+4. Guardar las geometrías para permitir la visualización de los recorridos en un mapa. Hecho: ver sección 11.
 
 ## 8. Nodos de calles frente a paradas y horarios
 
@@ -91,6 +89,10 @@ OSRM con datos de OpenStreetMap devuelve recorridos entre todas las terminales d
 | --- | --- |
 | `scripts/osm/prueba_osrm.js` | Consulta a OSRM y generación de resultados |
 | `scripts/osm/comparar_con_horarios.js` | Comparación entre bus y auto |
+| `scripts/osm/generar_geometrias.js` | Calcula con OSRM el trazado de cada tramo entre paradas consecutivas y lo guarda en `src/main/data/geometrias.json` |
+| `scripts/osm/exportar_geometrias_app.js` | Simplifica los trazados y genera `mobile-app/src/data/geometriasOsm.json` |
+| `mobile-app/src/trazadoOsm.ts` | Une los tramos de una ruta usando `paradasRuta` y devuelve los puntos a dibujar |
+| `mobile-app/src/MapaOsm.tsx` | Mapa de OpenStreetMap con Leaflet dentro de un WebView |
 | `scripts/resultados/osm/osrm_resultados.md` y `.json` | Distancia, duración y desvío por par |
 | `scripts/resultados/osm/osrm_rutas.geojson` | Trazados para visualizar |
 | `scripts/resultados/osm/comparacion_bus_auto.md` y `.json` | Comparación de tiempos |
@@ -100,4 +102,20 @@ Para reproducir, desde la raíz del proyecto:
 ```
 node scripts/osm/prueba_osrm.js
 node scripts/osm/comparar_con_horarios.js
+node scripts/osm/generar_geometrias.js
+node scripts/osm/exportar_geometrias_app.js
 ```
+
+## 11. Integración en la app móvil
+
+- **Qué se hizo:** los trazados por carretera se calculan una sola vez con OSRM (`scripts/osm/generar_geometrias.js`) para cada par de paradas consecutivas de `rutas.json`. Luego `scripts/osm/exportar_geometrias_app.js` los simplifica (de ~58.000 a ~10.800 puntos, 219 KB) y genera `mobile-app/src/data/geometriasOsm.json`.
+- **Cómo se dibuja:** la app une los tramos con `paradasRuta` de cada tramo de `/api/ruta` (`mobile-app/src/trazadoOsm.ts`) y los muestra sobre un mapa de OpenStreetMap con Leaflet dentro de un WebView (`mobile-app/src/MapaOsm.tsx`). No se modificó la API. Si algún tramo no tiene trazado, la app dibuja la línea recta entre terminales como antes.
+- **Qué es OSM y qué no:** el mapa base y la forma de la línea vienen de OpenStreetMap. Las paradas y los horarios siguen saliendo de `rutas.json`; los nodos de las calles no se usan como paradas.
+- **Límites:**
+  - El servidor demo de OSRM admite 1 petición por segundo y no es para producción.
+  - Las teselas de `tile.openstreetmap.org` son para uso moderado.
+  - El trazado es referencial, calculado para auto, no para la ruta exacta del bus.
+  - El mapa necesita conexión a internet en el teléfono: Leaflet se carga desde `cdnjs.cloudflare.com` y las teselas desde `tile.openstreetmap.org`. Sin conexión, el mapa no se dibuja, aunque el itinerario sí se muestra.
+  - La app depende del campo `paradasRuta` de cada tramo de `/api/ruta`; si se elimina o se renombra, el trazado deja de dibujarse.
+- **Qué requeriría integrarlo en producción:** servidor propio de OSRM o GraphHopper, servidor propio de teselas, y volver a ejecutar los dos scripts de trazado cada vez que cambien las rutas o las paradas.
+- **Atribución:** © colaboradores de OpenStreetMap (licencia ODbL), visible en el mapa.
