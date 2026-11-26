@@ -352,6 +352,10 @@ curl --get "http://localhost:3001/api/ruta" \
   --data-urlencode "criterio=tiempo"
 ```
 
+### ⚡ Caché de consultas
+
+`GET /api/ruta` reutiliza resultados repetidos (TTL de 5 min, invalidación al cambiar `rutas.json`). La respuesta incluye la cabecera `X-Cache: HIT|MISS` y `GET /api/cache/stats` muestra los contadores. Detalles, limitaciones y medición en [docs/cache.md](docs/cache.md).
+
 ---
 
 ## 🧪 Pruebas

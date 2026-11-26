@@ -92,6 +92,17 @@ async function main() {
     assert.deepEqual(a, b);
   });
 
+  await prueba('X-Cache marca MISS la primera vez y HIT al repetir; stats refleja el acierto', async () => {
+    const params = { ...valida, desde: '2026-11-25T10:07:00-05:00' }; // instante no usado antes
+    const primera = await ruta(params);
+    const segunda = await ruta(params);
+    assert.equal(primera.headers.get('x-cache'), 'MISS');
+    assert.equal(segunda.headers.get('x-cache'), 'HIT');
+    assert.deepEqual(await primera.json(), await segunda.json());
+    const stats = await (await get('/api/cache/stats')).json();
+    assert.ok(stats.resultados.aciertos >= 1);
+  });
+
   servidor.close();
   console.log(`\n${correctas} pruebas correctas, ${fallos.length} fallidas`);
   if (fallos.length) { console.error(fallos.join('\n')); process.exit(1); }

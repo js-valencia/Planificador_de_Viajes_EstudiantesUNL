@@ -2,8 +2,8 @@ const os = require('node:os');
 const path = require('node:path');
 const express = require('express');
 
-const { crearPlanificador, cargarDatos } = require('../services/planificadorService');
-const { ventanaDeFechas } = require('../domain/datos/GenerarFrecuencias');
+const { cargarDatos } = require('../services/planificadorService');
+const { crearServicioConsultas } = require('../services/consultasService');
 
 const baseDir = path.join(__dirname, '..');
 const { terminales: terminalesDatos } = cargarDatos(baseDir);
@@ -14,23 +14,16 @@ const criterios = ['tiempo', 'espera', 'conexiones'];
 // Date.parse por sí solo acepta formatos ambiguos, como "2026-11-25 8:00" en hora local del servidor.
 const ISO_CON_ZONA = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d{1,3})?)?(Z|[+-]\d{2}:\d{2})$/;
 
-// El grafo depende solo de la ventana de fechas (día consultado y el siguiente), así que
-// se reutiliza entre peticiones en lugar de releer los JSON y recalcular Floyd-Warshall.
-const MAX_PLANIFICADORES = 14;
-const planificadores = new Map();
-
-function planificadorPara(desde) {
-  const clave = ventanaDeFechas(Date.parse(desde)).join('|');
-  let planificador = planificadores.get(clave);
-  if (!planificador) {
-    planificador = crearPlanificador(baseDir, desde);
-    planificadores.set(clave, planificador);
-    if (planificadores.size > MAX_PLANIFICADORES) {
-      planificadores.delete(planificadores.keys().next().value);
-    }
-  }
-  return planificador;
-}
+// Caché de dos niveles (planificadores por ventana de fechas y resultados por consulta) con
+// vencimiento e invalidación automática cuando cambia data/rutas.json. Ver docs/cache.md.
+const segundos = (variable, porDefecto) => {
+  const n = Number(process.env[variable]);
+  return Number.isFinite(n) && n > 0 ? n * 1000 : porDefecto;
+};
+const consultas = crearServicioConsultas({
+  baseDir,
+  ttlResultadosMs: segundos('CACHE_TTL_SEGUNDOS', 5 * 60 * 1000),
+});
 
 const app = express();
 app.disable('x-powered-by');
@@ -38,6 +31,7 @@ app.use((req, res, next) => {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.set('Access-Control-Allow-Headers', 'Content-Type');
+  res.set('Access-Control-Expose-Headers', 'X-Cache');
   if (req.method === 'OPTIONS') return res.sendStatus(204);
   next();
 });
@@ -57,6 +51,11 @@ app.get('/api/terminales', (req, res) => {
   res.json({ terminales: terminalesDatos, criterios });
 });
 
+// Contadores del caché (solo lectura) para vigilar la tasa de aciertos.
+app.get('/api/cache/stats', (req, res) => {
+  res.json(consultas.estadisticas());
+});
+
 app.get('/api/ruta', (req, res) => {
   const { origen, destino, desde, criterio = 'tiempo' } = req.query;
 
@@ -74,7 +73,8 @@ app.get('/api/ruta', (req, res) => {
     return res.status(400).json({ error: 'Fecha y hora no válidas (formato esperado: AAAA-MM-DDTHH:MM:SS-05:00)' });
   }
 
-  const ruta = planificadorPara(desde).buscarRuta({ origen, destino, desde, criterio });
+  const { ruta, cache } = consultas.buscarRuta({ origen, destino, desde, criterio });
+  res.set('X-Cache', cache); // HIT: reutilizado; MISS: calculado ahora
   res.json({ ruta }); // ruta = null cuando no hay conexión válida (RF-07)
 });
 
