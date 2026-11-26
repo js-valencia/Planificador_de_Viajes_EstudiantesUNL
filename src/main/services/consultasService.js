@@ -24,7 +24,7 @@ const MIN = 60 * 1000;
  *     (día consultado y siguiente). Es lo más caro (decenas de ms por criterio).
  *  2. resultados: itinerario (o null = "sin conexión") por consulta exacta.
  *
- * Clave del resultado = origen | destino | criterio | instante en ms UTC.
+ * Clave del resultado = origen | destino | criterio | instante en ms UTC | salidaExacta.
  * El instante sale de Date.parse(desde), así "…T08:00:00-05:00" y "…T13:00:00Z" comparten
  * entrada. No se redondea: la salida debe ser >= desde y esperaInicialMin depende del
  * segundo exacto, así que redondear podría servir un resultado distinto del real.
@@ -80,17 +80,22 @@ function crearServicioConsultas({
    * @returns {{ ruta: object|null, cache: 'HIT'|'MISS' }}
    * El itinerario cacheado es compartido: quien lo reciba no debe mutarlo.
    */
-  function buscarRuta({ origen, destino, desde, criterio = 'tiempo' }) {
+  function buscarRuta({ origen, destino, desde, criterio = 'tiempo', salidaExacta = false }) {
     revisarDatos();
     const instante = Date.parse(desde);
-    const clave = JSON.stringify([origen, destino, criterio, instante]);
+    const clave = JSON.stringify([origen, destino, criterio, instante, salidaExacta]);
 
     const guardado = resultados.get(clave);
     if (guardado !== undefined) return { ruta: guardado.ruta, cache: 'HIT' };
 
-    const ruta = planificadorPara(desde).buscarRuta({ origen, destino, desde, criterio });
+    const ruta = planificadorPara(desde).buscarRuta({ origen, destino, desde, criterio, salidaExacta });
     resultados.set(clave, { ruta }); // se guarda también null: "sin conexión" es un resultado válido
     return { ruta, cache: 'MISS' };
+  }
+
+  function horariosDisponibles({ origen, destino, fecha }) {
+    revisarDatos();
+    return planificadorPara(`${fecha}T00:00:00-05:00`).horariosDisponibles({ origen, destino, fecha });
   }
 
   function estadisticas() {
@@ -101,7 +106,7 @@ function crearServicioConsultas({
     };
   }
 
-  return { buscarRuta, invalidar, estadisticas, purgarVencidos: () => resultados.purgarVencidos() + planificadores.purgarVencidos() };
+  return { buscarRuta, horariosDisponibles, invalidar, estadisticas, purgarVencidos: () => resultados.purgarVencidos() + planificadores.purgarVencidos() };
 }
 
 module.exports = { crearServicioConsultas, versionDeDatos };

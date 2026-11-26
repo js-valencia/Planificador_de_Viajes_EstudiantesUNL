@@ -4,6 +4,7 @@ const express = require('express');
 
 const { cargarDatos } = require('../services/planificadorService');
 const { crearServicioConsultas } = require('../services/consultasService');
+const { fechaEcuador } = require('../domain/datos/GenerarFrecuencias');
 
 const baseDir = path.join(__dirname, '..');
 const { terminales: terminalesDatos } = cargarDatos(baseDir);
@@ -56,8 +57,26 @@ app.get('/api/cache/stats', (req, res) => {
   res.json(consultas.estadisticas());
 });
 
+app.get('/api/horarios', (req, res) => {
+  const { origen, destino, fecha } = req.query;
+  if (!nombresTerminales.includes(origen) || !nombresTerminales.includes(destino)) {
+    return res.status(400).json({ error: 'Origen o destino no válido' });
+  }
+  if (origen === destino) {
+    return res.status(400).json({ error: 'El origen y el destino deben ser distintos' });
+  }
+  const instante = typeof fecha === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(fecha)
+    ? Date.parse(`${fecha}T12:00:00-05:00`)
+    : NaN;
+  if (Number.isNaN(instante) || fechaEcuador(instante) !== fecha) {
+    return res.status(400).json({ error: 'Fecha no válida (formato esperado: AAAA-MM-DD)' });
+  }
+  res.json({ horarios: consultas.horariosDisponibles({ origen, destino, fecha }) });
+});
+
 app.get('/api/ruta', (req, res) => {
   const { origen, destino, desde, criterio = 'tiempo' } = req.query;
+  const salidaExacta = req.query.exacta === 'true';
 
   // Validación de entradas (RNF-07)
   if (!nombresTerminales.includes(origen) || !nombresTerminales.includes(destino)) {
@@ -73,7 +92,7 @@ app.get('/api/ruta', (req, res) => {
     return res.status(400).json({ error: 'Fecha y hora no válidas (formato esperado: AAAA-MM-DDTHH:MM:SS-05:00)' });
   }
 
-  const { ruta, cache } = consultas.buscarRuta({ origen, destino, desde, criterio });
+  const { ruta, cache } = consultas.buscarRuta({ origen, destino, desde, criterio, salidaExacta });
   res.set('X-Cache', cache); // HIT: reutilizado; MISS: calculado ahora
   res.json({ ruta }); // ruta = null cuando no hay conexión válida (RF-07)
 });
