@@ -14,7 +14,7 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import Constants from 'expo-constants';
 import { isRunningInExpoGo } from 'expo';
-import MapView, { Marker, Polyline } from 'react-native-maps';
+import MapaOsm from './src/MapaOsm';
 import { API_URL, buscarRuta, obtenerTerminales, Ruta, Terminal } from './src/api';
 import { trazadoTramoOsm } from './src/trazadoOsm';
 import {
@@ -93,6 +93,11 @@ export default function App() {
   const criterios = useMemo(
     () => (criteriosApi.length ? CRITERIOS.filter((c) => criteriosApi.includes(c.value)) : CRITERIOS),
     [criteriosApi],
+  );
+
+  const marcadoresMapa = useMemo(
+    () => terminales.map((t) => ({ nombre: t.nombre, latitude: t.lat, longitude: t.lng })),
+    [terminales],
   );
 
   const rutaCoordenadas = useMemo(() => {
@@ -251,24 +256,13 @@ export default function App() {
 
         {ruta && (
           <>
-            {rutaCoordenadas.length > 0 && (MAPA_DISPONIBLE ? (
+            {rutaCoordenadas.length > 0 && MAPA_DISPONIBLE && (
               <View style={styles.mapCard}>
-                <MapView
-                  style={styles.map}
-                  initialRegion={regionMapa}
-                  mapType="standard"
-                >
-                  {terminales.map((terminal) => (
-                    <Marker key={terminal.nombre} coordinate={{ latitude: terminal.lat, longitude: terminal.lng }} title={terminal.nombre} />
-                  ))}
-                  {rutaCoordenadas.length > 1 && <Polyline coordinates={rutaCoordenadas} strokeColor="#c8102e" strokeWidth={5} />}
-                </MapView>
-              </View>
-            ) : (
-              <Text style={[styles.status, styles.empty]}>
-                Mapa no disponible: este APK se compiló sin GOOGLE_MAPS_API_KEY. El itinerario se muestra abajo.
+                <MapaOsm style={styles.map} ruta={rutaCoordenadas} marcadores={marcadoresMapa} />
+              <Text style={{ position: 'absolute', right: 6, bottom: 4, fontSize: 10, color: '#333', backgroundColor: 'rgba(255,255,255,0.8)', paddingHorizontal: 4 }}>
               </Text>
-            ))}
+            </View>
+            )}
 
             {ruta.tramos.map((tramo, index) => (
               <View key={`${tramo.desde}-${tramo.hasta}-${index}`} style={styles.routeCard}>
