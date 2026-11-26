@@ -256,13 +256,11 @@ export default function App() {
 
         {ruta && (
           <>
-            {rutaCoordenadas.length > 0 && MAPA_DISPONIBLE && (
+            {rutaCoordenadas.length > 0 && (
               <View style={styles.mapCard}>
                 <MapaOsm style={styles.map} ruta={rutaCoordenadas} marcadores={marcadoresMapa} />
-              <Text style={{ position: 'absolute', right: 6, bottom: 4, fontSize: 10, color: '#333', backgroundColor: 'rgba(255,255,255,0.8)', paddingHorizontal: 4 }}>
-              </Text>
-            </View>
-            )}
+                </View>
+              )}
 
             {ruta.tramos.map((tramo, index) => (
               <View key={`${tramo.desde}-${tramo.hasta}-${index}`} style={styles.routeCard}>
