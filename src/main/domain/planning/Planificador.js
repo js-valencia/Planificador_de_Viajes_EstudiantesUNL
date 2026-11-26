@@ -1,4 +1,11 @@
 const { floydWarshall, reconstruirCamino } = require('../graph/floydWarshall');
+const { fechaEcuador } = require('../datos/GenerarFrecuencias');
+
+const DESFASE_ECUADOR = 5 * 3600000;
+
+function horaEcuador(instante) {
+  return new Date(instante - DESFASE_ECUADOR).toISOString().slice(11, 16);
+}
 
 const CRITERIOS = {
   // menor tiempo total: viaje + esperas (la espera inicial se suma en buscarRuta)
@@ -25,17 +32,18 @@ class Planificador {
   }
 
   /**
-   * @param {{origen:string, destino:string, desde:string, criterio?:string}} consulta
+   * @param {{origen:string, destino:string, desde:string, criterio?:string, salidaExacta?:boolean}} consulta
    * @returns {object|null} Itinerario o null si no existe conexión válida (RF-07).
    */
-  buscarRuta({ origen, destino, desde, criterio = 'tiempo' }) {
+  buscarRuta({ origen, destino, desde, criterio = 'tiempo', salidaExacta = false }) {
     if (!CRITERIOS[criterio]) throw new Error(`Criterio no válido: ${criterio}`);
     const instanteDesde = Date.parse(desde);
     if (Number.isNaN(instanteDesde)) throw new Error('Fecha y hora de salida no válida');
 
     const { dist, sig } = this.matriz(criterio);
     const { nodos } = this.grafo;
-    const salidas = nodos.filter((n) => n.terminal === origen && n.tipo === 'salida' && n.instante >= instanteDesde);
+    const salidas = nodos.filter((n) => n.terminal === origen && n.tipo === 'salida'
+      && (salidaExacta ? n.instante === instanteDesde : n.instante >= instanteDesde));
     const llegadas = nodos.filter((n) => n.terminal === destino && n.tipo === 'llegada');
 
     let mejor = null;
@@ -63,6 +71,23 @@ class Planificador {
 
     const camino = reconstruirCamino(sig, mejor.salida.id, mejor.llegada.id).map((id) => nodos[id]);
     return this.armarItinerario(camino, instanteDesde, criterio);
+  }
+
+  /**
+   * Horas de salida del origen en esa fecha que permiten llegar al destino.
+   */
+  horariosDisponibles({ origen, destino, fecha }) {
+    const { dist } = this.matriz('tiempo');
+    const { nodos } = this.grafo;
+    const llegadas = nodos.filter((n) => n.terminal === destino && n.tipo === 'llegada');
+    const horas = new Set();
+    for (const salida of nodos) {
+      if (salida.terminal !== origen || salida.tipo !== 'salida' || fechaEcuador(salida.instante) !== fecha) continue;
+      if (llegadas.some((llegada) => dist[salida.id][llegada.id] !== Infinity)) {
+        horas.add(horaEcuador(salida.instante));
+      }
+    }
+    return [...horas].sort();
   }
 
   armarItinerario(camino, instanteDesde, criterio) {
