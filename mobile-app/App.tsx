@@ -15,7 +15,7 @@ import { StatusBar } from 'expo-status-bar';
 import Constants from 'expo-constants';
 import { isRunningInExpoGo } from 'expo';
 import MapaOsm from './src/MapaOsm';
-import { API_URL, buscarRuta, obtenerTerminales, Ruta, Terminal } from './src/api';
+import { API_URL, buscarRuta, obtenerHorarios, obtenerTerminales, Ruta, Terminal } from './src/api';
 import { trazadoTramoOsm } from './src/trazadoOsm';
 import {
   diaEcuadorCorto,
@@ -23,7 +23,6 @@ import {
   esHoraValida,
   fechaEcuador,
   horaEcuador12,
-  horaSiguienteEcuador,
   instanteConsulta,
 } from './src/fechas';
 
@@ -43,6 +42,7 @@ const MAPA_DISPONIBLE =
   isRunningInExpoGo() ||
   Constants.expoConfig?.extra?.googleMapsAndroidConfigurado === true;
 
+const ORIGEN_UNICO = 'Loja';
 const ALTO_BARRA_ESTADO = Platform.OS === 'android' ? RNStatusBar.currentHeight ?? 24 : 44;
 
 function minutos(valor: number) {
@@ -57,24 +57,27 @@ export default function App() {
   const [origen, setOrigen] = useState('Loja');
   const [destino, setDestino] = useState('Machala');
   const [fecha, setFecha] = useState(() => fechaEcuador());
-  const [hora, setHora] = useState(() => horaSiguienteEcuador());
+  const [hora, setHora] = useState('');
+  const [horarios, setHorarios] = useState<string[]>([]);
+  const [cargandoHorarios, setCargandoHorarios] = useState(false);
   const [criterio, setCriterio] = useState('tiempo');
   const [ruta, setRuta] = useState<Ruta | null>(null);
   const [fechaBuscada, setFechaBuscada] = useState('');
   const [buscado, setBuscado] = useState(false);
   const [cargando, setCargando] = useState(false);
   const [error, setError] = useState('');
-  const [selector, setSelector] = useState<'origen' | 'destino' | 'criterio' | null>(null);
+  const [selector, setSelector] = useState<'origen' | 'destino' | 'hora' | 'criterio' | null>(null);
 
   const pedirTerminales = useCallback(() => {
     obtenerTerminales()
       .then((datos) => {
         setTerminales(datos.terminales);
         setCriteriosApi(datos.criterios);
-        setOrigen((actual) =>
-          datos.terminales.some((t) => t.nombre === actual) ? actual : datos.terminales[0]?.nombre ?? '');
+        setOrigen(ORIGEN_UNICO);
         setDestino((actual) =>
-          datos.terminales.some((t) => t.nombre === actual) ? actual : datos.terminales[1]?.nombre ?? '');
+          actual !== ORIGEN_UNICO && datos.terminales.some((t) => t.nombre === actual)
+            ? actual
+            : datos.terminales.find((t) => t.nombre !== ORIGEN_UNICO)?.nombre ?? '');
       })
       .catch((e) => setErrorTerminales(e instanceof Error ? e.message : 'No se pudo conectar con el servidor'))
       .finally(() => setCargandoTerminales(false));
@@ -83,6 +86,20 @@ export default function App() {
   useEffect(() => {
     pedirTerminales();
   }, [pedirTerminales]);
+
+  useEffect(() => {
+    setHora('');
+    setHorarios([]);
+    setCargandoHorarios(false);
+    if (!terminales.length || !origen || !destino || origen === destino || !esFechaValida(fecha)) return;
+    let cancelado = false;
+    setCargandoHorarios(true);
+    obtenerHorarios({ origen, destino, fecha: fecha.trim() })
+      .then((lista) => { if (!cancelado) setHorarios(lista); })
+      .catch((e) => { if (!cancelado) setError(e instanceof Error ? e.message : 'No se pudieron cargar los horarios'); })
+      .finally(() => { if (!cancelado) setCargandoHorarios(false); });
+    return () => { cancelado = true; };
+  }, [terminales.length, origen, destino, fecha]);
 
   function reintentarTerminales() {
     setCargandoTerminales(true);
@@ -143,7 +160,7 @@ export default function App() {
     if (!origen || !destino) return setError('Selecciona un origen y un destino válidos.');
     if (origen === destino) return setError('El origen y el destino deben ser distintos.');
     if (!esFechaValida(fecha)) return setError('La fecha debe tener el formato AAAA-MM-DD y ser una fecha real.');
-    if (!esHoraValida(hora)) return setError('La hora debe tener el formato HH:MM (24 horas), por ejemplo 07:30.');
+    if (!hora || !esHoraValida(hora)) return setError('Selecciona un horario de salida.');
 
     setCargando(true);
     try {
@@ -152,6 +169,7 @@ export default function App() {
         destino,
         desde: instanteConsulta(fecha, hora),
         criterio,
+        exacta: true,
       });
       setRuta(resultado);
       setFechaBuscada(fecha.trim());
@@ -169,13 +187,20 @@ export default function App() {
     return fechaEcuador(Date.parse(iso)) === fechaBuscada ? horaTexto : `${horaTexto} (${diaEcuadorCorto(iso)})`;
   }
 
+  const etiquetaHora = (h: string) => horaEcuador12(instanteConsulta(fecha, h));
+
   const opciones = selector === 'criterio'
     ? criterios.map((item) => ({ nombre: item.label, value: item.value }))
-    : terminales.map((item) => ({ nombre: item.nombre, value: item.nombre }));
+    : selector === 'hora'
+      ? horarios.map((h) => ({ nombre: etiquetaHora(h), value: h }))
+      : selector === 'origen'
+        ? terminales.filter((t) => t.nombre === ORIGEN_UNICO).map((t) => ({ nombre: t.nombre, value: t.nombre }))
+        : terminales.filter((t) => t.nombre !== ORIGEN_UNICO).map((t) => ({ nombre: t.nombre, value: t.nombre }));
 
   function seleccionar(value: string) {
     if (selector === 'origen') setOrigen(value);
     if (selector === 'destino') setDestino(value);
+    if (selector === 'hora') setHora(value);
     if (selector === 'criterio') setCriterio(value);
     setSelector(null);
   }
@@ -225,14 +250,15 @@ export default function App() {
             </View>
             <View style={styles.half}>
               <Text style={styles.label}>Hora</Text>
-              <TextInput
-                style={styles.input}
-                value={hora}
-                onChangeText={setHora}
-                placeholder="HH:MM"
-                keyboardType="numbers-and-punctuation"
-                maxLength={5}
-              />
+              <Pressable
+                style={[styles.select, !horarios.length && styles.buttonDisabled]}
+                disabled={!horarios.length}
+                onPress={() => setSelector('hora')}
+              >
+                <Text style={styles.selectText}>
+                  {hora ? etiquetaHora(hora) : cargandoHorarios ? 'Cargando...' : horarios.length ? 'Seleccionar' : 'Sin horarios'}
+                </Text>
+              </Pressable>
             </View>
           </View>
 

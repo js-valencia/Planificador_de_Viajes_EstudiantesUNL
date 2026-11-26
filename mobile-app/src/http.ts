@@ -34,6 +34,14 @@ export type ConsultaRuta = {
   destino: string;
   desde: string;
   criterio: string;
+  /** true: el primer bus debe salir justo a la hora indicada en `desde`. */
+  exacta?: boolean;
+};
+
+export type ConsultaHorarios = {
+  origen: string;
+  destino: string;
+  fecha: string;
 };
 
 export type TipoErrorApi = 'config' | 'red' | 'timeout' | 'http' | 'formato';
@@ -163,8 +171,19 @@ export function crearClienteApi(baseUrl: string, opciones: OpcionesCliente = {})
       return { terminales: data.terminales, criterios };
     },
 
-    async buscarRuta(consulta: ConsultaRuta): Promise<Ruta | null> {
+    async obtenerHorarios(consulta: ConsultaHorarios): Promise<string[]> {
       const query = new URLSearchParams(consulta);
+      const data = await getJson(`/api/horarios?${query.toString()}`);
+      if (!Array.isArray(data.horarios) || !data.horarios.every((h): h is string => typeof h === 'string')) {
+        throw new ApiError('La lista de horarios recibida no tiene el formato esperado.', 'formato');
+      }
+      return data.horarios;
+    },
+
+    async buscarRuta(consulta: ConsultaRuta): Promise<Ruta | null> {
+      const { exacta, ...resto } = consulta;
+      const query = new URLSearchParams(resto);
+      if (exacta) query.set('exacta', 'true');
       const data = await getJson(`/api/ruta?${query.toString()}`);
       if (data.ruta === null) return null;
       if (!esRuta(data.ruta)) {

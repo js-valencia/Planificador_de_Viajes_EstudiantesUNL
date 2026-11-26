@@ -2,9 +2,9 @@ import { Platform } from 'react-native';
 import Constants from 'expo-constants';
 
 import { resolverApiUrl } from './apiUrl';
-import { crearClienteApi, type ConsultaRuta, type Ruta, type Terminal } from './http';
+import { crearClienteApi, type ConsultaHorarios, type ConsultaRuta, type Ruta, type Terminal } from './http';
 
-export type { ConsultaRuta, Ruta, Terminal, Tramo } from './http';
+export type { ConsultaHorarios, ConsultaRuta, Ruta, Terminal, Tramo } from './http';
 export { ApiError } from './http';
 
 // `process.env.EXPO_PUBLIC_API_URL` debe escribirse literalmente: babel-preset-expo
@@ -31,6 +31,10 @@ const cliente = crearClienteApi(API_URL, {
 
 export function obtenerTerminales(): Promise<{ terminales: Terminal[]; criterios: string[] }> {
   return cliente.obtenerTerminales();
+}
+
+export function obtenerHorarios(params: ConsultaHorarios): Promise<string[]> {
+  return cliente.obtenerHorarios(params);
 }
 
 export function buscarRuta(params: ConsultaRuta): Promise<Ruta | null> {
