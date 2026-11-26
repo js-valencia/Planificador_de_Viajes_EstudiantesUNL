@@ -16,6 +16,7 @@ import Constants from 'expo-constants';
 import { isRunningInExpoGo } from 'expo';
 import MapView, { Marker, Polyline } from 'react-native-maps';
 import { API_URL, buscarRuta, obtenerTerminales, Ruta, Terminal } from './src/api';
+import { trazadoTramoOsm } from './src/trazadoOsm';
 import {
   diaEcuadorCorto,
   esFechaValida,
@@ -98,6 +99,11 @@ export default function App() {
     if (!ruta) return [];
     const puntos: { latitude: number; longitude: number }[] = [];
     ruta.tramos.forEach((tramo, i) => {
+          const trazado = trazadoTramoOsm(tramo.paradasRuta, tramo.desde, tramo.hasta);
+      if (trazado) {
+        trazado.forEach((p) => puntos.push(p));
+        return;
+      }
       const desde = terminales.find((t) => t.nombre === tramo.desde);
       const hasta = terminales.find((t) => t.nombre === tramo.hasta);
       if (desde && i === 0) puntos.push({ latitude: desde.lat, longitude: desde.lng });
