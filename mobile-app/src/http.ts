@@ -17,6 +17,7 @@ export type Tramo = {
   hasta: string;
   salida: string;
   llegada: string;
+  paradasRuta?: { terminal: string }[];
 };
 
 export type Ruta = {
