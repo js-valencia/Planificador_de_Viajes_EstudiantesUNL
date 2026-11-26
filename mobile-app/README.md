@@ -94,7 +94,8 @@ claro si:
 - el perfil `development` se compila sin `expo-dev-client` (ese APK abriría en "Unable to load script");
 - `preview` o `production` no tienen `EXPO_PUBLIC_API_URL`.
 
-Para usar el perfil `development`, instala primero el cliente: `npx expo install expo-dev-client`.
+El cliente de desarrollo ya está incluido en las dependencias. Inicia Metro con `npx expo start --dev-client --lan`
+y deja ese proceso activo mientras pruebas el APK; el teléfono debe estar en la misma red Wi-Fi que la computadora.
 
 ### Clave de Google Maps
 
