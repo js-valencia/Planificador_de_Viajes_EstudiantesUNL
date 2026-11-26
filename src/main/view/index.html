@@ -21,12 +21,12 @@
         <div class="grid grid-cols-2 gap-3">
           <label class="text-sm font-medium">Origen
             <select v-model="origen" class="mt-1 w-full border rounded-lg p-2 bg-white focus:ring-2 focus:ring-[#0a2364] focus:border-transparent">
-              <option v-for="t in terminales" :key="t.nombre" :value="t.nombre">{{ t.nombre }}</option>
+              <option v-for="t in origenes" :key="t.nombre" :value="t.nombre">{{ t.nombre }}</option>
             </select>
           </label>
           <label class="text-sm font-medium">Destino
             <select v-model="destino" class="mt-1 w-full border rounded-lg p-2 bg-white focus:ring-2 focus:ring-[#0a2364] focus:border-transparent">
-              <option v-for="t in terminales" :key="t.nombre" :value="t.nombre">{{ t.nombre }}</option>
+              <option v-for="t in destinos" :key="t.nombre" :value="t.nombre">{{ t.nombre }}</option>
             </select>
           </label>
         </div>
@@ -36,7 +36,11 @@
             <input type="date" v-model="fecha" class="mt-1 w-full border rounded-lg p-2 focus:ring-2 focus:ring-[#0a2364] focus:border-transparent">
           </label>
           <label class="text-sm font-medium">Hora de salida
-            <input type="time" v-model="hora" class="mt-1 w-full border rounded-lg p-2 focus:ring-2 focus:ring-[#0a2364] focus:border-transparent">
+            <select v-model="hora" :disabled="!horarios.length"
+                    class="mt-1 w-full border rounded-lg p-2 bg-white disabled:opacity-60 focus:ring-2 focus:ring-[#0a2364] focus:border-transparent">
+              <option value="" disabled>{{ cargandoHorarios ? 'Cargando...' : (horarios.length ? 'Selecciona un horario' : 'Sin horarios') }}</option>
+              <option v-for="h in horarios" :key="h" :value="h">{{ etiquetaHora(h) }}</option>
+            </select>
           </label>
         </div>
 
@@ -115,11 +119,21 @@
         return {
           terminales: [],
           origen: '', destino: '',
-          fecha: '2026-11-02', hora: '06:30',
+          fecha: '2026-11-02', hora: '',
+          horarios: [], cargandoHorarios: false, solicitudHorarios: 0,
           criterio: 'tiempo',
           ruta: null, error: '', buscado: false, cargando: false,
           trazadoAproximado: false,
         };
+      },
+      computed: {
+        origenes() { return this.terminales.filter((t) => t.nombre === 'Loja'); },
+        destinos() { return this.terminales.filter((t) => t.nombre !== 'Loja'); },
+      },
+      watch: {
+        origen() { this.cargarHorarios(); },
+        destino() { this.cargarHorarios(); },
+        fecha() { this.cargarHorarios(); },
       },
       async mounted() {
         mapa = L.map('mapa').setView([-4.05, -79.35], 9);
@@ -133,13 +147,41 @@
           const r = await fetch('/api/terminales');
           this.terminales = (await r.json()).terminales;
           const nombres = this.terminales.map((t) => t.nombre);
-          this.origen = nombres.includes('Catamayo') ? 'Catamayo' : nombres[0];
-          this.destino = nombres.includes('Loja') ? 'Loja' : nombres[1];
+          this.origen = 'Loja';
+          this.destino = nombres.find((n) => n !== 'Loja') || '';
         } catch {
           this.error = 'No se pudo conectar con el servidor.';
         }
       },
       methods: {
+        etiquetaHora(hhmm) {
+          const [h, m] = hhmm.split(':').map(Number);
+          return `${h % 12 === 0 ? 12 : h % 12}:${String(m).padStart(2, '0')} ${h < 12 ? 'a. m.' : 'p. m.'}`;
+        },
+
+        async cargarHorarios() {
+          this.horarios = [];
+          this.hora = '';
+          const solicitud = ++this.solicitudHorarios;
+          if (!this.origen || !this.destino || !this.fecha || this.origen === this.destino) {
+            this.cargandoHorarios = false;
+            return;
+          }
+          this.cargandoHorarios = true;
+          try {
+            const params = new URLSearchParams({ origen: this.origen, destino: this.destino, fecha: this.fecha });
+            const r = await fetch('/api/horarios?' + params);
+            const datos = await r.json();
+            if (solicitud !== this.solicitudHorarios) return;
+            if (!r.ok) { this.error = datos.error || 'No se pudieron cargar los horarios.'; return; }
+            this.horarios = datos.horarios;
+          } catch {
+            if (solicitud === this.solicitudHorarios) this.error = 'No se pudo conectar con el servidor.';
+          } finally {
+            if (solicitud === this.solicitudHorarios) this.cargandoHorarios = false;
+          }
+        },
+
         async buscar() {
           this.error = '';
           this.ruta = null;
@@ -156,7 +198,7 @@
           }
 
           if (!this.fecha || !this.hora) {
-            this.error = 'Ingresa una fecha y hora de salida.';
+            this.error = 'Selecciona una fecha y un horario de salida.';
             return;
           }
 
@@ -165,6 +207,7 @@
             origen: this.origen,
             destino: this.destino,
             criterio: this.criterio,
+            exacta: 'true',
             desde: `${this.fecha}T${this.hora}:00-05:00`,
           });
 
