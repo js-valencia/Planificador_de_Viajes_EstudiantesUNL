@@ -14,7 +14,7 @@
     "api": "node src/main/view/servidor.js",
     "api:dev": "node --watch src/main/view/servidor.js",
     "demo": "node src/main/js/index.js",
-    "test": "node tests/smoke.test.js && node tests/listaDoble.test.js && node tests/sort.test.js && node tests/search.test.js && node tests/datosBusqueda.test.js && node tests/planificador.test.js && node tests/cache.test.js && node tests/api.test.js && node tests/cuentaRegresivaWeb.test.js",
+    "test": "node tests/smoke.test.js && node tests/listaDoble.test.js && node tests/sort.test.js && node tests/monticulo.test.js && node tests/search.test.js && node tests/datosBusqueda.test.js && node tests/planificador.test.js && node tests/cache.test.js && node tests/api.test.js && node tests/cuentaRegresivaWeb.test.js",
     "benchmark:cache": "node scripts/cache/benchmark_cache.js",
     "benchmark:busqueda": "node scripts/busqueda/benchmark_busqueda.js",
     "datos:busqueda": "node scripts/busqueda/preparar_datos_busqueda.js",
