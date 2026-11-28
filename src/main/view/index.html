@@ -58,6 +58,22 @@
         </button>
       </form>
 
+      <section v-if="cuenta" class="mt-4 rounded-2xl shadow p-4 text-center" :class="claseCuenta">
+        <p class="text-xs uppercase tracking-wide opacity-80">Salida {{ origen }} → {{ destino }}</p>
+        <template v-if="cuenta.estado === 'pendiente'">
+          <p class="mt-1 text-sm">Tu autobús sale en</p>
+          <div role="timer" class="mt-2 flex justify-center gap-2">
+            <div v-for="u in unidadesCuenta" :key="u.etiqueta" class="min-w-16 rounded-xl bg-white/15 px-2 py-2">
+              <p class="text-2xl font-bold tabular-nums">{{ u.valor }}</p>
+              <p class="text-xs opacity-80">{{ u.etiqueta }}</p>
+            </div>
+          </div>
+        </template>
+        <p v-else-if="cuenta.estado === 'saliendo'" class="mt-2 text-lg font-bold" aria-live="polite">¡Es la hora de salida! Tu autobús está saliendo.</p>
+        <p v-else class="mt-2 text-lg font-semibold" aria-live="polite">Este autobús ya salió.</p>
+        <p class="mt-3 text-xs opacity-80">{{ fecha }} · {{ etiquetaHora(hora) }} · hora de Ecuador</p>
+      </section>
+
       <p v-if="error" class="mt-4 bg-red-50 text-red-700 rounded-xl p-3 text-sm" aria-live="polite">{{ error }}</p>
 
       <div v-if="buscado && !ruta && !error" class="mt-4 bg-amber-50 border border-amber-200 text-amber-800 rounded-xl p-3 text-sm" aria-live="polite">
@@ -109,9 +125,43 @@
   <script>
     const { createApp } = Vue;
 
+    // Misma lógica que mobile-app/src/fechas.ts (cuentaRegresiva). Probada en tests/cuentaRegresivaWeb.test.js
+    // <cuenta-regresiva>
+    // Trabaja con milisegundos UTC: la salida se arma con -05:00 (Ecuador), así no depende de la zona del equipo.
+    const GRACIA_SALIDA_MS = 60 * 1000; // primer minuto tras la hora programada: "saliendo"
+    const dosDigitos = (n) => String(n).padStart(2, '0');
+
+    function cuentaRegresiva(salidaMs, ahoraMs) {
+      if (!Number.isFinite(salidaMs) || !Number.isFinite(ahoraMs)) return null;
+      const faltanMs = salidaMs - ahoraMs;
+      if (faltanMs <= -GRACIA_SALIDA_MS) return { estado: 'salido', dias: 0, horas: 0, minutos: 0, segundos: 0 };
+      if (faltanMs <= 0) return { estado: 'saliendo', dias: 0, horas: 0, minutos: 0, segundos: 0 };
+      const total = Math.ceil(faltanMs / 1000); // llega a 0 justo en la hora de salida; nunca negativo
+      return {
+        estado: 'pendiente',
+        dias: Math.floor(total / 86400),
+        horas: Math.floor((total % 86400) / 3600),
+        minutos: Math.floor((total % 3600) / 60),
+        segundos: total % 60,
+      };
+    }
+
+    function unidadesCuentaRegresiva(c) {
+      const unidades = [
+        { valor: c.dias, etiqueta: 'días' },
+        { valor: c.horas, etiqueta: 'horas' },
+        { valor: c.minutos, etiqueta: 'min' },
+        { valor: c.segundos, etiqueta: 'seg' },
+      ];
+      const primera = unidades.findIndex((u, i) => u.valor > 0 || i >= 2); // días y horas solo si corresponden
+      return unidades.slice(primera).map((u) => ({ valor: dosDigitos(u.valor), etiqueta: u.etiqueta }));
+    }
+    // </cuenta-regresiva>
+
     const COLORES = { Catamayo: '#006838', Loja: '#c8102e' };
     let mapa = null;        // Leaflet se maneja fuera de la reactividad de Vue
     let capa = null;
+    let temporizador = null; // setTimeout de la cuenta regresiva, fuera de la reactividad de Vue
     const cacheTrazados = new Map();
 
     createApp({
@@ -119,7 +169,8 @@
         return {
           terminales: [],
           origen: '', destino: '',
-          fecha: '2026-11-02', hora: '',
+          fecha: new Date().toLocaleDateString('en-CA', { timeZone: 'America/Guayaquil' }), hora: '', // hoy en Ecuador (AAAA-MM-DD)
+          ahora: Date.now(),
           horarios: [], cargandoHorarios: false, solicitudHorarios: 0,
           criterio: 'tiempo',
           ruta: null, error: '', buscado: false, cargando: false,
@@ -129,13 +180,24 @@
       computed: {
         origenes() { return this.terminales.filter((t) => t.nombre === 'Loja'); },
         destinos() { return this.terminales.filter((t) => t.nombre !== 'Loja'); },
+        salidaMs() { return this.fecha && this.hora ? Date.parse(`${this.fecha}T${this.hora}:00-05:00`) : NaN; },
+        cuenta() { return cuentaRegresiva(this.salidaMs, this.ahora); },
+        unidadesCuenta() { return this.cuenta ? unidadesCuentaRegresiva(this.cuenta) : []; },
+        claseCuenta() {
+          const estado = this.cuenta && this.cuenta.estado;
+          if (estado === 'saliendo') return 'bg-emerald-600 text-white';
+          if (estado === 'salido') return 'bg-slate-200 text-slate-700';
+          return 'bg-[#0a2364] text-white';
+        },
       },
       watch: {
         origen() { this.cargarHorarios(); },
         destino() { this.cargarHorarios(); },
         fecha() { this.cargarHorarios(); },
+        salidaMs() { this.reiniciarTemporizador(); },
       },
       async mounted() {
+        document.addEventListener('visibilitychange', this.alCambiarVisibilidad);
         mapa = L.map('mapa').setView([-4.05, -79.35], 9);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 18,
@@ -153,7 +215,26 @@
           this.error = 'No se pudo conectar con el servidor.';
         }
       },
+      beforeUnmount() {
+        clearTimeout(temporizador);
+        document.removeEventListener('visibilitychange', this.alCambiarVisibilidad);
+      },
       methods: {
+        alCambiarVisibilidad() {
+          if (!document.hidden) this.reiniciarTemporizador();
+        },
+        reiniciarTemporizador() {
+          clearTimeout(temporizador);
+          temporizador = null;
+          if (!Number.isFinite(this.salidaMs)) return;
+          const tic = () => {
+            const instante = Date.now();
+            this.ahora = instante;
+            if (cuentaRegresiva(this.salidaMs, instante).estado === 'salido') { temporizador = null; return; }
+            temporizador = setTimeout(tic, 1000 - (instante % 1000)); // alineado al cambio de segundo
+          };
+          tic();
+        },
         etiquetaHora(hhmm) {
           const [h, m] = hhmm.split(':').map(Number);
           return `${h % 12 === 0 ? 12 : h % 12}:${String(m).padStart(2, '0')} ${h < 12 ? 'a. m.' : 'p. m.'}`;
