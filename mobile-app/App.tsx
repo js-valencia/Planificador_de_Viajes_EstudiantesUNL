@@ -15,6 +15,7 @@ import { StatusBar } from 'expo-status-bar';
 import Constants from 'expo-constants';
 import { isRunningInExpoGo } from 'expo';
 import MapaOsm from './src/MapaOsm';
+import CuentaRegresivaSalida from './src/CuentaRegresivaSalida';
 import { API_URL, buscarRuta, obtenerHorarios, obtenerTerminales, Ruta, Terminal } from './src/api';
 import { trazadoTramoOsm } from './src/trazadoOsm';
 import {
@@ -275,6 +276,14 @@ export default function App() {
             {cargando ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>Buscar ruta</Text>}
           </Pressable>
         </View>
+
+        {!!hora && esFechaValida(fecha) && esHoraValida(hora) && (
+          <CuentaRegresivaSalida
+            salidaIso={instanteConsulta(fecha, hora)}
+            titulo={`Salida ${origen} → ${destino}`}
+            detalle={`${fecha.trim()} · ${etiquetaHora(hora)}`}
+          />
+        )}
 
         {cargando && <Text style={styles.status}>Buscando la mejor conexión...</Text>}
         {!!error && <Text style={[styles.status, styles.error, styles.errorText]}>{error}</Text>}

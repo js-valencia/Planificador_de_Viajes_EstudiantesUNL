@@ -66,3 +66,46 @@ export function diaEcuadorCorto(iso: string): string {
   const dias = ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'];
   return `${dias[d.getUTCDay()]} ${dosDigitos(d.getUTCDate())}/${dosDigitos(d.getUTCMonth() + 1)}`;
 }
+
+/** Margen de un minuto en el que el autobús se considera "saliendo". */
+export const GRACIA_SALIDA_MS = 60 * 1000;
+
+export type EstadoCuentaRegresiva = 'pendiente' | 'saliendo' | 'salido';
+
+export interface CuentaRegresiva {
+  estado: EstadoCuentaRegresiva;
+  dias: number;
+  horas: number;
+  minutos: number;
+  segundos: number;
+}
+
+export function cuentaRegresiva(salidaMs: number, ahoraMs: number = Date.now()): CuentaRegresiva | null {
+  if (!Number.isFinite(salidaMs) || !Number.isFinite(ahoraMs)) return null;
+  const faltanMs = salidaMs - ahoraMs;
+  if (faltanMs <= -GRACIA_SALIDA_MS) {
+    return { estado: 'salido', dias: 0, horas: 0, minutos: 0, segundos: 0 };
+  }
+  if (faltanMs <= 0) {
+    return { estado: 'saliendo', dias: 0, horas: 0, minutos: 0, segundos: 0 };
+  }
+  const total = Math.ceil(faltanMs / 1000);
+  return {
+    estado: 'pendiente',
+    dias: Math.floor(total / 86400),
+    horas: Math.floor((total % 86400) / 3600),
+    minutos: Math.floor((total % 3600) / 60),
+    segundos: total % 60,
+  };
+}
+
+export function unidadesCuentaRegresiva(c: CuentaRegresiva): { valor: string; etiqueta: string }[] {
+  const unidades = [
+    { valor: c.dias, etiqueta: 'días' },
+    { valor: c.horas, etiqueta: 'horas' },
+    { valor: c.minutos, etiqueta: 'min' },
+    { valor: c.segundos, etiqueta: 'seg' },
+  ];
+  const primera = unidades.findIndex((u, i) => u.valor > 0 || i >= 2);
+  return unidades.slice(primera).map((u) => ({ valor: dosDigitos(u.valor), etiqueta: u.etiqueta }));
+}
